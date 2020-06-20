@@ -1,0 +1,25 @@
+.titrCard{
+    position: static;
+    background-color: rgba(63,81,181,1);
+   color:white;
+
+   .titr{
+    overflow-y: hidden;
+   }
+}
+.mat-drawer-content{
+.mat-sidenav-content{
+    overflow-y: hidden;
+}
+} 
+.cells{
+    border-left: solid 1px gray;
+    text-align: center;
+    padding-top: 15px;
+}
+th{
+    border: 2px solid #dee2e6;
+    text-align: center !important;
+    font-weight: bold;
+    padding-bottom: 18px!important;
+}

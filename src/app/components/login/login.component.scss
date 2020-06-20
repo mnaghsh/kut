@@ -1,0 +1,41 @@
+p.error{
+  color: #f5554a;
+  text-size: 15px;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff6f6;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+.image{
+  width: 35%;
+  position: absolute;
+
+  margin-top: 1%;
+    
+  margin-right: 34%;
+}
+.full-width{
+  width: 25%;
+
+  /* margin:auto;
+  width: 20%;
+  padding: 10px; */
+}
+
+.ltr{
+  direction: ltr;
+}
+.center{
+  text-align: center;
+
+}
+.button{
+  background-color: orange
+}
+
+input{
+  text-align: left;
+  direction: ltr;
+}
+
