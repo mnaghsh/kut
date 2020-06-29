@@ -1,9 +1,23 @@
+<h2 *ngIf="commonService.step1==1">ssss</h2>
 <mat-card class="titrCard">
   <h5 class="titr" >
     چاپ قرارداد استاد
   </h5>
 </mat-card>
-<br>  <button mat-raised-button color="primary" style="margin-right:1%;float:right;font-weight:bold;" (click)="print()">چاپ</button>
+<br> 
+
+<div class="row ">
+  <div class="col-4"></div>
+  <div class="col-4 selectTeacher ">
+    <button mat-button color="accent" (click)="btnChooseTeacher()">
+      <h4>{{this.fullName}}</h4>
+    </button>
+  </div> 
+
+  <div class="col-4"></div>
+</div>
+
+<button mat-raised-button color="primary" style="margin-right:1%;float:right;font-weight:bold;" (click)="print()">چاپ</button>
 
 <div dir="rtl" id="print-section">
 
@@ -13,178 +27,7 @@
         <td>
           <p>شماره:</p>
           <p>تاریخ:</p>
-        </td><h2 *ngIf="commonService.step1==1">ssss</h2>
-        <mat-card class="titrCard">
-          <h5 class="titr" >
-            چاپ قرارداد استاد
-          </h5>
-        </mat-card>
-        <br> 
-        
-        <div class="row ">
-          <div class="col-4"></div>
-          <div class="col-4 selectTeacher ">
-            <button mat-button color="accent" (click)="btnChooseTeacher()">
-              <h4>{{this.fullName}}</h4>
-            </button>
-          </div>
-        
-          <div class="col-4"></div>
-        </div>
-        
-        <button mat-raised-button color="primary" style="margin-right:1%;float:right;font-weight:bold;" (click)="print()">چاپ</button>
-        
-        <div dir="rtl" id="print-section">
-        
-          <table width="100%">
-            <tbody>
-              <tr>
-                <td>
-                  <p>شماره:</p>
-                  <p>تاریخ:</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table width="100%">
-            <tbody>
-              <tr>
-                <td>
-                  <p>
-                    <strong>بسمه تعالی</strong>
-                  </p>
-                  <p>
-                    <strong>قرارداد حق التدریس</strong>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        
-          <p>این قرارداد بین دانشگاه صنعتی کرمانشاه که در این قرارداد
-            <strong>موسسه</strong> نامیده می&zwnj;شود و آقای/خانم
-            <strong>&nbsp;&nbsp; علی اکبر اختری</strong> که در این قرارداد
-            <strong>مدرس</strong> نامیده می&zwnj;شود، بمنظور تدریس
-            <strong>
-              <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp; </u>
-            </strong>&nbsp;واحد با احتساب ضرایب دروس در نیمسال
-            <strong> اول</strong> سال تحصیلی
-            <strong> 95-96</strong> در دانشگاه صنعتی کرمانشاه طبق مقررات دانشگاه&zwnj;ها و موسسات آموزش عالی و با شرایط زیر منعقد می&zwnj;گردد.</p>
-          <table width="1698">
-            <tbody>
-              <tr>
-                <td width="1698">
-                  <p>
-                    <strong>1- مشخصات مدرس:&nbsp; </strong>نام خانوادگی: &nbsp;
-                    <strong>اختری</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نام:
-                    <strong>&nbsp;علی اکبر </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;شماره&zwnj;شناسنامه:
-                    <strong>&nbsp;&nbsp;&nbsp;62&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره ملی:&nbsp; 1219355186&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;</p>
-                  <p>نام پدر:
-                    <strong>&nbsp;&nbsp;&nbsp;محمد علی</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:
-                    <strong> 1/ 2/1347 </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد: &nbsp;&nbsp;گلپایگان &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;وضعیت
-                    تأهل:
-                    <strong> متاهل</strong>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;جنسیت:
-                    <strong> مرد</strong>
-                  </p>
-                  <p>2-
-                    <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
-                    <strong> دکتری</strong>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
-                    تحصیلی:مهندسی عمران &ndash; آب و هیدرولیک &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
-                    اخذ: 1388&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
-                  <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp;دانشگاه فردوسی مشهد&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی : &nbsp;
-                    <strong>
-                    استادیار</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
-                    <strong>14</strong>
-                  </p>
-                  <p>
-                    <strong>3- وضعیت شغلی:</strong> چنانچه در دانشگاه شاغل هستید چند ساعت تدریس می&zwnj;نمایید؟
-                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
-                    سابقه:
-                    <strong>18&nbsp;&nbsp;&nbsp; </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال</p>
-                  <p>در کدام دانشگاه&shy;ها: &nbsp;رازی، آزاد، آزاد اراک و ...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; شماره
-                    حساب بانک تجارت:&nbsp;&nbsp;
-                    <strong>1812051012</strong>
-                  </p>
-                  <p>نشانی و تلفن:
-                    <strong>کرمانشاه-دانشگاه صنعتی کرمانشاه&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن همراه&nbsp; 09188583216&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      </strong>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p>&nbsp;</p>
-          <p>
-            <strong>ماده1&ndash; </strong>این قرارداد از تاریخ&nbsp;
-            <strong> 27/ 6/1395</strong>&nbsp;&nbsp;&nbsp;&nbsp; لغایت
-            <strong> 30/ 10/1395</strong>&nbsp; بمدت یک نیم سال تحصیلی (17هفته) منعقد می&zwnj;گردد.</p>
-          <p>
-            <strong>ماده2&ndash; </strong>میزان مبلغ حق&zwnj;التدریس هر&zwnj;ساعت معادل با یک پنجاهم بند الف و ب ردیف 22 حکم کارگزینی اعضای
-            هیأت&zwnj;علمی با رتبه
-            <strong> استادیار </strong>پایه
-            <strong> 14</strong>می&zwnj;باشد که در مقابل گواهی انجام&zwnj;کار از طرف واحد مربوطه، از محل اعتبارات دانشگاه قابل پرداخت است.
-            درصورت نیاز و با تایید معاون آموزشی دانشگاه در قبال کار انجام شده، بخشی از حق التدریس
-            <strong>به</strong> صورت علی الحساب قابل پرداخت است و در هر حال تسویه حساب نهایی منوط به تحویل اوراق امتحانی کتبی و لیست کامل
-            نمرات امتحان همان نیم&shy;سال می&zwnj;باشد.</p>
-          <p>
-            <strong>ماده3- </strong>تعهدات مدرس:
-            <strong>الف</strong>&ndash; بموجب این قرارداد مدرس موظف است طبق برنامه&zwnj;ای که از طرف دانشکده تعیین می&zwnj;شود برای تدریس
-            درس حضور یافته و پس از انجام امتحان اوراق امتحانات کتبی و نمرات امتحان را ظرف مدت 10 روز به دانشگاه تحویل نماید. چنانچه
-            بعضی از جلسات درس به دلیل عدم حضور مدرس با عذر موجه تشکیل نشود مدرس مکلف است با اطلاع قبلی دانشکده، جلسات تشکیل نشده
-            را بنحو مقتضی جبران نماید و برای جلسات جبران نشده حق&zwnj;التدریس پرداخت نخواهد شد و مؤسسه می&zwnj;تواند برای این جلسات
-            فقط نصف حق&zwnj;التدریس را پرداخت نماید. در صورت حضور مدرس و عدم تشکیل جلسات درس به عللی خارج از اراده و بدون اطلاع قبلی
-            وی، برای جبران جلسات تشکیل نشده موسسه می&zwnj;تواند با توافق مدرس اقدام نماید و مدرس می&zwnj;تواند به تشخیص مؤسسه برای
-            تدریس این جلسات اضافی حق&zwnj;التدریس اضافی مطالبه نماید. &nbsp;
-            <strong>ب</strong>&zwnj;&ndash; شرکت در جلساتی که عند&zwnj;الزوم از طرف دانشکده در ارتباط با درس موضوع این قرارداد تشکیل می&zwnj;شود
-            اجباری و جزو وظایف آموزشی مدرس محسوب می&zwnj;گردد.
-            <strong>ج</strong>&ndash; مدرس نمی&zwnj;تواند تعهدات مندرج در این ماده را کلاً یا جزاً به غیر واگذار نماید.
-            <strong>د</strong>- مدرس تعهد می&zwnj;نماید که مجموع ساعات تدریس وی در دانشگاه&zwnj;ها و موسسات آموزش عالی از حداکثر ساعات مجاز
-            مصوب هیأت امنای مؤسسه تجاوز ننماید.</p>
-          <p>
-            <u>تبصره: </u>تشخیص عذر موجه در همه مواد این قرارداد به عهده مؤسسه می&zwnj;باشد. &nbsp;</p>
-          <p>
-            <strong>ماده4-</strong> تدریس در موسسه طبق این قرارداد جنبه موقت داشته و در هیچ مورد نمی&zwnj;تواند مبنای استخدام یا تبدیل وضع
-            مدرس به صورت عضو هیات علمی مؤسسه قرار گیرد و تدریس طبق این قرارداد مؤید هیچگونه سمت رسمی دانشگاهی نمی&zwnj;باشد.</p>
-          <p>
-            <strong>ماده5- </strong>مؤسسه می&zwnj;تواند در صورتی که صلاح بداند این قرارداد را با اطلاع قبلی یک ماهه فسخ نماید.</p>
-          <p>
-            <strong>ماده6</strong>- در صورتی&shy;که مدرس قرارداد را بدون رعایت ماده 5 فسخ نماید و یا بدون عذر موجه در کلاس درس حاضر نشود
-            و یا از انجام امتحانات و تحویل اوراق استنکاف نماید متعهد و ملزم می&zwnj;شود که دو برابر وجوهی را که به موجب این قرارداد
-            دریافت داشته است به مؤسسه مسترد دارد.</p>
-          <p>
-            <strong>ماده7</strong>- نظارت بر حسن انجام کار مدرس بر عهده معاونت آموزشی دانشگاه می&zwnj;باشد.</p>
-          <p>
-            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; مدرس&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;مدیر
-              گروه&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
-          </p>
-          <p>
-            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
-          </p>
-          <p>
-            <strong>&nbsp;</strong>
-          </p>
-          <p>
-            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; معاون آموزشی و پژوهشی&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;معاون
-              اداری و مالی </strong>
-          </p>
-          <p>
-            <strong>&nbsp;</strong>
-          </p>
-          <p>
-            <strong>&nbsp;</strong>
-          </p>
-          <p>
-            <strong>&nbsp;</strong>
-          </p>
-          <p>
-            <strong>رونوشت به : مستخدم (&nbsp;&nbsp; )&nbsp;&nbsp; کارگزینی (&nbsp;&nbsp;&nbsp; )&nbsp;&nbsp;&nbsp; حسابداری (&nbsp;&nbsp;&nbsp;
-              )&nbsp;&nbsp;&nbsp; آمار پرسنلی (&nbsp;&nbsp; )</strong>
-          </p>
-        </div>
-        <button (click)="print()">print</button>
+        </td>
       </tr>
     </tbody>
   </table>
