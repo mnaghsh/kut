@@ -1,5 +1,8 @@
 import { ConfigService } from '../../services/config.service';
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
+import { MatDialog } from '@angular/material';
+import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 
 @Component({
   selector: 'app-contract',
@@ -10,7 +13,16 @@ export class ContractComponent implements OnInit {
   displayName: string;
   description: string;
   mhd;
-  constructor(private configService: ConfigService) {
+  showCourseValueTable: boolean;
+  userId: any;
+  displayedColumns: any;
+  dataSource: any;
+  columns: any[];
+  fullName = "انتخاب استاد";
+  constructor(private configService: ConfigService,
+    private commonService: CommonService,
+    private dialog: MatDialog,
+  ) {
     this.mhd = "mhd2"
     // this.addCommonFormul()
     // this.addCalculatedFormul();
@@ -18,6 +30,32 @@ export class ContractComponent implements OnInit {
   }
 
   ngOnInit() {
+    //debugger
+  }
+  private btnChooseTeacher() {
+    this.showCourseValueTable = false
+    //this.newRowObj = {};
+    const dialogRef = this.dialog.open(TeacherComponent, {
+      width: "85%",
+      height: "85%",
+      data: {
+        //field: field,
+      }
+    });
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        this.userId = data.id;
+        this.fullName = data.fullName;
+        this.displayedColumns = null
+        this.dataSource = null;
+        this.columns = [];
+        this.showCourseValueTable = true
+        // this.getDataOfReport();
+        this.commonService.reportUserId = this.userId;
+
+
+      }
+    )
   }
 
   print(): void {
