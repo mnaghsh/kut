@@ -1,0 +1,35 @@
+<mat-card >
+  <mat-card-header>
+    <mat-card-subtitle >
+
+    </mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="center">
+
+    <mat-form-field class="full-width">
+      <input matInput type="text" placeholder="نام کاربری" formControlName="username"/>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width">
+      <input matInput type="password" placeholder="رمز عبور" formControlName="password"/>
+    </mat-form-field>
+    <br>
+  
+      <mat-form-field  class="full-width"> 
+        <mat-select [(ngModel)]="termId" (ngModelChange)="changeTerm(termId)" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let term of termList" [value]="term.id">{{term.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <br>
+    <button mat-raised-button type="submit"  color="primary">ورود</button>
+
+  </form>
+  <mat-card-footer *ngIf="message != null ">
+    <p class="error">
+      {{message}}
+    </p>
+  </mat-card-footer>
+</mat-card>
+<img class="image" src="./assets/index.jpg" width="60px">
+<router-outlet></router-outlet>

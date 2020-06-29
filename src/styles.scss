@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+$fa-font-path: "../node_modules/font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+    font-family: 'iranSans'; 
+    text-align: right;
+  //  overflow-x: hidden;
+  }
+  @font-face {
+    font-family: iranSans;
+    src: url(assets/Fonts/iranSans/IRANSansRegular.ttf) format("opentype");
+  }
+  
+.fa {
+  font-family: FontAwesome !important;
+}
+.mat-tab-nav-bar{
+  width: 100%;
+}
+.mat-tab-links{
+  width: 100%;
+  cursor: pointer;
+}
+.btnAdd{
+  margin-right: 1%!important;
+}
+.content{
+  margin: 1%!important;
+  margin-bottom: 4%!important;
+}
+.titrCard{
+  position: static;
+  background-color: rgba(63,81,181,1);
+ color:white;
+ margin-right: 4.5%;
+ margin-left: 1%;
+
+ .titr{
+  overflow-y: hidden;
+ }
+}
+.mat-sidenav-content{
+  padding-bottom: 5%;
+}
+// .mat-drawer-backdrop.mat-drawer-shown {
+//   background-color: rgba(0, 0, 0, 0.1);
+// }

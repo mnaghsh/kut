@@ -1,0 +1,49 @@
+<mat-card class="titrCard">
+    <h5 class="titr">
+      آیتم های  محاسباتی وابسته به درس
+    </h5>
+  </mat-card>
+  <br>
+  <div class="content">
+  <button class="btnAdd" (click)="btnAdd()" mat-raised-button color="primary">ایجاد آیتم جدید</button>
+
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
+        <td mat-cell *matCellDef="let row;let index = index"> {{index+1}} </td>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="displayName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> نام فرمول </th>
+        <td mat-cell *matCellDef="let row"> {{row.displayName}}</td>
+      </ng-container>
+        
+       <!-- Progress Column -->
+       <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> توضیحات فرمول </th>
+        <td mat-cell *matCellDef="let row"> {{row.description}}</td>
+      </ng-container>
+      
+   <!-- Progress Column -->
+   <ng-container matColumnDef="showFormula">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>  فرمول </th>
+    <td mat-cell *matCellDef="let row"> {{row.showFormula}}</td>
+  </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
+  

@@ -1,0 +1,99 @@
+<div dir="rtl">
+  <mat-card class="titrCard">
+    <h5 class="titr">
+      ایجاد آیتم محاسباتی وابسته به درس جدید
+    </h5>
+  </mat-card>
+  <br>
+
+  <!-- <form class="example-form"> -->
+
+<div class="row">
+<div class="txtBox col-2">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="نام" [(ngModel)]="displayName" [ngModelOptions]="{standalone:
+              true}">
+  </mat-form-field>
+</div>
+<div class="txtBox col-2">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="توضیحات" [(ngModel)]="description" [ngModelOptions]="{standalone:
+              true}">
+  </mat-form-field>
+</div>
+</div>
+
+  <div class="row">
+    <div class="col col-1"></div>
+
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-actions>
+          <!-- <fa class="fa fa-plus" aria-hidden="true"></fa>
+          <fa class="fa fa-times" aria-hidden="true"></fa> -->
+          <button mat-button style="font-size: 30px;"  color="primary" (click)="addItem()">+</button>
+          <button mat-button style="font-size: 30px;"  color="accent" (click)="removeItem()">-</button>
+
+        </mat-card-actions>
+      </mat-card-header>
+
+
+      <mat-card-content>
+        <!-- <form [formGroup]="stateForm"> -->
+
+
+        <mat-form-field *ngFor="let activeItem of activeItems ;let index = index">
+          <!-- <input type="text" matInput placeholder="States Group" 
+              [(ngModel)]="activeItem.label"
+              (change)="mhd(activeItem.label)"/> -->
+
+          <input type="text" autocomplete="off" matInput placeholder="States Group" [(ngModel)]="activeItem.label"
+            (change)="mhd(activeItem.label)" required [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+              <mat-option *ngFor="let name of group.names" [value]="name">
+                {{name}}
+              </mat-option>
+            </mat-optgroup>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <!-- <mat-form-field *ngFor="let activeItem of activeItems">
+            
+              <input type="text" matInput placeholder="States Group" formControlName="stateGroup"
+                [(ngModel)]="selectedValue" (change)="mhd(selectedValue)" required [matAutocomplete]="autoGroup">
+              <mat-autocomplete #autoGroup="matAutocomplete">
+                <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+                  <mat-option *ngFor="let name of group.names" [value]="name">
+                    {{name}}
+                  </mat-option>
+                </mat-optgroup>
+              </mat-autocomplete>
+            </mat-form-field> -->
+        <!-- </form> -->
+       
+      </mat-card-content>
+      <mat-card-actions>
+        <span *ngFor="let activeItem of activeItems ;let index = index">
+          {{activeItem.label}}
+        </span>
+
+        <!-- <ul>
+            <li *ngFor="let item of items; let i = index" [attr.data-index]="i">
+                {{item}}
+            </li>
+        </ul> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+<br>
+  <button mat-raised-button color="primary" (click)="addCalculatedFormul()">ذخیره</button>
+
+
+  <!-- {{name}}
+{{selectedValue}} -->
+  <!-- {{name}}
+{{selectedValue}}
+ -->
+</div>
