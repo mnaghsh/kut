@@ -14,7 +14,7 @@ export class ContractComponent implements OnInit {
   description: string;
   mhd;
   showCourseValueTable: boolean;
-  userId: any;
+  userId: any; 
   displayedColumns: any;
   dataSource: any;
   columns: any[];
