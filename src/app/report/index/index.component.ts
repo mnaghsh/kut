@@ -9,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
 export class IndexComponent implements OnInit {
   displayName:string;
   description:string;
+  total=0
+  sum=0
+  array=[]
+  name=""
   constructor(private configService: ConfigService) {
     // this.addCommonFormul()
     // this.addCalculatedFormul();
   //  this.getColumnDescriptions();
+  }
+  sumFunc(){
+    this.total+=this.sum;
+let mhd=
+{
+  name:this.name,
+  count:this.sum
+}
+this.array.push(mhd);
+
   }
 
   ngOnInit() {

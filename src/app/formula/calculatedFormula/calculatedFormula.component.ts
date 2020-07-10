@@ -136,7 +136,7 @@ export class CalculatedFormulaComponent implements OnInit {
 
 
   addItem() {
-    // //debugger
+    // //////debugger
     this.activeItems.push({
       label: " "
     })
@@ -164,9 +164,9 @@ export class CalculatedFormulaComponent implements OnInit {
     return user ? user.name : undefined;
   }
   mhd(text) {
-    // //debugger
+    // //////debugger
     if (text != "") {
-      // //debugger
+      // //////debugger
 
       this.text = text;
       console.log("this.activeItems", this.activeItems);
@@ -232,7 +232,7 @@ export class CalculatedFormulaComponent implements OnInit {
       totalUsedList += "," + usedList
 
     });
-    //debugger
+    //////debugger
     let splitTotalUsedList= totalUsedList.split(","); 
     var filtered = splitTotalUsedList.filter(function (el) {
       return el != "";
@@ -246,7 +246,7 @@ export class CalculatedFormulaComponent implements OnInit {
       DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
       UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
     }
-    //debugger
+    //////debugger
     this.configService.post("addCalculatedFormulDependentToCourse", body).subscribe(
       (data) => {
         this.commonService.showEventMessage("فرمول با موفقیت ذخیره شد", 5000)
@@ -267,7 +267,7 @@ export class CalculatedFormulaComponent implements OnInit {
     this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServicecombo()
       .subscribe(
         (sucsess) => {
-          //debugger
+          //////debugger
           this.buildFormulCmb = [];
           let a = JSON.parse(sucsess)
           this.getCalculatedCombo = JSON.parse(sucsess)

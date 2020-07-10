@@ -15,11 +15,63 @@
 .cells{
     border-left: solid 1px gray;
     text-align: center;
-    padding-top: 15px;
+   
 }
 th{
     border: 2px solid #dee2e6;
-    text-align: center !important;
+   // text-align: center !important;
     font-weight: bold;
     padding-bottom: 18px!important;
+   // margin: auto;
+  //  width: 9%;
 }
+#print-section{
+    padding: 1%;
+    direction:rtl;
+    font-family: 'iranSans';
+    text-align: right;
+
+}
+.footerInput{
+    border: solid 1px;
+    text-align: center;
+    background-color: #28a7451a;
+}
+.deleteRow{
+    float: right;
+    margin-top: 50%;
+    margin-right: 50%;
+    color: #ff4081;
+    cursor: pointer!important;
+}
+.addRow{
+    cursor: pointer!important;
+    float: right;
+    margin-top: 50%;
+    margin-right: 50%;
+    color: #3f51b5;
+    cursor: pointer;
+}
+.editRow{
+     cursor: pointer!important;
+    float: right;
+    margin-top: 14%;
+    margin-right: 50%;
+    color: green;
+    cursor: pointer;
+}
+th.mat-sort-header-sorted {
+    color: black;
+  }
+  .selectTeacher{
+text-align: center;
+ cursor: pointer;
+  }
+  .btnSave{
+ margin-right: 1%;
+  //font-size: small;
+  background-color: seagreen;
+  }
+  .btnROllBack{
+    background-color: orchid;
+  }

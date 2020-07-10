@@ -19,11 +19,17 @@
         <mat-select [(ngModel)]="termId" (ngModelChange)="changeTerm(termId)" [ngModelOptions]="{standalone: true}">
           <mat-option *ngFor="let term of termList" [value]="term.id">{{term.name}}</mat-option>
         </mat-select>
+       
       </mat-form-field>
+      <br>
+<!-- <mat-progress-bar class="full-width"  *ngIf="commonService.loading==true" mode="indeterminate"></mat-progress-bar> -->
 
+ 
     <br>
-    <button mat-raised-button type="submit"  color="primary">ورود</button>
-
+    <button mat-raised-button type="submit"  color="primary">
+        ورود</button> <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner> 
+   
+    <!-- <mat-progress-bar *ngIf="commonService.loading==true" mode="indeterminate"></mat-progress-bar> -->
   </form>
   <mat-card-footer *ngIf="message != null ">
     <p class="error">

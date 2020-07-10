@@ -2,6 +2,7 @@ import { ConfigService } from '../../services/config.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialogRef } from '@angular/material';
 import { TeacherService } from 'src/app/services/teacher/teacherService';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-teacher',
@@ -10,13 +11,15 @@ import { TeacherService } from 'src/app/services/teacher/teacherService';
 })
 export class TeacherComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  
   @ViewChild(MatSort) sort: MatSort;
   displayName: string;
   description: string;
   mhd;
-  displayedColumns: string[] = ['fullName'];
+  displayedColumns: string[] = ['code','fullName'];
   dataSource: MatTableDataSource<any>;
   constructor(private configService: ConfigService,
+    private commonService:CommonService,
     public dialogRef: MatDialogRef<any>,
     private teacherService: TeacherService) {
 
@@ -26,17 +29,14 @@ export class TeacherComponent implements OnInit {
   }
 
   ngOnInit() {
+   
     this.getTeacherList();
   }
   private getTeacherList() {
-    this.teacherService.getListOfTeachers().subscribe(
-      (success) => {
-        let result = JSON.parse(success)
-        this.dataSource = new MatTableDataSource(result);
+        
+        this.dataSource = new MatTableDataSource(this.commonService.teacherList);
         this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      }
-    )
+        this.dataSource.sort = this.sort;  
 
   }
   applyFilter(filterValue: string) {
@@ -48,7 +48,7 @@ export class TeacherComponent implements OnInit {
   }
   private selectTeacher(row){
     this.dialogRef.close(row)
-//debugger
+//////debugger
   }
 
 

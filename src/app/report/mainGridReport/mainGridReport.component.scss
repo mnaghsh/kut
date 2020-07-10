@@ -19,9 +19,11 @@
 }
 th{
     border: 2px solid #dee2e6;
-    text-align: center !important;
+   // text-align: center !important;
     font-weight: bold;
     padding-bottom: 18px!important;
+   // margin: auto;
+  //  width: 9%;
 }
 #print-section{
     padding: 1%;
@@ -33,7 +35,7 @@ th{
 .footerInput{
     border: solid 1px;
     text-align: center;
-    background-color: #28a74580;
+    background-color: #28a7451a;
 }
 .deleteRow{
     float: right;
@@ -64,4 +66,12 @@ th.mat-sort-header-sorted {
   .selectTeacher{
 text-align: center;
  cursor: pointer;
+  }
+  .btnSave{
+ margin-right: 1%;
+  //font-size: small;
+  background-color: seagreen;
+  }
+  .btnROllBack{
+    background-color: orchid;
   }

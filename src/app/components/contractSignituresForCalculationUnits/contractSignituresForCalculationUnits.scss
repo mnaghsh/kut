@@ -1,0 +1,36 @@
+// .mainTable{
+//   position: relative; /*or static*/; width: 50%; height: 300px; margin: 0 auto
+// }
+/* Structure */
+table {
+  width: 100%;
+
+}
+tr{
+  cursor: pointer;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.mat-sort-header-container {
+  align-items: center;
+}
+
+.spinner{
+  position: absolute!important;
+  min-width: 100%!important;
+  min-height: 100%!important;
+  background-color: rgba(0, 0, 0, 0.0)!important;
+ //padding-right: 48%;
+ //margin-right: 48%;
+  
+}
+.btnSave{
+  margin-right: 1%;
+   //font-size: small;
+   background-color: seagreen;
+   }
+   .btnROllBack{
+    background-color: orchid;
+  }

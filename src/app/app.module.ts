@@ -13,6 +13,15 @@ import { MatCardModule, MatFormFieldModule, MatInputModule, MatListModule, MatSi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './share.module';
 import { TotalMainGridReportComponent } from './report/totalMainGridReport/totalMainGridReport';
+import { LoadingComponent } from './components/loading/loading.component';
+import { RegisterComponent } from './components/register/register.component';
+import { TeacherComponent } from './components/teacher/teacher.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { DelegationSignitureComponent } from './components/signingContract/delegationSigniture.component';
+import { ContractSignituresComponent } from './components/contractSignitures/contractSignitures';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import { DelegationSignitureForCalculationUnitsComponent } from './components/signingContractForCalculationUnits/delegationSignitureForCalculationUnits.component';
+import { ContractSignituresForCalculationUnitsComponent } from './components/contractSignituresForCalculationUnits/contractSignituresForCalculationUnits';
 
 
 const myRoots: Routes = [
@@ -23,9 +32,19 @@ const myRoots: Routes = [
     children: [
       { path: 'formula', loadChildren: './formula/formula.module#FormulaModule' },
       { path: 'report', loadChildren: './report/report.module#ReportModule' },
-    ]
+      { path: 'delegationSigniture', component: DelegationSignitureComponent},
+      { path: 'delegationSignitureForCalculationUnits', component: DelegationSignitureForCalculationUnitsComponent},
+      { path: 'contractSignitures', component: ContractSignituresComponent},
+      { path: 'contractSignituresForCalculationUnits', component: ContractSignituresForCalculationUnitsComponent},
+      { path: 'register', component: RegisterComponent}
+
+
+    ],
   },
   { path: 'login', component: LoginComponent },
+  //{ path: 'register', component: RegisterComponent, canActivate: [LoginGuard]},
+  
+  
 
 ];
 
@@ -33,10 +52,16 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    
+    RegisterComponent,
+    DelegationSignitureComponent,
+    DelegationSignitureForCalculationUnitsComponent,
     DashboardComponent,
+    TeacherComponent,CoursesComponent,ConfirmComponent,
+    ContractSignituresComponent,
+    ContractSignituresForCalculationUnitsComponent
   ],
   imports: [
+   
     AngularFontAwesomeModule,
     MatTabsModule,
     MatListModule,
@@ -51,6 +76,8 @@ const myRoots: Routes = [
        {useHash: true}
     ),
   ],
+  entryComponents: [TeacherComponent,CoursesComponent,ConfirmComponent],
+ 
   providers: [],
   bootstrap: [AppComponent]
 })

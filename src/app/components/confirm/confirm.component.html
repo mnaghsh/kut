@@ -1,0 +1,16 @@
+<mat-card class="titrCard">
+  <h5 class="titr">
+    آیا مطمئن هستید؟
+  </h5>
+</mat-card>
+<br>
+<div>
+  <p>
+  {{text}}
+  </p>
+</div>
+<div><button type="submit" mat-raised-button (click)="selectAnswer(1)"  class=" btnOk" aria-hidden="true"
+ >موافقم</button>
+<button mat-raised-button (click)="selectAnswer(0)" class=" btnCancel" aria-hidden="true"
+ >مخالفم</button> 
+</div>

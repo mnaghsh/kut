@@ -9,6 +9,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MainGridReportService } from 'src/app/services/mainGridReport/mainGridReport';
+import { TeacherService } from 'src/app/services/teacher/teacherService';
 export interface Term {
   id: number;
   name: string;
@@ -19,11 +20,11 @@ export interface Term {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  termId=3;
+  termId=16;
   loginForm;
   termList: any;
   myControl = new FormControl();
-  @ViewChild('username') username;
+  @ViewChild('username') username; 
   @ViewChild('password') password;
   message: string;
   find =false;
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     private mainGridReport: MainGridReportService,
     private configService: ConfigService,
     private commonService:CommonService,
+    private teacherService:TeacherService,
     private myRoute: Router) {
 
     this.loginForm = fb.group({
@@ -45,6 +47,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 this.getTermList();
+this.getCourseList();
+this.getTeacherList();
 this.commonService.termId=this.termId;
   }
 
@@ -52,7 +56,7 @@ this.commonService.termId=this.termId;
     this.mainGridReport.getTermList().subscribe(
       (success) => {
         this.termList = JSON.parse(success);
-
+       
 
         this.filteredOptions = this.myControl.valueChanges
           .pipe(
@@ -69,7 +73,7 @@ this.commonService.termId=this.termId;
     )
   }
   changeTerm(termId){
-    debugger
+    ////debugger
     this.commonService.termId=termId;
   }
 
@@ -84,7 +88,7 @@ this.commonService.termId=this.termId;
 
   
     if (this.loginForm.valid) {
-
+     
 
 let body={
   userName:this.loginForm.value.username,
@@ -97,8 +101,11 @@ let body={
 //   })
 // };
 // this.configService.post("addCalculatedFormul", body).subscribe(
+  this.commonService.loading=true;
       this.configService.post("users",body).subscribe(
         (data: any) => {
+  this.commonService.loading=false;
+         this.commonService.activeUser=JSON.parse(data)
           console.log(JSON.parse(data));
           data=JSON.parse(data);
           data.forEach(element => {
@@ -107,6 +114,7 @@ let body={
 
               this.auth.wasLoggedIn();
               this.myRoute.navigate(['report/mainGridReport']);
+              
             }
             else {
 
@@ -120,4 +128,27 @@ let body={
     }
 
   }
+
+  private getCourseList() {
+    this.mainGridReport.getCourseList().subscribe(
+      (success) => {
+        this.commonService.coursesList = JSON.parse(success);
+      },
+      (error) => {
+        this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
+
+      }
+    )
+  }
+
+  private getTeacherList() {
+    this.teacherService.getListOfTeachers().subscribe(
+      (success) => {
+        this.commonService.teacherList= JSON.parse(success)
+     
+      }
+    )
+
+  }
+
 }

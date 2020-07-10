@@ -39,37 +39,65 @@ export class TotalMainGridReportComponent implements OnInit {
   dataOfUnCalculatedColumns = [];
   insertQuery: string;
   deleteQuery: string;
-  coursesList: any;
+  //coursesList: any;
   termList: any;
   termId;
   userId: number
   @Input()
   inputedUserId: any;
   filteredOptions: Observable<Term[]>;
-
-  showCourseValueTable = false;
+  showSaveBtn: boolean;
+  //showCourseValueTable = false;
   fullName = "انتخاب استاد"
   showAddRow = false;
   attachmentEndScript: string;
+  nullRresult = false
+  clonedUncalculatedColumns: any;
+  clonedResult: any;
+
 
   constructor(private configService: ConfigService,
     private totalMainGridReportService: totalMainGridReportService,
     private dialog: MatDialog,
     private commonService: CommonService) {
 
-
   }
+  emiters() {
+    this.commonService.saveTotalMainGrid.subscribe({
+      next: (event: any) => {
+        debugger
+        this.save(true)
+          ;
+      }
+    })
+    this.commonService.rollback.subscribe({
+      next: (event: any) => {
+        debugger
+        if (event = 2) {
+          this.replaceNewData();
+        }
 
-
+        ;
+      }
+    })
+  }
 
   ngOnInit() {
 
-   //debugger
+    //debugger
     this.termId = this.commonService.termId;
     this.userId = this.commonService.reportUserId;
     this.getDataOfReport();
-    this.getCourseList()
-    this.getTermList()
+    this.emiters();
+    //this.getTermList()
+  }
+  private replaceNewData() {
+    this.displayedColumns = null
+    this.dataSource = null;
+    this.columns = [];
+    this.getDataOfReport();
+    this.newRowObj = {};
+    this.commonService.showSaveBtn = false;
   }
   ngOnDestroy() {
     if (this.result) {
@@ -82,7 +110,7 @@ export class TotalMainGridReportComponent implements OnInit {
   }
   ngDoCheck() {
     if (this.columns == undefined) {
-      debugger
+      ////debugger
     }
   }
   private getColumnsOfReport() {
@@ -90,15 +118,9 @@ export class TotalMainGridReportComponent implements OnInit {
     this.totalMainGridReportService.getColumnsOfTotalReport()
       .subscribe(
         (sucsess) => {
-          debugger
+          ////debugger
           console.log('jafaricolumns', JSON.parse(sucsess));
-          // this.columns.push({
-          //   columnDef: 'CourseName',
-          //   label: 'نام درس',
-          //   cell: (row) => {
-          //     return row.CourseName;
-          //   }
-          // })
+
           let result = JSON.parse(sucsess)
           result.forEach(eachColumns => {
 
@@ -111,7 +133,7 @@ export class TotalMainGridReportComponent implements OnInit {
                 return row[c.columnDef];
               }
             };
-            debugger
+            ////debugger
             this.columns.push(mhd)
           }
           );
@@ -129,7 +151,7 @@ export class TotalMainGridReportComponent implements OnInit {
 
   private getDataOfReport() {
 
-    debugger
+    ////debugger
     let body = {
       termId: this.termId, userId: this.userId
     }
@@ -137,8 +159,7 @@ export class TotalMainGridReportComponent implements OnInit {
     this.totalMainGridReportService.getTotalDataOfReport(body)
       .subscribe(
         (sucsess) => {
-debugger
-          console.log('naghshrows', JSON.parse(sucsess));
+          ////debugger
           this.result = JSON.parse(sucsess)
 
           if (this.result.length == 0) {
@@ -155,29 +176,34 @@ debugger
         })
   }
 
-  private save(message: boolean) {
-    //debugger
+  private save(message?: boolean, textMessage?: string, mode?: any) {
+debugger
+this.nullRresult = false
+    if (this.newRowObj) {
+      if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {
+        console.log(' this.mhd', this.newRowObj)
+        this.newRowObj['userId'] = this.userId
+        this.newRowObj['termId'] = this.termId
+        this.result = this.result.concat([this.newRowObj])
+      }
+      mode = "addRow"
+    }
+
     this.uncalculatedColumns = []
     this.dataOfUnCalculatedColumns = []
-    debugger
+
     this.columns.forEach(eachuncalculatedColumns => {
-
       this.uncalculatedColumns.push(eachuncalculatedColumns.columnDef)
-
-
     });
-    //this.uncalculatedColumns.shift();
-    // this.uncalculatedColumns.unshift("courseId")
     this.uncalculatedColumns.unshift("termId")
     this.uncalculatedColumns.unshift("userId")
     console.log(' this.uncalculatedColumns', this.uncalculatedColumns)
     console.log('this.result', this.result)
+    debugger
+    this.clonedResult = JSON.stringify(this.result)
+    this.clonedUncalculatedColumns = JSON.stringify(this.uncalculatedColumns)
     this.result.forEach(eachRowsOFData => {
       this.uncalculatedColumns.forEach(eachuncalculatedColumns => {
-        //         if (eachRowsOFData.CourseName) {
-
-        //    eachRowsOFData.CourseName= eachRowsOFData.courseId
-        // }
 
         this.dataOfUnCalculatedColumns.push(eachRowsOFData[eachuncalculatedColumns])
 
@@ -201,8 +227,8 @@ INSERT INTO totalValue (`+
       }
       this.dataOfUnCalculatedColumns = [];
     });
-
-    this.attachmentEndScript=`Declare @Q nvarchar(max)
+    // if(this.insertQuery!=undefined||this.insertQuery==""){
+    this.attachmentEndScript = `Declare @Q nvarchar(max)
     Set @Q = ''
     
     Select @Q += 'Declare @' + columnName + ' decimal(38,20)
@@ -223,22 +249,25 @@ INSERT INTO totalValue (`+
     Set @Q = SUBSTRING(@Q,1,LEN(@Q)-1)
     Set @Q += '
     From courseValue
-    Where userid =`+this.userId+`  And termid =`+this.termId+` 
+    Where userid =`+ this.userId + `  And termid =` + this.termId + ` 
     
     Update totalValue Set'
     
     Select @Q += '
-      ' + columnName + ' = @' + columnName + ','
+    ' + columnName + ' = isnull(@' + columnName + ',0),'
     From columnDescription
     Where isCourse = 1
     Order By id
     
     Set @Q = SUBSTRING(@Q,1,LEN(@Q)-1)
     Set @Q += '
-    Where userid =`+this.userId+`  And termid =`+this.termId+` 
+    Where userid =`+ this.userId + `  And termid =` + this.termId + ` 
     
     'Exec(@Q)`
-
+    // }
+    // else{
+    //   this.attachmentEndScript=""
+    // }
     console.log('this.dataOfUnCalculatedColumns', this.dataOfUnCalculatedColumns)
     console.log('result', this.result)
     //console.log('columns', this.columns)
@@ -246,48 +275,57 @@ INSERT INTO totalValue (`+
     if (this.result.length == 0) {
       body = {
         script: this.deleteQuery = `delete from totalValue
-        where userid=`+ this.userId + ` and termid=` + this.termId+this.attachmentEndScript
+        where userid=`+ this.userId + ` and termid=` + this.termId
       }
     }
     else {
       body = {
-        script: this.deleteQuery + this.insertQuery+this.attachmentEndScript
+        script: this.deleteQuery + this.insertQuery
       }
     }
-
+    this.setNullResult()
     console.log('body', body)
+    debugger
+    this.commonService.loading = true;
+    //window.scrollTo(0, 0)
+    if (this.nullRresult == false) {
+      this.totalMainGridReportService.saveDataOfTotalReport(body)
+        .subscribe(
+          (sucsess) => {
+            this.deleteQuery = "";
+            this.insertQuery = "";
+            if (message) {
+              this.commonService.showEventMessage("داده ها با موفقیت ذخیره شد", 2000)
+            }
 
-    this.totalMainGridReportService.saveDataOfTotalReport(body)
-      .subscribe(
-        (sucsess) => {
-          this.deleteQuery = "";
-          this.insertQuery = "";
-          if (message) {
-            this.commonService.showEventMessage("داده ها با موفقیت ذخیره شد", 900)
-          }
+            // if (mode == "addRow") {
+            this.displayedColumns = null
+            this.dataSource = null;
+            this.columns = [];
+            this.getDataOfReport();
+            this.newRowObj = {};
+            this.commonService.showSaveBtn = false;
+            this.commonService.loading = false;
 
+          });
+      (error) => {
+        this.deleteQuery = "";
+        this.insertQuery = "";
+        this.commonService.showEventMessage("داده ها با موفقیت ذخیره نشد-خطا!")
+        this.getDataOfReport();
+        this.commonService.loading = false;
 
-          this.displayedColumns = null
-          this.dataSource = null;
-          debugger
-          this.columns = [];
-
-          this.getDataOfReport();
-
-          this.newRowObj = {};
-        });
-    (error) => {
+      }
+    }
+    else {
       this.deleteQuery = "";
       this.insertQuery = "";
-      this.commonService.showEventMessage("داده ها با موفقیت ذخیره نشد-خطا!")
-      this.getDataOfReport();
-
-
+      this.commonService.showEventMessage("حتما موارد ستاره دار را تکمیل کنید")
+      this.commonService.loading = false;
     }
-
   }
   addRow() {
-    //////////debugger
+    //////////////debugger
     // let tmp = this.newRowObj[Object.keys(this.newRowObj)[0]]
     if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {
       console.log(' this.mhd', this.newRowObj)
@@ -295,55 +333,22 @@ INSERT INTO totalValue (`+
       this.newRowObj['termId'] = this.termId
       //this.newRowObj['courseId'] = 3
       this.result = this.result.concat([this.newRowObj])
-      this.save(true)
+      // this.save(true)
     }
   }
   deleteRow(row) {
-
-
-    for (let i = 0; i < this.result.length; i++) {
-      if (this.result[i].courseId == row.courseId) {
-        this.result.splice(i, 1);
-      }
-    }
+    //debugger
+    this.result.splice(0, 1);
+    // this.result = this.result.concat([this.newRowObj])
     this.dataSource = new MatTableDataSource(this.result);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log('resuletAfterDel', this.result)
-    this.save(true);
+    this.commonService.showSaveBtn = true
+    //this.save(true);
   }
 
-  private getCourseList() {
-    this.totalMainGridReportService.getCourseList().subscribe(
-      (success) => {
-        this.coursesList = JSON.parse(success);
-      },
-      (error) => {
-        this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
 
-      }
-    )
-  }
-  private getTermList() {
-    this.totalMainGridReportService.getTermList().subscribe(
-      (success) => {
-        this.termList = JSON.parse(success);
-
-
-        this.filteredOptions = this.myControl.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => typeof value === 'string' ? value : value.name),
-            map(name => name ? this._filter(name) : this.termList.slice())
-          );
-
-      },
-      (error) => {
-        this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
-
-      }
-    )
-  }
   displayFn(user?: Term): string | undefined {
     return user ? user.name : undefined;
   }
@@ -352,11 +357,7 @@ INSERT INTO totalValue (`+
     const filterValue = name.toLowerCase();
     return this.termList.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
-  private changeTerm() {
-    this.displayedColumns = null
-    this.columns = [];
-    this.getDataOfReport();
-  }
+
   private btnChooseTeacher() {
     const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
@@ -372,11 +373,29 @@ INSERT INTO totalValue (`+
         this.displayedColumns = null
         this.dataSource = null;
         this.columns = [];
-        this.showCourseValueTable = true
+        // this.showCourseValueTable = true
         this.getDataOfReport();
 
       }
     )
+  }
+  private setNullResult() {
+    this.result.forEach(eachItemDependentToCourse => {
+      for (var i in eachItemDependentToCourse) {
+        if (eachItemDependentToCourse[i] == null) {
+          this.nullRresult = true;
+          break;
+        }
+      }
+    });
+    debugger
+    JSON.parse(this.clonedResult).forEach(eachRowsOFData => {
+      JSON.parse(this.clonedUncalculatedColumns).forEach(eachuncalculatedColumns => {
+        if (eachRowsOFData[eachuncalculatedColumns] = null || eachRowsOFData[eachuncalculatedColumns] == undefined) {
+          this.nullRresult = true;
+        }
+      });
+    });
   }
 
 }

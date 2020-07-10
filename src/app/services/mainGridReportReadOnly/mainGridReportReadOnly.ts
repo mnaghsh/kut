@@ -13,8 +13,9 @@ public getColumnsOfReportReadOnly():Observable<any>{
   return this.configService.get('reportReadOnly');
 }
 
-public getDataOfReportReadOnly():Observable<any>{
-  return this.configService.get('reportReadOnly/1');
+
+public getDataOfReportReadOnly(body):Observable<any>{
+  return this.configService.post('getReportReadOnly',body);
 }
 
 
