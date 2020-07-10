@@ -6,23 +6,26 @@
 <app-loading *ngIf="commonService.loading==true"></app-loading>
 
 <br>
-<button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
-*ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)">ذخیره</button>
-<button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnROllBack" aria-hidden="true"
-*ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="replaceNewData()">بازنشانی</button>
-<button  mat-raised-button  color="primary" style="margin-top:8px;margin-bottom:8px;float:right;font-weight:bold;"  (click)="print()">چاپ</button>
-<div dir="rtl" id="print-section">
-  <br>
 <div class="row ">
   <div class="col-4"></div>
   <div class="col-4 selectTeacher ">
     <button mat-button color="accent" (click)="btnChooseTeacher()">
-      <h4>{{this.fullName}}</h4>
+
+      <h4> {{this.fullName}}</h4>
     </button>
   </div>
 
   <div class="col-4"></div>
 </div>
+<button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
+*ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)">ذخیره</button>
+<button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnROllBack" aria-hidden="true"
+*ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="replaceNewData()">بازنشانی</button>
+<button  mat-raised-button  color="primary" style=" margin-right: 1%; margin-top:8px;margin-bottom:8px;float:right;font-weight:bold;position: fixed"  (click)="print()">
+  <i class="fa fa-print" aria-hidden="true"></i> چاپ
+</button>
+<div dir="rtl" id="print-section">
+
 
 <div *ngIf="showCourseValueTable">
 

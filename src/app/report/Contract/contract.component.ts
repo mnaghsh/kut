@@ -44,6 +44,7 @@ export class ContractComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
+        debugger
         this.userId = data.id;
         this.fullName = data.fullName;
         this.displayedColumns = null
@@ -70,7 +71,7 @@ export class ContractComponent implements OnInit {
           <style>
            *{
               direction:rtl;
-              font-family: 'iranSans';
+              font-family: 'B Nazanin';
               text-align: right;
 
             }

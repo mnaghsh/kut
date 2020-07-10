@@ -32,12 +32,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin: 1%!important;
   margin-bottom: 4%!important;
 }
+.mat-raised-button{
+  background-color: #00BCD4 !important;
+}
 .titrCard{
   position: static;
-  background-color: rgba(63,81,181,1);
+  background-color: #00BCD4;
  color:white;
- margin-right: 4.5%;
- margin-left: 1%;
+ //margin-right: 4.5%;
+ //margin-left: 1%;
 
  .titr{
   overflow-y: hidden;

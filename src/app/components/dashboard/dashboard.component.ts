@@ -38,8 +38,9 @@ this.addItems=[
 ]
     this.pages = [
 
-      { label: ' چاپ گزارش ', path: "/report/mainGridReport", icon: "fas fa-print" },
-      { label: ' ورود اطلاعات ', path: "/report/mainGridReportReadOnly", icon: "fas fa-pencil" },
+    
+      { label: ' ورود اطلاعات ', path: "/report/mainGridReport", icon: "fas fa-pencil" },
+      { label: ' چاپ گزارش ', path: "/report/mainGridReportReadOnly", icon: "fas fa-print" },
       { label: 'چاپ قرارداد استاد', path: "/report/Contract", icon: "fas fa-newspaper-o" }
       // { label: ' ایجاد آیتم غیرمحاسباتی کلی  ', path: "/report", icon: "far fa-envelope" },
 

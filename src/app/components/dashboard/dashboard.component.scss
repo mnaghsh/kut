@@ -65,7 +65,7 @@ fa {
   /* color: #6c757d;  */
   z-index: 9999999;
   position: relative;
-  color: #3f51b5;
+  color: #00BCD4;
 }
 
 nav {
@@ -88,10 +88,12 @@ mat-list-item {
 }
 
 .commander {
-  background: #3f51b5;
+  background: #00BCD4;
 }
 .rightMenuIcon {
   cursor: pointer;
+  color: white;
+  padding-left: 1%;
 }
 @media (max-width: 599px) {
   .mat-tab-link {
@@ -126,7 +128,7 @@ mat-list-item.userInfoBox {
   right: 0px;
   bottom: 65px;
   font-size: 30px;
-  color: #3f51b5;
+  color: #00BCD4;
   z-index: 100000000000;
   padding: 5px;
   transition: 500ms;
@@ -142,7 +144,7 @@ mat-list-item.userInfoBox {
 .menu-item .menu-label {
   text-align: center;
   font-size: 12px;
-  color: #3f51b5;
+  color: #00BCD4;
   font-weight:bold;
 }
 .menu-item .tabIcons {

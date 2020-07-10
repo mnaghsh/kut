@@ -4,20 +4,26 @@
     چاپ قرارداد استاد
   </h5>
 </mat-card>
-<br> 
 
-<div class="row ">
+<app-loading *ngIf="commonService.loading==true"></app-loading>
+
+<br>
+<div class="row " >
   <div class="col-4"></div>
   <div class="col-4 selectTeacher ">
     <button mat-button color="accent" (click)="btnChooseTeacher()">
-      <h4>{{this.fullName}}</h4>
+
+      <h4> {{this.fullName}}</h4>
     </button>
-  </div> 
+  </div>
 
   <div class="col-4"></div>
 </div>
 
-<button mat-raised-button color="primary" style="margin-right:1%;float:right;font-weight:bold;" (click)="print()">چاپ</button>
+<button mat-raised-button color="primary" style="margin-right: 1%; float:right;font-weight:bold;position: fixed;" (click)="print()">
+  <i class="fa fa-print" aria-hidden="true"></i> چاپ
+  
+</button>
 
 <div dir="rtl" id="print-section">
 
@@ -48,7 +54,7 @@
 
   <p>این قرارداد بین دانشگاه صنعتی کرمانشاه که در این قرارداد
     <strong>موسسه</strong> نامیده می&zwnj;شود و آقای/خانم
-    <strong>&nbsp;&nbsp; علی اکبر اختری</strong> که در این قرارداد
+    <strong>&nbsp; {{this.fullName}} </strong> که در این قرارداد
     <strong>مدرس</strong> نامیده می&zwnj;شود، بمنظور تدریس
     <strong>
       <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp; </u>
@@ -169,4 +175,3 @@
       )&nbsp;&nbsp;&nbsp; آمار پرسنلی (&nbsp;&nbsp; )</strong>
   </p>
 </div>
-<button (click)="print()">print</button>
