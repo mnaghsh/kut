@@ -283,7 +283,7 @@ this.commonService.loading=true
           <style>
            *{
               direction:rtl;
-              font-family: 'iranSans';
+              font-family: 'B Nazanin';
               text-align: right;
 
             }

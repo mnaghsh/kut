@@ -100,6 +100,7 @@ export class MainGridReportComponent implements OnInit {
   ngOnDestroy() {
     if (this.commonService.showSaveBtn == true) {
       this.commonService.showEventMessage(" برخی ردیف ها تغییر یافته ولی ذخیره نشدند")
+      this.commonService.showSaveBtn=false;
     }
 
 
