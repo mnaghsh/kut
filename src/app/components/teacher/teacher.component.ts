@@ -19,7 +19,7 @@ export class TeacherComponent implements OnInit {
   displayedColumns: string[] = ['code','fullName'];
   dataSource: MatTableDataSource<any>;
   constructor(private configService: ConfigService,
-    private commonService:CommonService,
+    public commonService:CommonService,
     public dialogRef: MatDialogRef<any>,
     private teacherService: TeacherService) {
 

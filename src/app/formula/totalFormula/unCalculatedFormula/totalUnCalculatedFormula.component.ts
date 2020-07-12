@@ -13,7 +13,7 @@ export class TotalUnCalculatedFormulaComponent implements OnInit {
   description: string;
   constructor(private configService: ConfigService,
     public dialogRef: MatDialogRef<any>,
-    private commonService: CommonService) {
+    public commonService: CommonService) {
     // this.addCommonFormul()
     // this.addCalculatedFormul();
     // this.getColumnDescriptions();
@@ -22,7 +22,7 @@ export class TotalUnCalculatedFormulaComponent implements OnInit {
   ngOnInit() {
   }
 
-  private addCommonFormul() {
+  public addCommonFormul() {
     let body = {DisplayName : this.displayName, Description: this.description }
     this.configService.post("addUnCalculatedTotalFormul", body).subscribe(
       (data) => {

@@ -33,7 +33,7 @@ export class AddTotalCalculatedFormulComponent implements OnInit {
 
   constructor(private configService: ConfigService,
     private dialog: MatDialog,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private totalCalculatedService: totalCalculatedService
     ) {
 

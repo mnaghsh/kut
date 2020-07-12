@@ -15,7 +15,7 @@ export class CommonService {
   loading:boolean;
   coursesList;
   teacherList;
-  reportUserId:any;
+  reportUserId:any; 
   termId;
   showTotalValueTable=true;
   activeUser: any;

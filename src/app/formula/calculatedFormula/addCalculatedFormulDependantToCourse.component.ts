@@ -39,7 +39,7 @@ export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
 
   constructor(private configService: ConfigService,
     private dialog: MatDialog,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private CalculatedFormulDependantTOCourse: CalculatedDependantToCourseService
     ) {
  

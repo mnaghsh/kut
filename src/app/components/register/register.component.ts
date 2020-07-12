@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     private auth: AuthenticationService,
     private mainGridReport: MainGridReportService,
     private configService: ConfigService,
-    private commonService:CommonService,
+    public commonService:CommonService,
     private teacherService:TeacherService,
     private dialog: MatDialog,
     private myRoute: Router) {

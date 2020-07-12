@@ -34,7 +34,7 @@ export class ContractSignituresComponent implements OnInit {
   changedRows: any[];
   constructor(
     private configService: ConfigService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private dialog: MatDialog,
     private signingContract: SigningContractService,
     private contractSigniture: ContractSignituresService,
@@ -147,7 +147,7 @@ default:
     )
   }
 
-  private contractSignitures() {
+  public contractSignitures() {
 
 
     this.commonService.loading = true;
@@ -192,7 +192,7 @@ default:
     )
   }
 
-  private saveChanges() {
+  public saveChanges() {
 debugger
     let updateQuery
     this.changedRows = []

@@ -55,7 +55,7 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
   constructor(private configService: ConfigService,
     private totalMainGridReportService: totalMainGridReportService,
     private dialog: MatDialog,
-    private commonService: CommonService) {
+    public commonService: CommonService) {
    this.emiters();
   }
 emiters(){

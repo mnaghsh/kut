@@ -119,7 +119,7 @@ export class CalculatedFormulaComponent implements OnInit {
   constructor(private configService: ConfigService,
     public dialogRef: MatDialogRef<any>,
     private CalculatedFormulDependantTOCourse: CalculatedDependantToCourseService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private fb: FormBuilder) {
 
   }
@@ -173,7 +173,7 @@ export class CalculatedFormulaComponent implements OnInit {
     }
   }
 
-  private addCalculatedFormul() {
+  public addCalculatedFormul() {
     
     this.activeItems.forEach(activeItem => {
       this.getCalculatedCombo.forEach(eachCalculatedCombo => {

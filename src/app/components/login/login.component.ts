@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     private auth: AuthenticationService,
     private mainGridReport: MainGridReportService,
     private configService: ConfigService,
-    private commonService:CommonService,
+    public commonService:CommonService,
     private teacherService:TeacherService,
     private myRoute: Router) {
 

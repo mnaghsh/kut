@@ -67,7 +67,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
   constructor(private configService: ConfigService,
     public dialogRef: MatDialogRef<any>,
     private TotalCalculatedService: totalCalculatedService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private fb: FormBuilder) {
 
   }
@@ -114,7 +114,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
     }
   }
 
-  private addCalculatedFormul() {
+  public addCalculatedFormul() {
     
     this.activeItems.forEach(activeItem => {
       this.getCalculatedCombo.forEach(eachCalculatedCombo => {

@@ -25,7 +25,7 @@ export class DelegationSignitureForCalculationUnitsComponent implements OnInit {
   getSigningContractObj: any;
   constructor(
     private configService: ConfigService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private dialog: MatDialog,
     private SigningContractForCalculationUnitsService: SigningContractForCalculationUnitsService,
     private myRoute: Router) {
@@ -35,7 +35,7 @@ export class DelegationSignitureForCalculationUnitsComponent implements OnInit {
     this.getSigningContract();
   }
 
-  private getSigningContract() {
+  public getSigningContract() {
     this.commonService.loading = true;
     this.SigningContractForCalculationUnitsService.getSigningContractForCalculationUnits().subscribe(
       (success) => {
@@ -76,7 +76,7 @@ export class DelegationSignitureForCalculationUnitsComponent implements OnInit {
     )
   }
 
-  private saveChanges(){
+  public saveChanges(){
     this.commonService.loading = true;
   let insertScript="";
     let deleteScript=`delete from signingContractForCalculaionUnits;`

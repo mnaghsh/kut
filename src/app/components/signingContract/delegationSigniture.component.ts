@@ -24,7 +24,7 @@ export class DelegationSignitureComponent implements OnInit {
   getSigningContractObj: any;
   constructor(
     private configService: ConfigService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private dialog: MatDialog,
     private signingContract: SigningContractService,
     private myRoute: Router) {
@@ -34,7 +34,7 @@ export class DelegationSignitureComponent implements OnInit {
     this.getSigningContract();
   }
 
-  private getSigningContract() {
+  public getSigningContract() {
     this.commonService.loading = true;
     this.signingContract.getSigningContract().subscribe(
       (success) => {
@@ -75,7 +75,7 @@ export class DelegationSignitureComponent implements OnInit {
     )
   }
 
-  private saveChanges(){
+  public saveChanges(){
     this.commonService.loading = true;
   let insertScript="";
     let deleteScript=`delete from signingContract;`

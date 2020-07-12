@@ -57,7 +57,7 @@ export class MainGridReportComponent implements OnInit {
     private fb: FormBuilder,
     private mainGridReport: MainGridReportService,
     private dialog: MatDialog,
-    private commonService: CommonService) {
+    public commonService: CommonService) {
     this.userId = 0;
     this.termId = this.commonService.termId;
     this.commonService.loading = true;
@@ -421,7 +421,7 @@ debugger
     this.columns = [];
     this.getDataOfReport();
   }
-  private btnChooseTeacher() {
+  public btnChooseTeacher() {
     this.showCourseValueTable = false
     //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {

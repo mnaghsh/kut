@@ -20,7 +20,7 @@ export class ContractComponent implements OnInit {
   columns: any[];
   fullName = "انتخاب استاد";
   constructor(private configService: ConfigService,
-    private commonService: CommonService,
+    public commonService: CommonService,
     private dialog: MatDialog,
   ) {
     this.mhd = "mhd2"
@@ -32,7 +32,7 @@ export class ContractComponent implements OnInit {
   ngOnInit() {
     //debugger
   }
-  private btnChooseTeacher() {
+  public btnChooseTeacher() {
     this.showCourseValueTable = false
     //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {

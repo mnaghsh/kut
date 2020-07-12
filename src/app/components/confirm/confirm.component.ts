@@ -24,7 +24,7 @@ this.text=data.text
    
   }
 
-  private selectAnswer(mode){
+  public selectAnswer(mode){
     if(mode==1)
     this.dialogRef.close(1)
     else{
