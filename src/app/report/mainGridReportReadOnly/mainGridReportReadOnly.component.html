@@ -18,10 +18,10 @@
   <div class="col-4"></div>
 </div>
 <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
-*ngIf="commonService.showSaveBtn==true" mat-raised-button (click)="save(1)">ذخیره</button>
-<button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnROllBack" aria-hidden="true"
+*ngIf="commonService.showSaveBtn==true" mat-raised-button (click)="save(1)">&nbsp;   چاپ &nbsp; </button>
+<button mat-raised-button color="primary" matTooltip="بازنشانی " class=" btnROllBack" aria-hidden="true"
 *ngIf="commonService.showSaveBtn==true" mat-raised-button (click)="replaceNewData()">بازنشانی</button>
-<button  mat-raised-button  color="primary" style="z-index: 999999999; background-color: #d400bc!important; margin-right: 1%; margin-top:8px;margin-bottom:8px;float:right;font-weight:bold;position: fixed"  (click)="print()">
+<button  mat-raised-button  color="primary" class="btnPrint"  (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> چاپ
 </button>
 <div dir="rtl" id="print-section">

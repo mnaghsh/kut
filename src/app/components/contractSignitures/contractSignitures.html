@@ -9,9 +9,9 @@
 
 <br>
 <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
-  (click)="saveChanges()">ذخیره</button>
+  (click)="saveChanges()"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;   ذخیره &nbsp;  </button>
 <button mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true"
-  (click)="contractSignitures()">بازنشانی</button>
+  (click)="contractSignitures()"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="جستجو در لیست اساتید">
 </mat-form-field>

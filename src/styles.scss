@@ -56,7 +56,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: rgba(0, 0, 0, 0.0)!important;
  
 }
-
-// .mat-drawer-backdrop.mat-drawer-shown {
-//   background-color: rgba(0, 0, 0, 0.1);
-// }
+.btnPrint{
+  background-color: #d400bc!important;
+   margin-right: 1%!important;
+   float:right;font-weight:bold!important;
+   position: fixed!important;
+   z-index: 1000;
+   padding-right: 2%!important;
+   padding-left: 2%!important;
+}
+.btnSave{
+  margin-right: 1%!important;
+  // padding-left: 1%!important;
+  // padding-right: 1%!important;
+   background-color:#bcd400!important;
+   }
+   .btnROllBack{
+    //padding-left: 1%!important;
+   // padding-right: 1%!important;
+    background-color:#d400bc!important;
+    margin-right: 2px!important;
+   }
+   .btnAdd{
+    background-color:#bcd400!important;
+   }
