@@ -19,6 +19,8 @@ export class ContractComponent implements OnInit {
   dataSource: any;
   columns: any[];
   fullName = "انتخاب استاد";
+  firstName: any;
+  lastName: any;
   constructor(private configService: ConfigService,
     public commonService: CommonService,
     private dialog: MatDialog,
@@ -47,6 +49,8 @@ export class ContractComponent implements OnInit {
         debugger
         this.userId = data.id;
         this.fullName = data.fullName;
+        this.firstName=data.firstName;
+        this.lastName=data.lastName;
         this.displayedColumns = null
         this.dataSource = null;
         this.columns = [];

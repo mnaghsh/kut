@@ -20,14 +20,14 @@ export interface Term {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  termId=16;
+  termId = 16;
   loginForm;
   termList: any;
   myControl = new FormControl();
-  @ViewChild('username') username; 
+  @ViewChild('username') username;
   @ViewChild('password') password;
   message: string;
-  find =false;
+  find = false;
   filteredOptions: Observable<Term[]>;
 
 
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
     private auth: AuthenticationService,
     private mainGridReport: MainGridReportService,
     private configService: ConfigService,
-    public commonService:CommonService,
-    private teacherService:TeacherService,
+    public commonService: CommonService,
+    private teacherService: TeacherService,
     private myRoute: Router) {
 
     this.loginForm = fb.group({
@@ -46,35 +46,43 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-this.getTermList();
-this.getCourseList();
-this.getTeacherList();
-this.commonService.termId=this.termId;
+    this.getTermList();
+    this.getCourseList();
+    this.getTeacherList();
+    this.commonService.termId = this.termId;
   }
 
   private getTermList() {
     this.mainGridReport.getTermList().subscribe(
       (success) => {
         this.termList = JSON.parse(success);
-       
-
         this.filteredOptions = this.myControl.valueChanges
           .pipe(
             startWith(''),
             map(value => typeof value === 'string' ? value : value.name),
             map(name => name ? this._filter(name) : this.termList.slice())
-          );
-
+            );
+            debugger
+          
+            this.termList.forEach(eachTerm => {
+              if(eachTerm.id==this.commonService.termId){
+                this.commonService.termName=eachTerm.name;
+              }
+            });
       },
       (error) => {
         this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
-
       }
     )
   }
-  changeTerm(termId){
+  changeTerm(termId) {
     ////debugger
-    this.commonService.termId=termId;
+    this.commonService.termId = termId;
+    this.termList.forEach(eachTerm => {
+      if(eachTerm.id==this.commonService.termId){
+        this.commonService.termName=eachTerm.name;
+      }
+    });
   }
 
 
@@ -86,35 +94,35 @@ this.commonService.termId=this.termId;
 
   public login() {
 
-  
-    if (this.loginForm.valid) {
-     
 
-let body={
-  userName:this.loginForm.value.username,
-  password:this.loginForm.value.password,
-}
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//      'Content-Type': 'application/json',
-//     // 'Authorization': 'Basic ' + btoa('yourClientId' + ':' + 'yourClientSecret')
-//   })
-// };
-// this.configService.post("addCalculatedFormul", body).subscribe(
-  this.commonService.loading=true;
-      this.configService.post("users",body).subscribe(
+    if (this.loginForm.valid) {
+
+
+      let body = {
+        userName: this.loginForm.value.username,
+        password: this.loginForm.value.password,
+      }
+      // const httpOptions = {
+      //   headers: new HttpHeaders({
+      //      'Content-Type': 'application/json',
+      //     // 'Authorization': 'Basic ' + btoa('yourClientId' + ':' + 'yourClientSecret')
+      //   })
+      // };
+      // this.configService.post("addCalculatedFormul", body).subscribe(
+      this.commonService.loading = true;
+      this.configService.post("users", body).subscribe(
         (data: any) => {
-  this.commonService.loading=false;
-         this.commonService.activeUser=JSON.parse(data)
+          this.commonService.loading = false;
+          this.commonService.activeUser = JSON.parse(data)
           console.log(JSON.parse(data));
-          data=JSON.parse(data);
+          data = JSON.parse(data);
           data.forEach(element => {
-            
-            if (element.username == this.loginForm.value.username ) {
+
+            if (element.username == this.loginForm.value.username) {
 
               this.auth.wasLoggedIn();
               this.myRoute.navigate(['report/mainGridReport']);
-              
+
             }
             else {
 
@@ -144,8 +152,8 @@ let body={
   private getTeacherList() {
     this.teacherService.getListOfTeachers().subscribe(
       (success) => {
-        this.commonService.teacherList= JSON.parse(success)
-     
+        this.commonService.teacherList = JSON.parse(success)
+
       }
     )
 

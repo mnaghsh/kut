@@ -16,9 +16,11 @@ export class CommonService {
   coursesList;
   teacherList;
   reportUserId:any; 
-  termId;
+  termId; 
   showTotalValueTable=true;
   activeUser: any;
+  termName: any;
+ 
   constructor(  private snackBar: MatSnackBar,) { }
   showEventMessage(message,duration=3000,type?) {
     this.snackBar.open(message, '', {
