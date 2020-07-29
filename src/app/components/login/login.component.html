@@ -4,7 +4,7 @@
 
     </mat-card-subtitle>
   </mat-card-header>
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="center">
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="center" (keydown)="keyDownFunction($event)">
 
     <mat-form-field class="full-width">
       <input matInput type="text" placeholder="نام کاربری" formControlName="username"/>
@@ -26,9 +26,14 @@
 
  
     <br>
-    <button mat-raised-button type="submit"  color="primary">
+    <button *ngIf="connectToServer" mat-raised-button type="submit"  color="primary">
       <!-- <i class="fa fa-key fa-spin 1a-3x fa-fw" style="padding: 2px;" aria-hidden="true"></i> ورود</button> <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner>  -->
-      <i class="fa fa-key " style="padding: 2px;" aria-hidden="true"></i> ورود</button> <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner> 
+      <i class="fa fa-key " style="padding: 2px; cursor: pointer;" aria-hidden="true"></i> ورود</button>
+      <button disabled *ngIf="!connectToServer" mat-raised-button type="submit"  color="primary">
+        <!-- <i class="fa fa-key fa-spin 1a-3x fa-fw" style="padding: 2px;" aria-hidden="true"></i> ورود</button> <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner>  -->
+        <i class="fa fa-key " style="padding: 2px;" aria-hidden="true"></i> ورود</button>
+
+       <mat-spinner [diameter]="20"    *ngIf="commonService.loading==true"  style="   position: absolute; margin-right: 48%;" ></mat-spinner> 
    
     <!-- <mat-progress-bar *ngIf="commonService.loading==true" mode="indeterminate"></mat-progress-bar> -->
   </form>

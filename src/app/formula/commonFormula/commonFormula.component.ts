@@ -2,6 +2,7 @@ import { ConfigService } from '../../services/config.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { MatDialogRef } from '@angular/material';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-commonFormula',
@@ -11,9 +12,17 @@ import { MatDialogRef } from '@angular/material';
 export class CommonFormulaComponent implements OnInit {
   displayName: string;
   description: string;
+  addFormul: any;
   constructor(private configService: ConfigService,
     public dialogRef: MatDialogRef<any>,
+    private fb: FormBuilder,
     public commonService: CommonService) {
+
+      this.addFormul = fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required]
+      });
+
     // this.addCommonFormul()
     // this.addCalculatedFormul();
     // this.getColumnDescriptions();
@@ -23,6 +32,8 @@ export class CommonFormulaComponent implements OnInit {
   }
 
   public addCommonFormul() {
+    if (this.addFormul.valid) {
+      debugger
     let body = {DisplayName : this.displayName, Description: this.description }
     this.configService.post("addUnCalculatedFormulDependantToCourse", body).subscribe(
       (data) => {
@@ -37,26 +48,17 @@ export class CommonFormulaComponent implements OnInit {
         this.dialogRef.close();
       }
     )
+    }
   
   }
 
 
-
-  // private addCalculatedFormul() {
-  //   let body = { Description: "سی 1 ضربدر دو", DisplayName: "تعداد واحد نظری ضربدر 2", Formula: "((c1*1.13)+c1)*99" }
-  //   this.configService.post("addCalculatedFormul", body).subscribe(
-  //     (data) => {
-  //       this.commonService.showEventMessage("فرمول با موفقیت ذخیره شد", 5000)
-  //       console.log('data', data)
-  //     }
-  //   )
-  // }
-  // private getColumnDescriptions() {
-  //   this.configService.get("ColumnDescriptions").subscribe(
-  //     (data) => {
-  //       console.log('data', data)
-  //     }
-  //   )
-  // }
+  private keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      debugger
+     this.addCommonFormul();
+      // rest of your code
+    }
+  }
 
 }

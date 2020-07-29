@@ -5,30 +5,29 @@
     </h5>
   </mat-card>
   <br>
-  <form class="example-form">
+  <form [formGroup]="addFormul" (ngSubmit)="addCommonFormul()" class="center" (keydown)="keyDownFunction($event)">
 
     <div class="col col-1"></div>
 
-
+    
     <div class="col col-3">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="نام" [(ngModel)]="displayName" [ngModelOptions]="{standalone:
-            true}">
+        <input  formControlName="name" required matInput placeholder="نام" [(ngModel)]="displayName" >
       </mat-form-field>
     </div>
     <div class="col col-3">
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="توضیحات" [(ngModel)]="description" [ngModelOptions]="{standalone:
-            true}">
+        <input formControlName="description" required matInput placeholder="توضیحات" [(ngModel)]="description">
       </mat-form-field>
     </div>
+  
 
 
     <!-- <div class="col col-2"></div> -->
 
 
     <div>
-      <button style="float:right" mat-raised-button color="primary" (click)="addCommonFormul()">ذخیره</button>
+      <button style="float:right" mat-raised-button color="primary" type="submit">ذخیره</button>
     </div>
   </form>
 </div>

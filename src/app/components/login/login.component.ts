@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   message: string;
   find = false;
   filteredOptions: Observable<Term[]>;
+  connectToServer: any;
 
 
   constructor(private fb: FormBuilder,
@@ -69,9 +70,11 @@ export class LoginComponent implements OnInit {
                 this.commonService.termName=eachTerm.name;
               }
             });
+            this.connectToServer=true;
       },
       (error) => {
         this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
+        this.connectToServer=false;
       }
     )
   }
@@ -141,19 +144,31 @@ export class LoginComponent implements OnInit {
     this.mainGridReport.getCourseList().subscribe(
       (success) => {
         this.commonService.coursesList = JSON.parse(success);
+        this.connectToServer=true;
       },
       (error) => {
         this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
-
+        this.connectToServer=false;
       }
     )
   }
+
+private keyDownFunction(event) {
+  if (event.keyCode === 13) {
+    debugger
+   this.login();
+    // rest of your code
+  }
+}
 
   private getTeacherList() {
     this.teacherService.getListOfTeachers().subscribe(
       (success) => {
         this.commonService.teacherList = JSON.parse(success)
-
+        this.connectToServer=true;
+      },
+      (error)=>{
+        this.connectToServer=false;
       }
     )
 
