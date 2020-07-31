@@ -1,3 +1,4 @@
+//ایجاد آیتم غیر محاسباتی وابسته به درس جدید
 import { ConfigService } from '../../services/config.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
@@ -13,6 +14,7 @@ export class CommonFormulaComponent implements OnInit {
   displayName: string;
   description: string;
   addFormul: any;
+  errorMessage="";
   constructor(private configService: ConfigService,
     public dialogRef: MatDialogRef<any>,
     private fb: FormBuilder,
@@ -23,9 +25,6 @@ export class CommonFormulaComponent implements OnInit {
         description: ['', Validators.required]
       });
 
-    // this.addCommonFormul()
-    // this.addCalculatedFormul();
-    // this.getColumnDescriptions();
   }
 
   ngOnInit() {
@@ -33,7 +32,7 @@ export class CommonFormulaComponent implements OnInit {
 
   public addCommonFormul() {
     if (this.addFormul.valid) {
-      debugger
+   
     let body = {DisplayName : this.displayName, Description: this.description }
     this.configService.post("addUnCalculatedFormulDependantToCourse", body).subscribe(
       (data) => {
@@ -49,16 +48,12 @@ export class CommonFormulaComponent implements OnInit {
       }
     )
     }
-  
-  }
-
-
-  private keyDownFunction(event) {
-    if (event.keyCode === 13) {
-      debugger
-     this.addCommonFormul();
-      // rest of your code
+    else{
+      this.errorMessage="همه موارد ستاره دار باید تکمیل گردد."
     }
   }
+
+
+
 
 }

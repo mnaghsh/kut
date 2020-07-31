@@ -7,6 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { MatDialog } from '@angular/material';
 import { CalculatedFormulaComponent } from './calculatedFormula.component';
 import { CalculatedDependantToCourseService } from 'src/app/services/CalculatedDependantToCourse/calculated-dependant-to-course.service';
+import { FormBuilder } from '@angular/forms';
 
 export interface Grid {
   id: string;
@@ -40,7 +41,8 @@ export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
   constructor(private configService: ConfigService,
     private dialog: MatDialog,
     public commonService: CommonService,
-    private CalculatedFormulDependantTOCourse: CalculatedDependantToCourseService
+    private CalculatedFormulDependantTOCourse: CalculatedDependantToCourseService,
+    public fb: FormBuilder
     ) {
  
   }

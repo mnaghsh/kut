@@ -5,10 +5,9 @@
     </h5>
   </mat-card>
   <br>
-  <form [formGroup]="addFormul" (ngSubmit)="addCommonFormul()" class="center" (keydown)="keyDownFunction($event)">
+  <form [formGroup]="addFormul" (ngSubmit)="addCommonFormul()" class="center" >
 
     <div class="col col-1"></div>
-
     
     <div class="col col-3">
       <mat-form-field class="example-full-width">
@@ -20,12 +19,8 @@
         <input formControlName="description" required matInput placeholder="توضیحات" [(ngModel)]="description">
       </mat-form-field>
     </div>
-  
-
-
-    <!-- <div class="col col-2"></div> -->
-
-
+    <p *ngIf="!this.addFormul.valid" style="color: red;">   {{errorMessage}}</p>
+   
     <div>
       <button style="float:right" mat-raised-button color="primary" type="submit">ذخیره</button>
     </div>
