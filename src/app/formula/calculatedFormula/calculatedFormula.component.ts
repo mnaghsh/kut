@@ -182,8 +182,8 @@ export class CalculatedFormulaComponent implements OnInit {
     function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
     }
-    if (this.addFormul.valid) {
-
+    if (this.addFormul.valid && formula!=" " ) {
+debugger
       let body = {
         DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
         UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
@@ -203,7 +203,7 @@ export class CalculatedFormulaComponent implements OnInit {
       )
     }
     else {
-      this.errorMessage = "همه موارد ستاره دار باید تکمیل گردد."
+      this.errorMessage = "همه موارد باید تکمیل گردد."
     }
   }
 
