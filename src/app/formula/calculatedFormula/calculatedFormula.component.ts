@@ -1,6 +1,6 @@
 import { ConfigService } from './../../services/config.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CalculatedDependantToCourseService } from 'src/app/services/CalculatedDependantToCourse/calculated-dependant-to-course.service';
@@ -50,62 +50,10 @@ export class CalculatedFormulaComponent implements OnInit {
       letter: 'شرط ها',
       names: ['case when', 'then', 'else', 'end']
     }
-    // , {
-    //   letter: 'D',
-    //   names: ['Delaware']
-    // }, {
-    //   letter: 'F',
-    //   names: ['Florida']
-    // }, {
-    //   letter: 'G',
-    //   names: ['Georgia']
-    // }, {
-    //   letter: 'H',
-    //   names: ['Hawaii']
-    // }, {
-    //   letter: 'I',
-    //   names: ['Idaho', 'Illinois', 'Indiana', 'Iowa']
-    // }, {
-    //   letter: 'K',
-    //   names: ['Kansas', 'Kentucky']
-    // }, {
-    //   letter: 'L',
-    //   names: ['Louisiana']
-    // }, {
-    //   letter: 'M',
-    //   names: ['Maine', 'Maryland', 'Massachusetts', 'Michigan',
-    //     'Minnesota', 'Mississippi', 'Missouri', 'Montana']
-    // }, {
-    //   letter: 'N',
-    //   names: ['Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-    //     'New Mexico', 'New York', 'North Carolina', 'North Dakota']
-    // }, {
-    //   letter: 'O',
-    //   names: ['Ohio', 'Oklahoma', 'Oregon']
-    // }, {
-    //   letter: 'P',
-    //   names: ['Pennsylvania']
-    // }, {
-    //   letter: 'R',
-    //   names: ['Rhode Island']
-    // }, {
-    //   letter: 'S',
-    //   names: ['South Carolina', 'South Dakota']
-    // }, {
-    //   letter: 'T',
-    //   names: ['Tennessee', 'Texas']
-    // }, {
-    //   letter: 'U',
-    //   names: ['Utah']
-    // }, {
-    //   letter: 'V',
-    //   names: ['Vermont', 'Virginia']
-    // }, {
-    //   letter: 'W',
-    //   names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming']
-    // }
-  ];
 
+  ];
+  addFormul: any;
+  errorMessage = "";
   stateGroupOptions: Observable<StateGroup[]>;
 
   displayName: string;
@@ -121,22 +69,18 @@ export class CalculatedFormulaComponent implements OnInit {
     private CalculatedFormulDependantTOCourse: CalculatedDependantToCourseService,
     public commonService: CommonService,
     private fb: FormBuilder) {
-
+    this.addFormul = fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required]
+    //  items: ['', Validators.required]
+    });
   }
-
-
 
   ngOnInit() {
     this.getFromServer();
-
-
   }
 
-
-
-
   addItem() {
-    // //////debugger
     this.activeItems.push({
       label: " "
     })
@@ -164,17 +108,14 @@ export class CalculatedFormulaComponent implements OnInit {
     return user ? user.name : undefined;
   }
   mhd(text) {
-    // //////debugger
     if (text != "") {
-      // //////debugger
-
       this.text = text;
       console.log("this.activeItems", this.activeItems);
     }
   }
 
   public addCalculatedFormul() {
-    
+
     this.activeItems.forEach(activeItem => {
       this.getCalculatedCombo.forEach(eachCalculatedCombo => {
         if (eachCalculatedCombo.displayName == activeItem.label) {
@@ -232,37 +173,41 @@ export class CalculatedFormulaComponent implements OnInit {
       totalUsedList += "," + usedList
 
     });
-    //////debugger
-    let splitTotalUsedList= totalUsedList.split(","); 
+
+    let splitTotalUsedList = totalUsedList.split(",");
     var filtered = splitTotalUsedList.filter(function (el) {
       return el != "";
     });
-    var unique = filtered.filter( onlyUnique );
-    function onlyUnique(value, index, self) { 
+    var unique = filtered.filter(onlyUnique);
+    function onlyUnique(value, index, self) {
       return self.indexOf(value) === index;
-  }
-  
-    let body = {
-      DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
-      UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
     }
-    //////debugger
-    this.configService.post("addCalculatedFormulDependentToCourse", body).subscribe(
-      (data) => {
-        this.commonService.showEventMessage("فرمول با موفقیت ذخیره شد", 5000)
-        console.log('data', data)
-        this.dialogRef.close();
-      },
-      (error) => {
-        this.commonService.showEventMessage(error.error.ExceptionMessage, 300000)
-        console.log('ere', error)
-        this.dialogRef.close();
+    if (this.addFormul.valid) {
+
+      let body = {
+        DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
+        UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
       }
-    )
-  
+
+      this.configService.post("addCalculatedFormulDependentToCourse", body).subscribe(
+        (data) => {
+          this.commonService.showEventMessage("فرمول با موفقیت ذخیره شد", 5000)
+          console.log('data', data)
+          this.dialogRef.close();
+        },
+        (error) => {
+          this.commonService.showEventMessage(error.error.ExceptionMessage, 300000)
+          console.log('ere', error)
+          this.dialogRef.close();
+        }
+      )
+    }
+    else {
+      this.errorMessage = "همه موارد ستاره دار باید تکمیل گردد."
+    }
   }
 
- 
+
   private getFromServer() {
     this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServicecombo()
       .subscribe(
@@ -273,8 +218,8 @@ export class CalculatedFormulaComponent implements OnInit {
           this.getCalculatedCombo = JSON.parse(sucsess)
           a.forEach(e => {
             let temp = {};
-            if(!temp['letter']){
-            temp['letter'] = 'آیتم های ثابت';
+            if (!temp['letter']) {
+              temp['letter'] = 'آیتم های ثابت';
             }
             //temp['backgroundFormul']=e.formula;
             temp['names'] = [];
@@ -296,5 +241,5 @@ export class CalculatedFormulaComponent implements OnInit {
           console.log('this.stateGroup', this.stateGroups)
         })
   }
- 
+
 }

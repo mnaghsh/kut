@@ -63,8 +63,7 @@ export class LoginComponent implements OnInit {
             map(value => typeof value === 'string' ? value : value.name),
             map(name => name ? this._filter(name) : this.termList.slice())
             );
-            debugger
-          
+     
             this.termList.forEach(eachTerm => {
               if(eachTerm.id==this.commonService.termId){
                 this.commonService.termName=eachTerm.name;
@@ -73,7 +72,7 @@ export class LoginComponent implements OnInit {
             this.connectToServer=true;
       },
       (error) => {
-        this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
+        this.commonService.showEventMessage("خطایی در دریافت اطلاعات  رخ داده یا ارتباط با سرور قطع است")
         this.connectToServer=false;
       }
     )
@@ -155,7 +154,7 @@ export class LoginComponent implements OnInit {
 
 private keyDownFunction(event) {
   if (event.keyCode === 13) {
-    debugger
+
    this.login();
     // rest of your code
   }
