@@ -1,6 +1,6 @@
 import { ConfigService } from '../../../services/config.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CalculatedDependantToCourseService } from 'src/app/services/CalculatedDependantToCourse/calculated-dependant-to-course.service';
@@ -60,15 +60,22 @@ export class TotalCalculatedFormulaComponent implements OnInit {
   text = "kk";
   description: string;
   myControl = new FormControl();
-
+  errorMessage = "";
   filteredOptions: Observable<User[]>;
   buildFormulCmb: any[];
   getCalculatedCombo: any;
+  addFormul: FormGroup;
   constructor(private configService: ConfigService,
     public dialogRef: MatDialogRef<any>,
     private TotalCalculatedService: totalCalculatedService,
     public commonService: CommonService,
     private fb: FormBuilder) {
+
+      this.addFormul = fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required]
+      //  items: ['', Validators.required]
+      });
 
   }
 
@@ -182,7 +189,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
     function onlyUnique(value, index, self) { 
       return self.indexOf(value) === index;
   }
-  
+  if (this.addFormul.valid && formula!=" " ) {
     let body = {
       DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
       UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
@@ -200,7 +207,10 @@ export class TotalCalculatedFormulaComponent implements OnInit {
         this.dialogRef.close();
       }
     )
-  
+  }
+  else {
+    this.errorMessage = "همه موارد باید تکمیل گردد."
+  }
   }
 
 
