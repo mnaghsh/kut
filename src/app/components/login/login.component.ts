@@ -152,7 +152,7 @@ export class LoginComponent implements OnInit {
     )
   }
 
-private keyDownFunction(event) {
+public keyDownFunction(event) {
   if (event.keyCode === 13) {
 
    this.login();
