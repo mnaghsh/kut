@@ -21,7 +21,7 @@ export interface Grid {
 export class AddTotalUnCalculatedFormulComponent implements OnInit {
   displayName: string;
   description: string;
-  displayedColumns: string[] = ['id', 'displayName', 'description'];
+  displayedColumns: string[] = ['id', 'displayName', 'description','icon'];
   dataSource: MatTableDataSource<Grid>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -56,16 +56,20 @@ export class AddTotalUnCalculatedFormulComponent implements OnInit {
 
   ngOnInit() {
 
-    this.totalUnCalculatedService.getUnCalculatedTotalFormulControllerGrid()
-      .subscribe(
-        (sucsess) => {
-          this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-          console.log(JSON.parse(sucsess));
-        }
+    this.getData()
+  }
 
-      );
+  public getData(){
+    this.totalUnCalculatedService.getUnCalculatedTotalFormulControllerGrid()
+    .subscribe(
+      (sucsess) => {
+        this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(JSON.parse(sucsess));
+      }
+
+    );
   }
 
   applyFilter(filterValue: string) {
@@ -74,5 +78,27 @@ export class AddTotalUnCalculatedFormulComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  deleteRow(row){
+
+    this.totalUnCalculatedService.deleteUnCalculatedTotalFormulControllerGrid(row.showFormula.substr(1,9999999999))
+    .subscribe(
+      (sucsess) => {
+        this.getData()
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(JSON.parse(sucsess));
+        this.commonService.showEventMessage("حذف آیتم با موفقیت انجام شد")
+      }
+
+    ),
+    (error)=>{
+      console.log(error);
+      this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+    }
+    ;
+    
+
+console.log('delete row',row)
   }
 }

@@ -12,5 +12,11 @@ export class UnCalculatedDependantToCourseService {
 public getUnCalculatedDependantToCourseServiceGrid():Observable<any>{
   return this.configService.get('addUnCalculatedFormulDependantToCourse');
 }
+
+
+public deleteUnCalculatedDependantToCourseServiceGrid(showFormula):Observable<any>{
+  return this.configService.delete('addUnCalculatedFormulDependantToCourse/'+showFormula);
+}
+
   
 }

@@ -23,7 +23,7 @@ export interface Grid {
 export class AddUnCalculatedFormulDependantToCourseComponent implements OnInit {
   displayName: string;
   description: string;
-  displayedColumns: string[] = ['id', 'displayName','description'];
+  displayedColumns: string[] = ['id', 'displayName','description','icon'];
   dataSource: MatTableDataSource<Grid>;
 
   @ViewChild(MatPaginator, ) paginator: MatPaginator;
@@ -58,8 +58,12 @@ export class AddUnCalculatedFormulDependantToCourseComponent implements OnInit {
   
 
   ngOnInit() {
-    
-this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseServiceGrid()
+    this.getData()
+ 
+  }
+
+  getData(){
+    this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseServiceGrid()
 .subscribe(
   (sucsess)=>{
   
@@ -70,7 +74,7 @@ this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseService
   }
 
 );
-    
+   
   }
 
   applyFilter(filterValue: string) {
@@ -80,6 +84,31 @@ this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseService
       this.dataSource.paginator.firstPage();
     }
   }
+
+  deleteRow(row){
+debugger
+    this.UnCalculatedFormulDependantTOCourse.deleteUnCalculatedDependantToCourseServiceGrid(row.formula.substr(1,9999999999))
+    .subscribe(
+      (sucsess) => {
+        this.getData()
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(JSON.parse(sucsess));
+        this.commonService.showEventMessage("حذف آیتم با موفقیت انجام شد")
+      }
+
+    ),
+    (error)=>{
+      console.log(error);
+        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+    }
+    ;
+    
+
+console.log('delete row',row)
+  }
+
+
 }
 
 

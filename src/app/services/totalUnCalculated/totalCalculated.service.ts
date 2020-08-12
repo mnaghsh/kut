@@ -12,6 +12,9 @@ export class totalUnCalculatedService {
 public getUnCalculatedTotalFormulControllerGrid():Observable<any>{
   return this.configService.get('addUnCalculatedTotalFormul');
 }
+public deleteUnCalculatedTotalFormulControllerGrid(showFormula):Observable<any>{
+  return this.configService.delete('addUnCalculatedTotalFormul/'+showFormula);
+}
 
 public getCalculatedDependantToCourseServicecombo():Observable<any>{
   return this.configService.get('addItemCombo');
