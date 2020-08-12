@@ -36,13 +36,13 @@ export class CalculatedFormulaComponent implements OnInit {
 
   stateGroups: StateGroup[] = [
     {
-      letter: 'پرانتز',
-      names: ['(', ')']
+      letter: 'سایر',
+      names: ['(', ')',',']
     },
 
     {
       letter: 'عملگرها',
-      names: ['+', '-', '*', '/', '%']
+      names: ['+', '-', '*', 'dbo.divider', '%']
     }, {
       letter: 'مقایسه گرها',
       names: ['<', '>', '<=', '>=', '=', '<>']
