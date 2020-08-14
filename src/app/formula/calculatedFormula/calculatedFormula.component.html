@@ -4,10 +4,9 @@
       ایجاد آیتم محاسباتی وابسته به درس جدید
     </h5>
   </mat-card>
-  <br>
+  <br> 
 
   <form [formGroup]="addFormul"  class="center">
-
     <div class="row">
       <div class="txtBox col-2">
         <mat-form-field class="example-full-width">
@@ -26,13 +25,13 @@
       <mat-card class="example-card">
         <mat-card-header>
           <mat-card-actions>
-            <button type="button" mat-button style="font-size: 30px;" color="primary" (click)="addItem()">+</button>
-            <button type="button" mat-button style="font-size: 30px;" color="accent" (click)="removeItem()">-</button>
+            <button type="button" mat-button style="font-size: 30px;"  matTooltip="افزودن به طول فرمول " color="primary" (click)="addItem()">+</button>
+            <button type="button" mat-button style="font-size: 30px;"  matTooltip="حذف آخرین فرمول " color="accent" (click)="removeItem()">-</button>
           </mat-card-actions>
         </mat-card-header>
         <mat-card-content>
           <mat-form-field *ngFor="let activeItem of activeItems ;let index = index">
-            <input type="text" autocomplete="off" matInput placeholder="States Group"
+            <input type="text" autocomplete="off" matInputplaceholder="انتخاب آیتم ها"
               [(ngModel)]="activeItem.label" (change)="mhd(activeItem.label)" required [matAutocomplete]="autoGroup">
             <mat-autocomplete #autoGroup="matAutocomplete">
               <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">

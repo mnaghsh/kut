@@ -46,7 +46,7 @@ export class ContractComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-        debugger
+        if(data){
         this.userId = data.id;
         this.fullName = data.fullName;
         this.firstName=data.firstName;
@@ -55,10 +55,8 @@ export class ContractComponent implements OnInit {
         this.dataSource = null;
         this.columns = [];
         this.showCourseValueTable = true
-        // this.getDataOfReport();
         this.commonService.reportUserId = this.userId;
-
-
+        }
       }
     )
   }

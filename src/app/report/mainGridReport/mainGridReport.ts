@@ -433,6 +433,7 @@ debugger
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
+        if(data){
         this.userId = data.id;
         this.fullName = data.fullName;
         this.displayedColumns = null
@@ -441,7 +442,7 @@ debugger
         this.showCourseValueTable = true
         this.getDataOfReport();
         this.commonService.reportUserId = this.userId;
-
+        }
 
       }
     )
