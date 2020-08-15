@@ -13,6 +13,12 @@ public getCalculatedDependantToCourseServiceGrid():Observable<any>{
   return this.configService.get('addCalculatedFormulDependentToCourse');
 }
 
+
+public deleteCalculatedDependantToCourseServiceGrid(columnName):Observable<any>{
+  return this.configService.delete('addCalculatedFormulDependentToCourse/'+columnName);
+}
+
+
 public getCalculatedDependantToCourseServicecombo():Observable<any>{
   return this.configService.get('addItemCombo');
 }

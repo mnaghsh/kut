@@ -17,4 +17,15 @@ table {
   td, th {
     width: 25%;
   }
-  
+  .footerInput{
+    border: solid 1px;
+    text-align: center;
+    background-color: #28a7451a;
+}
+.deleteRow{
+    float: right;
+    //margin-top: 50%;
+    margin-right: 50%;
+    color: #ff4081;
+    cursor: pointer!important;
+}

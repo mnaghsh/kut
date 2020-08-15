@@ -13,6 +13,11 @@ public getTotalCalculatedServiceGrid():Observable<any>{
   return this.configService.get('addCalculatedTotalFormul');
 }
 
+public deleteTotalCalculatedServiceGrid(showFormula):Observable<any>{
+  return this.configService.delete('addCalculatedTotalFormul/'+showFormula);
+}
+
+
 public getTotalCalculatedServicecombo():Observable<any>{
   return this.configService.get('addTotalItemCombo');
 }

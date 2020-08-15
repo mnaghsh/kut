@@ -3,7 +3,7 @@
       آیتم های  محاسباتی وابسته به درس
     </h5>
   </mat-card>
-  <br>
+  <br> 
   <div class="content">
   <button class="btnAdd" (click)="btnAdd()" mat-raised-button color="primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span style="padding: 5px;">ایجاد آیتم جدید</span> </button>
 
@@ -37,6 +37,21 @@
     <th mat-header-cell *matHeaderCellDef mat-sort-header>  فرمول </th>
     <td mat-cell *matCellDef="let row"> {{row.showFormula}}</td>
   </ng-container>
+  <ng-container matColumnDef="icon">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+    </th>
+    <!-- icon rows -->
+    <td mat-cell *matCellDef="let row;let index = index">
+      <i class="fa fa-trash deleteRow" (click)="deleteRow(row)" aria-hidden="true"></i>
+      <!-- <i class="fa fa-check  editRow " *ngIf="row.changed" (click)="save(1)" aria-hidden="true"></i> -->
+      <!-- <i class="fa fa-spinner fa-spin fa-1x fa-fw spinerOfEdit"  *ngIf="row.changed"></i> -->
+    </td>
+    <!-- icon footer -->
+    <td class="footerInput" mat-footer-cell *matFooterCellDef="let row">
+      <i class="fa fa-plus addRow" (click)="addRow()" aria-hidden="true"></i>
+    </td>
+  </ng-container>
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;">

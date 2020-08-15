@@ -144,6 +144,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
           f = "(" + eachCalculatedCombo.formula + ")"
         }
       });
+      
       formula += f + " "
 
       let sf = activeItem.label
@@ -152,6 +153,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
           sf = eachCalculatedCombo.displayName
         }
       });
+     
       showFormula += sf + " "
 
 

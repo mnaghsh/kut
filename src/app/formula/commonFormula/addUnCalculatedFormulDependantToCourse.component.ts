@@ -66,7 +66,7 @@ export class AddUnCalculatedFormulDependantToCourseComponent implements OnInit {
     this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseServiceGrid()
 .subscribe(
   (sucsess)=>{
-  
+    //JSON.parse(sucsess).length
     this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -87,7 +87,7 @@ export class AddUnCalculatedFormulDependantToCourseComponent implements OnInit {
 
   deleteRow(row){
 debugger
-    this.UnCalculatedFormulDependantTOCourse.deleteUnCalculatedDependantToCourseServiceGrid(row.formula.substr(1,9999999999))
+    this.UnCalculatedFormulDependantTOCourse.deleteUnCalculatedDependantToCourseServiceGrid(row.columnName.substr(1,9999999999))
     .subscribe(
       (sucsess) => {
         this.getData()

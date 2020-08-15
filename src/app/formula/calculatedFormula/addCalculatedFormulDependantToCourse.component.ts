@@ -32,7 +32,7 @@ export interface Grid {
 export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
   displayName: string;
   description: string;
-  displayedColumns: string[] = ['id', 'displayName','description','showFormula'];
+  displayedColumns: string[] = ['id', 'displayName','description','showFormula','icon'];
   dataSource: MatTableDataSource<Grid>;
 
   @ViewChild(MatPaginator, ) paginator: MatPaginator;
@@ -66,19 +66,22 @@ export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getData();
     
-this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServiceGrid()
-.subscribe(
-  (sucsess)=>{
-  
-    this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-    console.log(JSON.parse(sucsess));
   }
-
-);
-
+  getData(){
+   
+    this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServiceGrid()
+    .subscribe(
+      (sucsess)=>{
+      debugger
+        this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(JSON.parse(sucsess));
+      }
+    
+    );
     
   }
 
@@ -89,5 +92,29 @@ this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServiceGrid
       this.dataSource.paginator.firstPage();
     }
   }
+
+  
+  deleteRow(row){
+    debugger
+        this.CalculatedFormulDependantTOCourse.deleteCalculatedDependantToCourseServiceGrid(row.columnName.substr(1,9999999999))
+        .subscribe(
+          (sucsess) => {
+            this.getData()
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+            console.log(JSON.parse(sucsess));
+            this.commonService.showEventMessage("حذف آیتم با موفقیت انجام شد")
+          }
+    
+        ),
+        (error)=>{
+          console.log(error);
+            this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+        }
+        ;
+        
+    
+    console.log('delete row',row)
+      }
 }
 

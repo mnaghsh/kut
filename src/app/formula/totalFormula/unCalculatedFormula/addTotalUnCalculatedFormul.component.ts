@@ -81,7 +81,7 @@ export class AddTotalUnCalculatedFormulComponent implements OnInit {
   }
   deleteRow(row){
 
-    this.totalUnCalculatedService.deleteUnCalculatedTotalFormulControllerGrid(row.showFormula.substr(1,9999999999))
+    this.totalUnCalculatedService.deleteUnCalculatedTotalFormulControllerGrid(row.columnName.substr(1,9999999999))
     .subscribe(
       (sucsess) => {
         this.getData()
