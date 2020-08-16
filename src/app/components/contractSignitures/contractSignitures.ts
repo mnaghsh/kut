@@ -139,10 +139,11 @@ default:
         }
 
         );
-
+        this.commonService.loading = false;
       },
       (error) => {
         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+        this.commonService.loading = false;
       }
     )
   }
@@ -160,6 +161,7 @@ default:
         this.dataSource.sort = this.sort;
         this.commonService.loading = false;
         this.getSigningContract();
+       // this.commonService.loading = false;
 
       },
       (error) => {
