@@ -15,7 +15,7 @@ public getUnCalculatedDependantToCourseServiceGrid():Observable<any>{
 
 
 public deleteUnCalculatedDependantToCourseServiceGrid(columnName):Observable<any>{
-  return this.configService.delete('addUnCalculatedFormulDependantToCourse/'+columnName);
+  return this.configService.get('addUnCalculatedFormulDependantToCourse/'+columnName);
 }
 
   

@@ -14,7 +14,7 @@ public getTotalCalculatedServiceGrid():Observable<any>{
 }
 
 public deleteTotalCalculatedServiceGrid(showFormula):Observable<any>{
-  return this.configService.delete('addCalculatedTotalFormul/'+showFormula);
+  return this.configService.get('addCalculatedTotalFormul/'+showFormula);
 }
 
 

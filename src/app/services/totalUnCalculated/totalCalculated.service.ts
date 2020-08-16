@@ -13,7 +13,7 @@ public getUnCalculatedTotalFormulControllerGrid():Observable<any>{
   return this.configService.get('addUnCalculatedTotalFormul');
 }
 public deleteUnCalculatedTotalFormulControllerGrid(columnName):Observable<any>{
-  return this.configService.delete('addUnCalculatedTotalFormul/'+columnName);
+  return this.configService.get('addUnCalculatedTotalFormul/'+columnName);
 }
 
 public getCalculatedDependantToCourseServicecombo():Observable<any>{
