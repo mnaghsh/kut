@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 import { totalMainGridReportService } from 'src/app/services/TotalmainGridReport/totalMainGridReport';
+import { totalMainGridReportReadOnlyService } from 'src/app/services/TotalmainGridReportReadOnly/totalMainGridReport';
 
 export interface Term {
   id: number;
@@ -54,29 +55,30 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
   constructor(private configService: ConfigService,
     private totalMainGridReportService: totalMainGridReportService,
+    private totalMainGridReportReadOnlyService: totalMainGridReportReadOnlyService,
     private dialog: MatDialog,
     public commonService: CommonService) {
-   this.emiters();
+    this.emiters();
   }
-emiters(){
-  this.commonService.saveTotalMainGrid.subscribe({
-    next: (event: any) => {
-      //debugger
-      this.save(true)
-    ;
-    }
-})
-this.commonService.rollback.subscribe({
-  next: (event: any) => {
-    //debugger
-    if(event=2){
-      this.replaceNewData();
-    }
-    
-    ;
+  emiters() {
+    this.commonService.saveTotalMainGrid.subscribe({
+      next: (event: any) => {
+        //debugger
+        this.save(true)
+          ;
+      }
+    })
+    this.commonService.rollback.subscribe({
+      next: (event: any) => {
+        //debugger
+        if (event = 2) {
+          this.replaceNewData();
+        }
+
+        ;
+      }
+    })
   }
-})
-}
 
   ngOnInit() {
 
@@ -86,14 +88,14 @@ this.commonService.rollback.subscribe({
     this.getDataOfReport();
     //this.getTermList()
   }
-  private replaceNewData(){
+  private replaceNewData() {
     this.displayedColumns = null
     this.dataSource = null;
     this.columns = [];
     this.getDataOfReport();
     this.newRowObj = {};
-    this.commonService.showSaveBtn=false;
-   }
+    this.commonService.showSaveBtn = false;
+  }
   ngOnDestroy() {
     if (this.result) {
       this.result.forEach(eachRowsOfTable => {
@@ -110,12 +112,12 @@ this.commonService.rollback.subscribe({
   }
   private getColumnsOfReport() {
 
-    this.totalMainGridReportService.getColumnsOfTotalReport()
+    this.totalMainGridReportReadOnlyService.getColumnsOfTotalReport()
       .subscribe(
         (sucsess) => {
           ////debugger
           console.log('jafaricolumns', JSON.parse(sucsess));
-      
+
           let result = JSON.parse(sucsess)
           result.forEach(eachColumns => {
 
@@ -134,7 +136,7 @@ this.commonService.rollback.subscribe({
           );
 
           this.displayedColumns = this.columns.map(c => c.columnDef);
-         // this.displayedColumns.push('icon')
+          // this.displayedColumns.push('icon')
 
           this.dataSource = new MatTableDataSource(this.result);
           this.dataSource.paginator = this.paginator;
@@ -150,8 +152,8 @@ this.commonService.rollback.subscribe({
     let body = {
       termId: this.termId, userId: this.userId
     }
-
-    this.totalMainGridReportService.getTotalDataOfReport(body)
+debugger
+    this.totalMainGridReportReadOnlyService.getTotalDataOfReport(body)
       .subscribe(
         (sucsess) => {
           ////debugger
@@ -173,7 +175,7 @@ this.commonService.rollback.subscribe({
 
   private save(message?: boolean, textMessage?: string, mode?: any) {
 
-    
+
 
 
     if (this.newRowObj) {
@@ -298,12 +300,12 @@ INSERT INTO totalValue (`+
           }
 
           // if (mode == "addRow") {
-            this.displayedColumns = null
-            this.dataSource = null;
-            this.columns = [];
-            this.getDataOfReport();
-            this.newRowObj = {};
-            this.commonService.showSaveBtn = false;
+          this.displayedColumns = null
+          this.dataSource = null;
+          this.columns = [];
+          this.getDataOfReport();
+          this.newRowObj = {};
+          this.commonService.showSaveBtn = false;
           // }
           // else {
           //   if (this.result) {
@@ -337,9 +339,9 @@ INSERT INTO totalValue (`+
     }
   }
   deleteRow(row) {
-  //debugger
+    //debugger
     this.result.splice(0, 1);
-   // this.result = this.result.concat([this.newRowObj])
+    // this.result = this.result.concat([this.newRowObj])
     this.dataSource = new MatTableDataSource(this.result);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -373,7 +375,7 @@ INSERT INTO totalValue (`+
         this.displayedColumns = null
         this.dataSource = null;
         this.columns = [];
-       // this.showCourseValueTable = true
+        // this.showCourseValueTable = true
         this.getDataOfReport();
 
       }
