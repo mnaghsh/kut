@@ -49,16 +49,16 @@ export class ContractSignituresComponent implements OnInit {
 
   }
 
-
+ 
   private getSigningContract() {
     this.commonService.loading = true;
     this.signingContract.getSigningContract().subscribe(
       (success) => {
         this.getSigningContractObj = JSON.parse(success)
-        console.log('  this.getSigningContractObj', this.getSigningContractObj)
+        console.log('  this.getSigningConturactObj', this.getSigningContractObj)
 
         this.getSigningContractObj.forEach(eachSigningContractObj => {
-          //debugger
+          debugger
           let onlineUser = this.commonService.activeUser[0]
           if (eachSigningContractObj.teacherId == onlineUser.id) {
             switch (eachSigningContractObj.signitureNumber) {
@@ -135,10 +135,13 @@ default:
   break;
             }
           }
+         
           this.commonService.loading = false;
+          
         }
 
         );
+        this.dataSource = new MatTableDataSource(null);
         this.commonService.loading = false;
       },
       (error) => {
