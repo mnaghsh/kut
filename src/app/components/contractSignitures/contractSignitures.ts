@@ -12,6 +12,7 @@ import { SigningContractService } from 'src/app/services/signingContract/signing
 import { ContractSignituresService } from 'src/app/services/contractSignitures/contractSignituresService';
 import { config } from 'rxjs';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { CategoryComponent } from '../category/category.component';
 
 @Component({
   selector: 'app-contractSignitures',
@@ -32,6 +33,7 @@ export class ContractSignituresComponent implements OnInit {
   getcontractSignitureObj: any;
   changedSignitures = [];
   changedRows: any[];
+  categoryName="انتخاب نظام آموزشی";
   constructor(
     private configService: ConfigService,
     public commonService: CommonService,
@@ -314,5 +316,31 @@ debugger
     console.log('hhhh', this.changedSignitures)
 
   }
-
+  public btnChooseCategory() {
+    //this.showCourseValueTable = false
+    //this.newRowObj = {};
+    const dialogRef = this.dialog.open(CategoryComponent, {
+      width: "85%",
+      height: "85%",
+      data: {
+        //field: field,
+      }
+    });
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        if(data){
+          debugger
+        //this.userId = data.id;
+       // this.categoryName = data.fullName;
+        //this.firstName=data.firstName;
+        //this.lastName=data.lastName;
+       // this.displayedColumns = null
+        //this.dataSource = null;
+        //this.columns = [];
+        //this.showCourseValueTable = true
+        //this.commonService.reportUserId = this.userId;
+        }
+      }
+    )
+  }
 }

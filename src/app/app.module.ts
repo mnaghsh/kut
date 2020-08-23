@@ -22,6 +22,7 @@ import { ContractSignituresComponent } from './components/contractSignitures/con
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { DelegationSignitureForCalculationUnitsComponent } from './components/signingContractForCalculationUnits/delegationSignitureForCalculationUnits.component';
 import { ContractSignituresForCalculationUnitsComponent } from './components/contractSignituresForCalculationUnits/contractSignituresForCalculationUnits';
+import { CategoryComponent } from './components/category/category.component';
 
 
 const myRoots: Routes = [
@@ -56,9 +57,9 @@ const myRoots: Routes = [
     DelegationSignitureComponent,
     DelegationSignitureForCalculationUnitsComponent,
     DashboardComponent,
-    TeacherComponent,CoursesComponent,ConfirmComponent,
+    CategoryComponent,TeacherComponent,CoursesComponent,ConfirmComponent,
     ContractSignituresComponent,
-    ContractSignituresForCalculationUnitsComponent
+    ContractSignituresForCalculationUnitsComponent,
   ],
   imports: [
    
@@ -76,7 +77,7 @@ const myRoots: Routes = [
        {useHash: true}
     ),
   ],
-  entryComponents: [TeacherComponent,CoursesComponent,ConfirmComponent],
+  entryComponents: [CategoryComponent,TeacherComponent,CoursesComponent,ConfirmComponent],
  
   providers: [],
   bootstrap: [AppComponent]

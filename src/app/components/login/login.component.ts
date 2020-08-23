@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { MainGridReportService } from 'src/app/services/mainGridReport/mainGridReport';
 import { TeacherService } from 'src/app/services/teacher/teacherService';
+import { CategoryService } from 'src/app/services/category/categoryService';
 export interface Term {
   id: number;
   name: string;
@@ -38,6 +39,7 @@ export class LoginComponent implements OnInit {
     private configService: ConfigService,
     public commonService: CommonService,
     private teacherService: TeacherService,
+    private categoryService: CategoryService,
     private myRoute: Router) {
 
     this.loginForm = fb.group({
@@ -50,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.getTermList();
     this.getCourseList();
     this.getTeacherList();
+    this.getCategoryList();
     this.commonService.termId = this.termId;
   }
 
@@ -104,13 +107,7 @@ export class LoginComponent implements OnInit {
         userName: this.loginForm.value.username,
         password: this.loginForm.value.password,
       }
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //      'Content-Type': 'application/json',
-      //     // 'Authorization': 'Basic ' + btoa('yourClientId' + ':' + 'yourClientSecret')
-      //   })
-      // };
-      // this.configService.post("addCalculatedFormul", body).subscribe(
+     
       this.commonService.loading = true;
       this.configService.post("users", body).subscribe(
         (data: any) => {
@@ -164,6 +161,19 @@ public keyDownFunction(event) {
     this.teacherService.getListOfTeachers().subscribe(
       (success) => {
         this.commonService.teacherList = JSON.parse(success)
+        this.connectToServer=true;
+      },
+      (error)=>{
+        this.connectToServer=false;
+      }
+    )
+
+  }
+
+  private getCategoryList() {
+    this.categoryService.getListOfcategorys().subscribe(
+      (success) => {
+        this.commonService.categoryList = JSON.parse(success)
         this.connectToServer=true;
       },
       (error)=>{
