@@ -11,10 +11,11 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class CategoryComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+  customCategoryList=[];
   @ViewChild(MatSort) sort: MatSort;
   displayName: string;
   description: string;
+ 
   mhd;
   displayedColumns: string[] = ['code','fullName'];
   dataSource: MatTableDataSource<any>;
@@ -22,10 +23,6 @@ export class CategoryComponent implements OnInit {
     public commonService:CommonService,
     public dialogRef: MatDialogRef<any>,
     private teacherService: TeacherService) {
-
-    // this.addCommonFormul()
-    // this.addCalculatedFormul();
-    //  this.getColumnDescriptions();
   }
 
   ngOnInit() {
@@ -33,8 +30,20 @@ export class CategoryComponent implements OnInit {
     this.getCategoryList();
   }
   private getCategoryList() {
-        
-        this.dataSource = new MatTableDataSource(this.commonService.categoryList);
+        debugger
+        this.commonService.categoryList.forEach(eachCategoryItem => {
+          console.log(this.commonService.activeUser[0].department)
+          if(Number(eachCategoryItem.x_)==this.commonService.activeUser[0].department )
+          //this.commonService.categoryList.splice(eachCategoryItem, 1)
+          this.customCategoryList.push(eachCategoryItem)
+        });
+       
+        this.dataSource = new MatTableDataSource( this.customCategoryList);
+        if(this.commonService.activeUser[0].department==1||//admin
+          this.commonService.activeUser[0].department==2//moaven
+         ){//
+            this.dataSource = new MatTableDataSource(  this.commonService.categoryList);
+          }
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;  
 
@@ -48,7 +57,6 @@ export class CategoryComponent implements OnInit {
   }
   private selectCategory(row){
     this.dialogRef.close(row)
-//////debugger
   }
 
 

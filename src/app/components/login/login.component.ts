@@ -65,18 +65,18 @@ export class LoginComponent implements OnInit {
             startWith(''),
             map(value => typeof value === 'string' ? value : value.name),
             map(name => name ? this._filter(name) : this.termList.slice())
-            );
-     
-            this.termList.forEach(eachTerm => {
-              if(eachTerm.id==this.commonService.termId){
-                this.commonService.termName=eachTerm.name;
-              }
-            });
-            this.connectToServer=true;
+          );
+
+        this.termList.forEach(eachTerm => {
+          if (eachTerm.id == this.commonService.termId) {
+            this.commonService.termName = eachTerm.name;
+          }
+        });
+        this.connectToServer = true;
       },
       (error) => {
         this.commonService.showEventMessage("خطایی در دریافت اطلاعات  رخ داده یا ارتباط با سرور قطع است")
-        this.connectToServer=false;
+        this.connectToServer = false;
       }
     )
   }
@@ -84,8 +84,8 @@ export class LoginComponent implements OnInit {
     ////debugger
     this.commonService.termId = termId;
     this.termList.forEach(eachTerm => {
-      if(eachTerm.id==this.commonService.termId){
-        this.commonService.termName=eachTerm.name;
+      if (eachTerm.id == this.commonService.termId) {
+        this.commonService.termName = eachTerm.name;
       }
     });
   }
@@ -98,73 +98,65 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
-
-
     if (this.loginForm.valid) {
-
-
       let body = {
         userName: this.loginForm.value.username,
         password: this.loginForm.value.password,
       }
-     
       this.commonService.loading = true;
       this.configService.post("users", body).subscribe(
         (data: any) => {
+          debugger
+          if(data=="[]"){
+            this.message = 'نام کاربری یا کلمه عبور اشتباه است'
+            return;
+          }
+         
           this.commonService.loading = false;
           this.commonService.activeUser = JSON.parse(data)
           console.log(JSON.parse(data));
           data = JSON.parse(data);
           data.forEach(element => {
-
             if (element.username == this.loginForm.value.username) {
-
               this.auth.wasLoggedIn();
               this.myRoute.navigate(['report/mainGridReport']);
-
             }
             else {
-
-              this.message = 'درست وارد کنید'
+              this.message = 'نام کاربری یا کلمه عبور اشتباه است'
             }
-
           });
         }
       )
-
     }
-
   }
 
   private getCourseList() {
     this.mainGridReport.getCourseList().subscribe(
       (success) => {
         this.commonService.coursesList = JSON.parse(success);
-        this.connectToServer=true;
+        this.connectToServer = true;
       },
       (error) => {
         this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
-        this.connectToServer=false;
+        this.connectToServer = false;
       }
     )
   }
 
-public keyDownFunction(event) {
-  if (event.keyCode === 13) {
-
-   this.login();
-    // rest of your code
+  public keyDownFunction(event) {
+    if (event.keyCode === 13) {
+      this.login();
+    }
   }
-}
 
   private getTeacherList() {
     this.teacherService.getListOfTeachers().subscribe(
       (success) => {
         this.commonService.teacherList = JSON.parse(success)
-        this.connectToServer=true;
+        this.connectToServer = true;
       },
-      (error)=>{
-        this.connectToServer=false;
+      (error) => {
+        this.connectToServer = false;
       }
     )
 
@@ -174,10 +166,10 @@ public keyDownFunction(event) {
     this.categoryService.getListOfcategorys().subscribe(
       (success) => {
         this.commonService.categoryList = JSON.parse(success)
-        this.connectToServer=true;
+        this.connectToServer = true;
       },
-      (error)=>{
-        this.connectToServer=false;
+      (error) => {
+        this.connectToServer = false;
       }
     )
 

@@ -10,7 +10,7 @@ export class CategoryService {
   constructor(public configService:ConfigService) { }
 
 public getListOfcategorys():Observable<any>{
-  return this.configService.get('category');
+  return this.configService.get('department');
 }
 
 

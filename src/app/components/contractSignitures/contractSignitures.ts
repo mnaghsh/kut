@@ -13,6 +13,7 @@ import { ContractSignituresService } from 'src/app/services/contractSignitures/c
 import { config } from 'rxjs';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { CategoryComponent } from '../category/category.component';
+import { isFactory } from '@angular/core/src/render3/interfaces/injector';
 
 @Component({
   selector: 'app-contractSignitures',
@@ -33,7 +34,8 @@ export class ContractSignituresComponent implements OnInit {
   getcontractSignitureObj: any;
   changedSignitures = [];
   changedRows: any[];
-  categoryName="انتخاب نظام آموزشی";
+  categoryName = "انتخاب نظام آموزشی";
+  departmentId = -1;
   constructor(
     private configService: ConfigService,
     public commonService: CommonService,
@@ -48,11 +50,11 @@ export class ContractSignituresComponent implements OnInit {
   }
   ngOnInit() {
     this.contractSignitures();
-
   }
 
- 
+
   private getSigningContract() {
+   
     this.commonService.loading = true;
     this.signingContract.getSigningContract().subscribe(
       (success) => {
@@ -62,6 +64,7 @@ export class ContractSignituresComponent implements OnInit {
         this.getSigningContractObj.forEach(eachSigningContractObj => {
           debugger
           let onlineUser = this.commonService.activeUser[0]
+          this.dataSource = new MatTableDataSource(null);
           if (eachSigningContractObj.teacherId == onlineUser.id) {
             switch (eachSigningContractObj.signitureNumber) {
               case 1:
@@ -69,7 +72,9 @@ export class ContractSignituresComponent implements OnInit {
 
                 let signitureLevelArray1 = []
                 for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (this.getcontractSignitureObj[i].signiture1 == null) {
+                  if (this.getcontractSignitureObj[i].signiture1 == null
+                    && this.getcontractSignitureObj[i].department == this.departmentId
+                  ) {
                     signitureLevelArray1.push(this.getcontractSignitureObj[i]);
                   }
                 }
@@ -79,15 +84,16 @@ export class ContractSignituresComponent implements OnInit {
                 break;
               case 2:
                 let signitureLevelArray2 = []
-                let mhd=[];
+                let mhd = [];
                 for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (this.getcontractSignitureObj[i].signiture1 != null
+                  if (this.getcontractSignitureObj[i].signiture2 != null
+                    && this.getcontractSignitureObj[i].department == this.departmentId
                   ) {
 
                     signitureLevelArray2.push(this.getcontractSignitureObj[i]);
 
                   }
-                
+
 
                 }
                 this.dataSource = new MatTableDataSource(signitureLevelArray2);
@@ -101,7 +107,8 @@ export class ContractSignituresComponent implements OnInit {
                 for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
                   if (
                     //this.getcontractSignitureObj[i].signiture3 == null
-                    this.getcontractSignitureObj[i].signiture2 != null
+                    this.getcontractSignitureObj[i].signiture3 != null
+                    && this.getcontractSignitureObj[i].department == this.departmentId
                     //&& this.getcontractSignitureObj[i].signiture1 != null
                   ) {
 
@@ -116,15 +123,16 @@ export class ContractSignituresComponent implements OnInit {
                 break;
               case 4:
                 let signitureLevelArray4 = []
-               
+
 
                 this.getcontractSignitureObj.forEach(eachContractSigniture => {
-                  if(
-                   // eachContractSigniture.signiture4==null
-                     eachContractSigniture.signiture3!=null
-                    ){
-                      signitureLevelArray4.push(eachContractSigniture);
-                    }
+                  if (
+                    // eachContractSigniture.signiture4==null
+                    eachContractSigniture.signiture4 != null
+                    && eachContractSigniture.department == this.departmentId
+                  ) {
+                    signitureLevelArray4.push(eachContractSigniture);
+                  }
                 });
 
                 this.dataSource = new MatTableDataSource(signitureLevelArray4);
@@ -132,18 +140,14 @@ export class ContractSignituresComponent implements OnInit {
                 this.dataSource.sort = this.sort;
                 this.sig4 = false
                 break;
-default:
-  this.dataSource = new MatTableDataSource(null);
-  break;
+              default:
+                this.dataSource = new MatTableDataSource(null);
+                break;
             }
           }
-         
           this.commonService.loading = false;
-          
         }
-
         );
-        this.dataSource = new MatTableDataSource(null);
         this.commonService.loading = false;
       },
       (error) => {
@@ -154,10 +158,7 @@ default:
   }
 
   public contractSignitures() {
-
-
     this.commonService.loading = true;
-    
     this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
       (success) => {
         this.getcontractSignitureObj = JSON.parse(success)
@@ -166,8 +167,6 @@ default:
         this.dataSource.sort = this.sort;
         this.commonService.loading = false;
         this.getSigningContract();
-       // this.commonService.loading = false;
-
       },
       (error) => {
         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
@@ -200,7 +199,7 @@ default:
   }
 
   public saveChanges() {
-debugger
+    debugger
     let updateQuery
     this.changedRows = []
     this.getcontractSignitureObj.forEach(eachContractSigniture => {
@@ -328,17 +327,20 @@ debugger
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-        if(data){
+        if (data) {
           debugger
-        //this.userId = data.id;
-       // this.categoryName = data.fullName;
-        //this.firstName=data.firstName;
-        //this.lastName=data.lastName;
-       // this.displayedColumns = null
-        //this.dataSource = null;
-        //this.columns = [];
-        //this.showCourseValueTable = true
-        //this.commonService.reportUserId = this.userId;
+          this.categoryName = data.xDepartment_Farsi
+          this.departmentId = data.x_
+          this.getSigningContract();
+          //this.userId = data.id;
+          // this.categoryName = data.fullName;
+          //this.firstName=data.firstName;
+          //this.lastName=data.lastName;
+          // this.displayedColumns = null
+          //this.dataSource = null;
+          //this.columns = [];
+          //this.showCourseValueTable = true
+          //this.commonService.reportUserId = this.userId;
         }
       }
     )

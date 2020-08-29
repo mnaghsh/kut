@@ -21,6 +21,7 @@
 
   <div class="col-4"></div>
 </div>
+<div  *ngIf="this.departmentId!=-1" >
 <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
   (click)="saveChanges()"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;   ذخیره &nbsp;  </button>
 <button mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true"
@@ -110,4 +111,5 @@
 
   
 
+</div>
 </div>

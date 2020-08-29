@@ -18,6 +18,7 @@ export class CommonService {
   categoryList;
   reportUserId:any; 
   termId; 
+  onlineUserDepartmentId;
   showTotalValueTable=true;
   activeUser: any;
   termName: any;
