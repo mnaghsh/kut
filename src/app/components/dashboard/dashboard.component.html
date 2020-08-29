@@ -15,6 +15,14 @@
       </mat-list-item>
 
 
+      <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of [{}]" [routerLink]="link.path">
+        <fa name="  fa fa-user-circle" size="2x" style="color: #fff;"></fa>
+        <label class="label">{{this.commonService.activeUser[0].fullName}}</label>
+        <mat-divider>
+        </mat-divider>
+      </mat-list-item>
+
+
       <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of pages" [routerLink]="link.path">
         <fa [name]="link.icon" class="rightIcons" size="1x"></fa>
         <span class="label">{{link.label}}</span>
@@ -95,8 +103,6 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <fa name="fas fa-align-justify" size="2x" class="rightMenuIcon" (click)="drawer.toggle()"></fa>
-    <!-- <img src="src\assets\index.jpg"> -->
-    <!-- <img class="image" src="./assets/index.jpg" width="60px"> -->
 
     <router-outlet></router-outlet>
   </mat-sidenav-content>

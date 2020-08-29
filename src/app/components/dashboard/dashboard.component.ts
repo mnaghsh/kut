@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,11 +16,13 @@ export class DashboardComponent implements OnInit {
   panelOpenState = false;
   addItems: { label: string; path: string; icon: string; }[];
   cartable: { label: string; path: string; icon: string; }[];
+
   constructor(private auth: AuthenticationService,
+    public commonService:CommonService,
     private myRoute: Router) { }
 
   ngOnInit() {
-
+  
 
     this.navBarItem = [
       { label: 'ورود اطلاعات', path: "/report/mainGridReport", icon: "fas fa-pencil" },
@@ -37,18 +40,17 @@ this.addItems=[
   { label: ' آیتم های محاسباتی کلی ', path: "/formula/totalCalculatedFormula", icon: " fa-plus-square" },
 ]
     this.pages = [
-
     
       { label: ' ورود اطلاعات ', path: "/report/mainGridReport", icon: "fas fa-pencil" },
       { label: ' چاپ گزارش ', path: "/report/mainGridReportReadOnly", icon: "fas fa-print" },
       { label: 'چاپ قرارداد استاد', path: "/report/Contract", icon: "fas fa-newspaper-o" }
-      // { label: ' ایجاد آیتم غیرمحاسباتی کلی  ', path: "/report", icon: "far fa-envelope" },
-
-      // { label: ' کالک ', path: "/calk", icon: "fas fa-map" },
+   
     ];
 
+ 
+
     this.adminPages = [
-      { label: ' افزودن کاربر', path: "/register", icon: "fas fa-user" },
+      { label: ' افزودن کاربر', path: "/register", icon: "fas fa-user-plus" },
       // { label: ' بروزرسانی ', path: "/update", icon: "fas fa-refresh" },
       // { label: ' عملیات ', path: "/mission-info", icon: "fas fa-opera" },
     ];

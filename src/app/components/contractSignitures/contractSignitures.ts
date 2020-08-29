@@ -34,7 +34,7 @@ export class ContractSignituresComponent implements OnInit {
   getcontractSignitureObj: any;
   changedSignitures = [];
   changedRows: any[];
-  categoryName = "انتخاب نظام آموزشی";
+  categoryName = "انتخاب گروه آموزشی";
   departmentId = -1;
   constructor(
     private configService: ConfigService,

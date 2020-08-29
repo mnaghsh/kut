@@ -9,8 +9,9 @@
   {{text}}
   </p>
 </div>
-<div><button type="submit" mat-raised-button (click)="selectAnswer(1)"  class=" btnOk" aria-hidden="true"
- >موافقم</button>
-<button mat-raised-button (click)="selectAnswer(0)" class=" btnCancel" aria-hidden="true"
- >مخالفم</button> 
+<button mat-raised-button (click)="selectAnswer(0)" style="float: left;" class="btnROllBack mat-raised-button mat-primary" aria-hidden="true"
+ > تایید قرارداد</button> 
+<div><button type="submit" mat-raised-button (click)="selectAnswer(1)" class="btnSave mat-raised-button mat-primary" aria-hidden="true"
+ >عدم تایید قرارداد</button>
+
 </div>
