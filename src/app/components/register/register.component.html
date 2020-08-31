@@ -6,57 +6,52 @@
 <mat-card *ngIf="commonService.loading==true" class="spinner">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </mat-card>
+<br>
+<div class="row ">
+  <div class="col-4"></div>
+  <div class="col-4 selectTeacher ">
+    <button mat-button color="accent" (click)="btnChooseUser()">
+      <h4>{{this.fullName}}</h4>
+    </button>
+  </div>
 
-<mat-card>
-  <mat-card-header>
-    <mat-card-subtitle>
+  <div class="col-4"></div>
+</div>
+<form [formGroup]="registerForm" (ngSubmit)="saveData()" class="center">
+  <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"><i
+      class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+  <button type="reset" mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true"><i
+      class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
+  <br>
+  <mat-form-field class="full-width">
+    <input matInput type="text" value={{username}} placeholder="نام کاربری" formControlName="username" />
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input matInput type="password" value={{password}} placeholder="رمز عبور" formControlName="password" />
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input matInput type="text" value={{firstName}} placeholder="نام " formControlName="firstName" />
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input matInput type="text" value={{lastName}} placeholder="نام خانوادگی " formControlName="lastName" />
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input matInput type="text" value={{type}} placeholder=" دسترسی کاربر" formControlName="type" />
+  </mat-form-field>
+  <br>
+  <mat-form-field class="full-width">
+    <input matInput type="text" value={{code}} placeholder="شماره پرسنلی" formControlName="code" />
+  </mat-form-field>
+  <br>
 
-    </mat-card-subtitle>
-  </mat-card-header>
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="center">
+  <mat-form-field class="full-width">
+    <input matInput type="text" value={{department}}  placeholder="گروه " formControlName="department" />
+  </mat-form-field>
+</form>
 
-    <mat-form-field class="full-width">
-      <input matInput type="text" placeholder="نام کاربری" formControlName="username" />
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="رمز عبور" formControlName="password" />
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="نام " formControlName="firstName" />
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="نام خانوادگی " formControlName="lastName" />
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder=" دسترسی کاربر" formControlName="type" />
-    </mat-form-field>
-    <br>
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="کد پرسنلی" formControlName="code" />
-    </mat-form-field>
-    <br>
-
-    <mat-form-field class="full-width">
-      <input matInput type="password" placeholder="گروه " formControlName="department" />
-    </mat-form-field>
-
-    <br>
-    <button mat-raised-button type="submit" color="primary">
-      ورود</button>
-    <mat-spinner [diameter]="20" *ngIf="commonService.loading==true" style="   position: absolute; margin-right: 48%;">
-    </mat-spinner>
-
-    <!-- <mat-progress-bar *ngIf="commonService.loading==true" mode="indeterminate"></mat-progress-bar> -->
-  </form>
-  <mat-card-footer *ngIf="message != null ">
-    <p class="error">
-      {{message}}
-    </p>
-  </mat-card-footer>
-</mat-card>
 
 <router-outlet></router-outlet>

@@ -22,138 +22,96 @@ export interface Term {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  termId=16;
-  loginForm;
-  termList: any;
-  myControl = new FormControl();
-  @ViewChild('username') username; 
-  @ViewChild('password') password;
-  message: string;
-  find =false;
-  filteredOptions: Observable<Term[]>;
 
+  registerForm;
+  fullName = "ویرایش کاربران قبلی"
+  
+  myControl = new FormControl();
+  code: any;
+  department: any;
+  type: any;
+  firstName: any;
+  password: any;
+  username: any;
+  lastName: any;
+  
 
   constructor(private fb: FormBuilder,
     private auth: AuthenticationService,
-    private mainGridReport: MainGridReportService,
     private configService: ConfigService,
-    public commonService:CommonService,
-    private teacherService:TeacherService,
+    public commonService: CommonService,
     private dialog: MatDialog,
     private myRoute: Router) {
 
-    this.loginForm = fb.group({
+    this.registerForm = fb.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      type: ['', Validators.required],
+      department: ['', Validators.required],
+      code: ['', Validators.required]
     });
   }
 
   ngOnInit() {
-this.getTermList();
-this.getCourseList();
-this.getTeacherList();
-this.commonService.termId=this.termId;
+
   }
 
-  private getTermList() {
-    this.mainGridReport.getTermList().subscribe(
-      (success) => {
-        this.termList = JSON.parse(success);
-       
+  public saveData() {
+//     debugger;
+// if(this.code&&this.username&&this.password&&this.firstName&&this.lastName&&this.type&&this.department){
+//   this.registerForm.valid=true;
+// }
 
-        this.filteredOptions = this.myControl.valueChanges
-          .pipe(
-            startWith(''),
-            map(value => typeof value === 'string' ? value : value.name),
-            map(name => name ? this._filter(name) : this.termList.slice())
-          );
+    if (this.registerForm.valid) {
 
+
+      let body = {
+        username: this.registerForm.value.username,
+        password: this.registerForm.value.password,
+        firstName: this.registerForm.value.firstName,
+        lastName: this.registerForm.value.lastName,
+        type: this.registerForm.value.type,
+        department: this.registerForm.value.department,
+        code: this.registerForm.value.code,
+      }
+
+      this.commonService.loading = true;
+      this.configService.post("register", body).subscribe(
+        (data: any) => {
+          if(data){
+          this.commonService.loading = false;
+          console.log(JSON.parse(data));
+          data = JSON.parse(data);
+          
+            this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+            this.commonService.loading = false;
+        }
+        
       },
       (error) => {
-        this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
-
+        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+        this.commonService.loading = false;
       }
-    )
-  }
-  changeTerm(termId){
-    ////debugger
-    this.commonService.termId=termId;
-  }
-
-
-  private _filter(name: string): Term[] {
-    const filterValue = name.toLowerCase();
-
-    return this.termList.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
-  }
-
-  public login() {
-
-  
-    if (this.loginForm.valid) {
-     
-
-let body={
-  userName:this.loginForm.value.username,
-  password:this.loginForm.value.password,
-}
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//      'Content-Type': 'application/json',
-//     // 'Authorization': 'Basic ' + btoa('yourClientId' + ':' + 'yourClientSecret')
-//   })
-// };
-// this.configService.post("addCalculatedFormul", body).subscribe(
-  this.commonService.loading=true;
-      this.configService.post("users",body).subscribe(
-        (data: any) => {
-  this.commonService.loading=false;
-         
-          console.log(JSON.parse(data));
-          data=JSON.parse(data);
-          data.forEach(element => {
-            
-            if (element.username == this.loginForm.value.username ) {
-
-              this.auth.wasLoggedIn();
-              this.myRoute.navigate(['report/mainGridReport']);
-              
-            }
-            else {
-
-              this.message = 'درست وارد کنید'
-            }
-
-          });
-        }
       )
+    
 
     }
 
   }
 
-  private getCourseList() {
-    this.mainGridReport.getCourseList().subscribe(
-      (success) => {
-        this.commonService.coursesList = JSON.parse(success);
-      },
-      (error) => {
-        this.commonService.showEventMessage("خطایی در دریافت لیست دروس رخ داده یا ارتباط با سرور قطع است")
 
-      }
-    )
-  }
+  // private getTeacherList() {
+  //   this.teacherService.getListOfTeachers().subscribe(
+  //     (success) => {
+  //       this.commonService.teacherList= JSON.parse(success)
 
-  private getTeacherList() {
-    this.teacherService.getListOfTeachers().subscribe(
-      (success) => {
-        this.commonService.teacherList= JSON.parse(success)
-     
-      }
-    )
+  //     }
+  //   )
 
-  }
-  private btnChooseuser() {
+  // }
+  private btnChooseUser() {
     //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
@@ -164,9 +122,18 @@ let body={
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-        let userId = data.id;
-        let fullName = data.fullName;
-      
+        this.fullName=data.fullName
+        debugger
+       
+       this.registerForm = this.fb.group({
+        username: [data.username, Validators.required],
+        password: [data.password, Validators.required],
+        firstName: [data.firstName, Validators.required],
+        lastName: [data.lastName, Validators.required],
+        type: [data.type, Validators.required],
+        department: [data.department, Validators.required],
+        code: [data.code, Validators.required]
+      });
       }
     )
   }

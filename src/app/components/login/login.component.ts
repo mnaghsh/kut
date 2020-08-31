@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
       this.commonService.loading = true;
       this.configService.post("users", body).subscribe(
         (data: any) => {
-          debugger
+         // debugger
           if(data=="[]"){
             this.message = 'نام کاربری یا کلمه عبور اشتباه است'
             return;
