@@ -7,6 +7,7 @@
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </mat-card>
 <br>
+<div>
 <div class="row ">
   <div class="col-4"></div>
   <div class="col-4 selectTeacher ">
@@ -17,12 +18,9 @@
 
   <div class="col-4"></div>
 </div>
+<mat-card class="cardContainer" > 
 <form [formGroup]="registerForm" (ngSubmit)="saveData()" class="center">
-  <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"><i
-      class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
-  <button type="reset" mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true"><i
-      class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
-  <br>
+ 
   <mat-form-field class="full-width">
     <input matInput type="text" value={{username}} placeholder="نام کاربری" formControlName="username" />
   </mat-form-field>
@@ -51,7 +49,14 @@
   <mat-form-field class="full-width">
     <input matInput type="text" value={{department}}  placeholder="گروه " formControlName="department" />
   </mat-form-field>
+  <br>
+  <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"><i
+    class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+<!-- <button type="reset" mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true"><i
+    class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button> -->
 </form>
+</mat-card>
+</div>
 
 
 <router-outlet></router-outlet>
