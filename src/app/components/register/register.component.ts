@@ -12,6 +12,7 @@ import { MainGridReportService } from 'src/app/services/mainGridReport/mainGridR
 import { TeacherService } from 'src/app/services/teacher/teacherService';
 import { TeacherComponent } from '../teacher/teacher.component';
 import { MatDialog } from '@angular/material';
+import { RegisterService } from 'src/app/services/register/registerService';
 export interface Term {
   id: number;
   name: string;
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
     private auth: AuthenticationService,
     private configService: ConfigService,
     public commonService: CommonService,
+    public registerService:RegisterService,
     private dialog: MatDialog,
     private myRoute: Router) {
 
@@ -57,6 +59,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
 
   }
+
+
+  // this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseServiceGrid()
+  // .subscribe(
+  //   (sucsess)=>{
+  //     //JSON.parse(sucsess).length
+  //     this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
+  //     this.dataSource.paginator = this.paginator;
+  //     this.dataSource.sort = this.sort;
+  //     console.log(JSON.parse(sucsess));
+  //   }
+  
+  // );
 
   public saveData() {
 //     debugger;
@@ -78,23 +93,41 @@ export class RegisterComponent implements OnInit {
       }
 
       this.commonService.loading = true;
-      this.configService.post("register", body).subscribe(
-        (data: any) => {
-          if(data){
-          this.commonService.loading = false;
-          console.log(JSON.parse(data));
-          data = JSON.parse(data);
-          
-            this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
-            this.commonService.loading = false;
-        }
-        
-      },
-      (error) => {
-        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+     this.registerService.insertUsers(body).subscribe(
+      (data: any) => {
+       // if(data){
         this.commonService.loading = false;
+        console.log(JSON.parse(data));
+        data = JSON.parse(data);
+        
+          this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+          this.commonService.loading = false;
       }
-      )
+      
+  //  }
+  ,
+    (error)=>{
+      this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+      this.commonService.loading = false;
+    }
+     )
+      // this.configService.post("register", body).subscribe(
+      //   (data: any) => {
+      //     if(data){
+      //     this.commonService.loading = false;
+      //     console.log(JSON.parse(data));
+      //     data = JSON.parse(data);
+          
+      //       this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+      //       this.commonService.loading = false;
+      //   }
+        
+      // },
+      // (error) => {
+      //   this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+      //   this.commonService.loading = false;
+      // }
+      // )
     
 
     }
