@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
   username: any;
   lastName: any;
   updateState: boolean;
+  idOfUserForUpdate: any;
 
 
   constructor(private fb: FormBuilder,
@@ -68,6 +69,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
 
       let body = {
+        id:this.idOfUserForUpdate,
         username: this.registerForm.value.username,
         password: this.registerForm.value.password,
         firstName: this.registerForm.value.firstName,
@@ -87,7 +89,8 @@ export class RegisterComponent implements OnInit {
 
           this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
           this.commonService.loading = false;
-
+          this.idOfUserForUpdate=null;
+          this.updateState=false;
           this.teacherService.getListOfTeachers().subscribe(
             (success) => {
               this.commonService.teacherList = JSON.parse(success)
@@ -106,6 +109,8 @@ export class RegisterComponent implements OnInit {
         (error) => {
           this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
           this.commonService.loading = false;
+          this.idOfUserForUpdate=null;
+          this.updateState=false;
         }
       )
     }
@@ -125,6 +130,7 @@ export class RegisterComponent implements OnInit {
       (data) => {
         if (data) {
           this.fullName = data.fullName
+          this.idOfUserForUpdate=data.id
           this.updateState = true;
           this.registerForm = this.fb.group({
             username: [data.username, Validators.required],
@@ -143,6 +149,11 @@ export class RegisterComponent implements OnInit {
 
     )
 
+  }
+  resetFrom(){
+    this.updateState=false;
+    this.idOfUserForUpdate=null;
+    this.fullName = "ویرایش کاربران قبلی";
   }
 
 }
