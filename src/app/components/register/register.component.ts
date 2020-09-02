@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
     private configService: ConfigService,
     public commonService: CommonService,
     public registerService: RegisterService,
+    public teacherService:TeacherService,
     private dialog: MatDialog,
     private myRoute: Router) {
 
@@ -62,26 +63,9 @@ export class RegisterComponent implements OnInit {
   }
 
 
-  // this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseServiceGrid()
-  // .subscribe(
-  //   (sucsess)=>{
-  //     //JSON.parse(sucsess).length
-  //     this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
-  //     this.dataSource.paginator = this.paginator;
-  //     this.dataSource.sort = this.sort;
-  //     console.log(JSON.parse(sucsess));
-  //   }
-
-  // );
-
   public saveData() {
-    //     debugger;
-    // if(this.code&&this.username&&this.password&&this.firstName&&this.lastName&&this.type&&this.department){
-    //   this.registerForm.valid=true;
-    // }
-
+   
     if (this.registerForm.valid) {
-
 
       let body = {
         username: this.registerForm.value.username,
@@ -103,6 +87,18 @@ export class RegisterComponent implements OnInit {
 
           this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
           this.commonService.loading = false;
+
+          this.teacherService.getListOfTeachers().subscribe(
+            (success) => {
+              this.commonService.teacherList = JSON.parse(success)
+              
+            },
+            (error) => {
+              this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+            }
+          )
+
+
         }
 
         //  }
@@ -125,22 +121,28 @@ export class RegisterComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(
-      (data) => {
-        this.fullName = data.fullName
-        this.updateState=true;
-        debugger
 
-        this.registerForm = this.fb.group({
-          username: [data.username, Validators.required],
-          password: [data.password, Validators.required],
-          firstName: [data.firstName, Validators.required],
-          lastName: [data.lastName, Validators.required],
-          type: [data.type, Validators.required],
-          department: [data.department, Validators.required],
-          code: [data.code, Validators.required]
-        });
+      (data) => {
+        if (data) {
+          this.fullName = data.fullName
+          this.updateState = true;
+          this.registerForm = this.fb.group({
+            username: [data.username, Validators.required],
+            password: [data.password, Validators.required],
+            firstName: [data.firstName, Validators.required],
+            lastName: [data.lastName, Validators.required],
+            type: [data.type, Validators.required],
+            department: [data.department, Validators.required],
+            code: [data.code, Validators.required]
+          });
+         
+             
+          
+        }
       }
+
     )
+
   }
 
 }

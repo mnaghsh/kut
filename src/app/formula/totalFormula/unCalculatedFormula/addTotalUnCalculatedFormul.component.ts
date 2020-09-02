@@ -87,8 +87,18 @@ export class AddTotalUnCalculatedFormulComponent implements OnInit {
         this.getData()
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        console.log(JSON.parse(sucsess));
-        this.commonService.showEventMessage("حذف آیتم با موفقیت انجام شد")
+        let res = JSON.parse(sucsess);
+          switch (res[0].response) {
+            case "1":
+              this.commonService.showEventMessage("حذف آیتم با موفقیت انجام شد")
+              break;
+            case "0":
+              this.commonService.showEventMessage("این فرمول در فرمول دیگری استفاده شده است")
+              break;
+
+            default:
+              break;
+          }
       }
 
     ),
