@@ -26,17 +26,23 @@ export class RegisterComponent implements OnInit {
 
   registerForm;
   fullName = "ویرایش کاربران قبلی"
-
   myControl = new FormControl();
-  code: any;
-  department: any;
-  type: any;
-  firstName: any;
-  password: any;
-  username: any;
-  lastName: any;
+  // code: any;
+  // department: any;
+   typeId: any;
+  // firstName: any;
+  // password: any;
+  // username: any;
+  // lastName: any;
   updateState: boolean;
   idOfUserForUpdate: any;
+  typeList = [
+    {id:1,name:"ادمین"}, 
+    {id:2,name:"معاون"}, 
+    {id:3,name:"مدیرگروه"}, 
+    {id:4,name:" کارشناس"}, 
+    {id:5,name:"مدرس"}, 
+  ];
 
 
   constructor(private fb: FormBuilder,
@@ -44,7 +50,7 @@ export class RegisterComponent implements OnInit {
     private configService: ConfigService,
     public commonService: CommonService,
     public registerService: RegisterService,
-    public teacherService:TeacherService,
+    public teacherService: TeacherService,
     private dialog: MatDialog,
     private myRoute: Router) {
 
@@ -53,7 +59,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      type: ['', Validators.required],
+      //type: ['', Validators.required],
       department: ['', Validators.required],
       code: ['', Validators.required]
     });
@@ -65,21 +71,22 @@ export class RegisterComponent implements OnInit {
 
 
   public saveData() {
-   
+
     if (this.registerForm.valid) {
 
       let body = {
-        id:this.idOfUserForUpdate,
+        id: this.idOfUserForUpdate,
         username: this.registerForm.value.username,
         password: this.registerForm.value.password,
         firstName: this.registerForm.value.firstName,
         lastName: this.registerForm.value.lastName,
-        type: this.registerForm.value.type,
+        type: this.typeId,
         department: this.registerForm.value.department,
         code: this.registerForm.value.code,
       }
 
       this.commonService.loading = true;
+      debugger
       this.registerService.insertUsers(body).subscribe(
         (data: any) => {
           // if(data){
@@ -89,12 +96,12 @@ export class RegisterComponent implements OnInit {
 
           this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
           this.commonService.loading = false;
-          this.idOfUserForUpdate=null;
-          this.updateState=false;
+          this.idOfUserForUpdate = null;
+          this.updateState = false;
           this.teacherService.getListOfTeachers().subscribe(
             (success) => {
               this.commonService.teacherList = JSON.parse(success)
-              
+
             },
             (error) => {
               this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
@@ -109,8 +116,8 @@ export class RegisterComponent implements OnInit {
         (error) => {
           this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
           this.commonService.loading = false;
-          this.idOfUserForUpdate=null;
-          this.updateState=false;
+          this.idOfUserForUpdate = null;
+          this.updateState = false;
         }
       )
     }
@@ -130,30 +137,33 @@ export class RegisterComponent implements OnInit {
       (data) => {
         if (data) {
           this.fullName = data.fullName
-          this.idOfUserForUpdate=data.id
+          this.idOfUserForUpdate = data.id
           this.updateState = true;
           this.registerForm = this.fb.group({
             username: [data.username, Validators.required],
             password: [data.password, Validators.required],
             firstName: [data.firstName, Validators.required],
             lastName: [data.lastName, Validators.required],
-            type: [data.type, Validators.required],
+           // type: [data.type, Validators.required],
             department: [data.department, Validators.required],
             code: [data.code, Validators.required]
           });
-         
-             
-          
+
+          this.typeId=data.type;
+
         }
       }
 
     )
 
   }
-  resetFrom(){
-    this.updateState=false;
-    this.idOfUserForUpdate=null;
+  resetFrom() {
+    this.updateState = false;
+    this.idOfUserForUpdate = null;
     this.fullName = "ویرایش کاربران قبلی";
   }
-
+  changeType(inputTypeId){
+    debugger
+    this.typeId=inputTypeId
+  }
 }
