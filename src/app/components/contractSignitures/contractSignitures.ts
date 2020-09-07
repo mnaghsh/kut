@@ -54,7 +54,7 @@ export class ContractSignituresComponent implements OnInit {
 
 
   private getSigningContract() {
-   
+    debugger
     this.commonService.loading = true;
     this.signingContract.getSigningContract().subscribe(
       (success) => {

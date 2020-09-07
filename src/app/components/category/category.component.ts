@@ -38,6 +38,7 @@ export class CategoryComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.commonService.categoryList);
     }
     else {
+      debugger
       JSON.parse(this.commonService.activeUser[0].department).forEach(eachDepartment => {
         console.log(eachDepartment)
         this.commonService.categoryList.forEach(eachCategoryItem => {

@@ -23,13 +23,17 @@ export interface Term {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  //toppings = new FormControl();
+  toppingList: string[] = this.commonService.categoryList
 
   registerForm;
   fullName = "ویرایش کاربران قبلی"
   myControl = new FormControl();
+  departmentArray: string;
+
   // code: any;
   // department: any;
-   typeId: any;
+  typeId: any;
   // firstName: any;
   // password: any;
   // username: any;
@@ -37,11 +41,11 @@ export class RegisterComponent implements OnInit {
   updateState: boolean;
   idOfUserForUpdate: any;
   typeList = [
-    {id:1,name:"ادمین"}, 
-    {id:2,name:"معاون"}, 
-    {id:3,name:"مدیرگروه"}, 
-    {id:4,name:" کارشناس"}, 
-    {id:5,name:"مدرس"}, 
+    { id: 1, name: "ادمین" },
+    { id: 2, name: "معاون" },
+    { id: 3, name: "مدیرگروه" },
+    { id: 4, name: " کارشناس" },
+    { id: 5, name: "مدرس" },
   ];
 
 
@@ -81,7 +85,8 @@ export class RegisterComponent implements OnInit {
         firstName: this.registerForm.value.firstName,
         lastName: this.registerForm.value.lastName,
         type: this.typeId,
-        department: this.registerForm.value.department,
+        //department: this.registerForm.value.department,
+        department: this.departmentArray,
         code: this.registerForm.value.code,
       }
 
@@ -144,13 +149,14 @@ export class RegisterComponent implements OnInit {
             password: [data.password, Validators.required],
             firstName: [data.firstName, Validators.required],
             lastName: [data.lastName, Validators.required],
-           // type: [data.type, Validators.required],
+            // type: [data.type, Validators.required],
             department: [data.department, Validators.required],
             code: [data.code, Validators.required]
           });
 
-          this.typeId=data.type;
-
+          this.typeId = data.type;
+         // let localDepartmentArray = JSON.parse(data.department);
+          //this.departmentArray = '[' + String(localDepartmentArray) + ']'
         }
       }
 
@@ -162,8 +168,16 @@ export class RegisterComponent implements OnInit {
     this.idOfUserForUpdate = null;
     this.fullName = "ویرایش کاربران قبلی";
   }
-  changeType(inputTypeId){
+  changeType(inputTypeId) {
     debugger
-    this.typeId=inputTypeId
+    this.typeId = inputTypeId
+  }
+  closeSelect(selectedDepartments) {
+    let localDepartmentArray = [];
+    selectedDepartments.forEach(eachSelectedDepartments => {
+      localDepartmentArray.push(Number(eachSelectedDepartments.x_))
+    });
+    this.departmentArray = '[' + String(localDepartmentArray) + ']'
+    debugger
   }
 }
