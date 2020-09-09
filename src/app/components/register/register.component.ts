@@ -89,30 +89,61 @@ export class RegisterComponent implements OnInit {
         department: this.departmentArray,
         code: this.registerForm.value.code,
       }
-
+     
       this.commonService.loading = true;
       debugger
-      this.registerService.insertUsers(body).subscribe(
+      
+
+      this.registerService.checkDuplicateUser({username: this.registerForm.value.username}).subscribe(
         (data: any) => {
           // if(data){
           this.commonService.loading = false;
           console.log(JSON.parse(data));
           data = JSON.parse(data);
 
-          this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+          //this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
           this.commonService.loading = false;
-          this.idOfUserForUpdate = null;
-          this.updateState = false;
-          this.teacherService.getListOfTeachers().subscribe(
-            (success) => {
-              this.commonService.teacherList = JSON.parse(success)
-
-            },
+          //this.idOfUserForUpdate = null;
+          //this.updateState = false;
+if(data.length==0)
+{
+          this.registerService.insertUsers(body).subscribe(
+            (data: any) => {
+              // if(data){
+              this.commonService.loading = false;
+              console.log(JSON.parse(data));
+              data = JSON.parse(data);
+    
+              this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+              this.commonService.loading = false;
+              this.idOfUserForUpdate = null;
+              this.updateState = false;
+              this.teacherService.getListOfTeachers().subscribe(
+                (success) => {
+                  this.commonService.teacherList = JSON.parse(success)
+    
+                },
+                (error) => {
+                  this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+                }
+              )
+    
+    
+            }
+    
+            //  }
+            ,
             (error) => {
               this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+              this.commonService.loading = false;
+              this.idOfUserForUpdate = null;
+              this.updateState = false;
             }
           )
-
+          }
+else{
+  this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
+}
 
         }
 
@@ -121,12 +152,15 @@ export class RegisterComponent implements OnInit {
         (error) => {
           this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
           this.commonService.loading = false;
-          this.idOfUserForUpdate = null;
-          this.updateState = false;
+         // this.idOfUserForUpdate = null;
+         // this.updateState = false;
         }
       )
-    }
 
+      
+    
+    }
+  
   }
 
   private btnChooseUser() {

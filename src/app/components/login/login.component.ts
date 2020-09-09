@@ -109,6 +109,7 @@ export class LoginComponent implements OnInit {
          // debugger
           if(data=="[]"){
             this.message = 'نام کاربری یا کلمه عبور اشتباه است'
+            this.commonService.loading = false;
             return;
           }
          

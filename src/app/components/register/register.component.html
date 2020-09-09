@@ -55,11 +55,22 @@
         <input matInput type="text" value={{code}} placeholder="شماره پرسنلی" formControlName="code" />
       </mat-form-field>
       <br>
-
       <mat-form-field class="full-width">
+        <mat-label>گروه آموزشی</mat-label>
+        <mat-select (closed)="closeSelect(myControl.value)" [formControl]="myControl" multiple>
+          <mat-select-trigger>
+            {{myControl.value ? myControl.value[0] : ''}}
+            <span *ngIf="myControl.value?.length > 1" class="example-additional-selection">
+              (+{{myControl.value.length - 1}} {{myControl.value?.length === 2 ? 'other' : 'others'}})
+            </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping.xDepartment_Farsi">{{topping.xDepartment_Farsi}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <mat-form-field class="full-width">
         <input matInput type="text" value={{department}} placeholder="گروه " formControlName="department" />
       </mat-form-field>
-      <br>
+      <br> -->
       <br>
 
       <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"><i
@@ -67,18 +78,7 @@
       <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack"
         aria-hidden="true"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
 
-        <mat-form-field appearance="fill">
-          <mat-label>'myControl'</mat-label>
-          <mat-select (closed)="closeSelect(myControl.value)" [formControl]="myControl" multiple>
-            <mat-select-trigger>
-              {{myControl.value ? myControl.value[0] : ''}}
-              <span *ngIf="myControl.value?.length > 1" class="example-additional-selection">
-                (+{{myControl.value.length - 1}} {{myControl.value?.length === 2 ? 'other' : 'others'}})
-              </span>
-            </mat-select-trigger>
-            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.xDepartment_Farsi}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+
 
 
     </form>

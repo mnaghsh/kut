@@ -19,6 +19,9 @@ public updateUsers(id):Observable<any>{
 public insertUsers(body):Observable<any>{
   return this.configService.post('register',body);
 }
+public checkDuplicateUser(body):Observable<any>{
+  return this.configService.post('checkDuplicateUser',body);
+}
 
   
 }
