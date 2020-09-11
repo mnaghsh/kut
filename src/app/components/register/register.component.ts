@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       //type: ['', Validators.required],
-      department: ['', Validators.required],
+      //department: ['', Validators.required],
       code: ['', Validators.required]
     });
   }
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
 
 
   public saveData() {
-
+debugger
     if (this.registerForm.valid) {
 
       let body = {

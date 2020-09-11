@@ -65,86 +65,96 @@ export class ContractSignituresComponent implements OnInit {
           debugger
           let onlineUser = this.commonService.activeUser[0]
           this.dataSource = new MatTableDataSource(null);
-          if (eachSigningContractObj.teacherId == onlineUser.id) {
-            switch (eachSigningContractObj.signitureNumber) {
-              case 1:
-                this.sig1 = false
+          if (this.commonService.activeUser[0].type == 1 ||//admin
+            this.commonService.activeUser[0].type == 2) {
+              debugger
+            this.dataSource = new MatTableDataSource(this.getcontractSignitureObj);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          }
+          else {
+            if (eachSigningContractObj.teacherId == onlineUser.id) {
+              switch (eachSigningContractObj.signitureNumber) {
+                case 1:
+                  this.sig1 = false
 
-                let signitureLevelArray1 = []
-                for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (this.getcontractSignitureObj[i].signiture1 == null
-                    && this.getcontractSignitureObj[i].department == this.departmentId
-                  ) {
-                    signitureLevelArray1.push(this.getcontractSignitureObj[i]);
+                  let signitureLevelArray1 = []
+                  for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
+                    if (this.getcontractSignitureObj[i].signiture1 == null
+                      && this.getcontractSignitureObj[i].department == this.departmentId
+                    ) {
+                      signitureLevelArray1.push(this.getcontractSignitureObj[i]);
+                    }
                   }
-                }
-                this.dataSource = new MatTableDataSource(signitureLevelArray1);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                break;
-              case 2:
-                let signitureLevelArray2 = []
-                let mhd = [];
-                for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (this.getcontractSignitureObj[i].signiture2 != null
-                    && this.getcontractSignitureObj[i].department == this.departmentId
-                  ) {
+                  this.dataSource = new MatTableDataSource(signitureLevelArray1);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  break;
+                case 2:
+                  let signitureLevelArray2 = []
+                  let mhd = [];
+                  for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
+                    if (this.getcontractSignitureObj[i].signiture2 != null
+                      && this.getcontractSignitureObj[i].department == this.departmentId
+                    ) {
 
-                    signitureLevelArray2.push(this.getcontractSignitureObj[i]);
+                      signitureLevelArray2.push(this.getcontractSignitureObj[i]);
 
-                  }
+                    }
 
-
-                }
-                this.dataSource = new MatTableDataSource(signitureLevelArray2);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig2 = false
-                break;
-              case 3:
-                //debugger
-                let signitureLevelArray3 = []
-                for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (
-                    //this.getcontractSignitureObj[i].signiture3 == null
-                    this.getcontractSignitureObj[i].signiture3 != null
-                    && this.getcontractSignitureObj[i].department == this.departmentId
-                    //&& this.getcontractSignitureObj[i].signiture1 != null
-                  ) {
-
-                    signitureLevelArray3.push(this.getcontractSignitureObj[i]);
 
                   }
-                }
-                this.dataSource = new MatTableDataSource(signitureLevelArray3);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig3 = false
-                break;
-              case 4:
-                let signitureLevelArray4 = []
+                  this.dataSource = new MatTableDataSource(signitureLevelArray2);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig2 = false
+                  break;
+                case 3:
+                  //debugger
+                  let signitureLevelArray3 = []
+                  for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
+                    if (
+                      //this.getcontractSignitureObj[i].signiture3 == null
+                      this.getcontractSignitureObj[i].signiture3 != null
+                      && this.getcontractSignitureObj[i].department == this.departmentId
+                      //&& this.getcontractSignitureObj[i].signiture1 != null
+                    ) {
 
+                      signitureLevelArray3.push(this.getcontractSignitureObj[i]);
 
-                this.getcontractSignitureObj.forEach(eachContractSigniture => {
-                  if (
-                    // eachContractSigniture.signiture4==null
-                    eachContractSigniture.signiture4 != null
-                    && eachContractSigniture.department == this.departmentId
-                  ) {
-                    signitureLevelArray4.push(eachContractSigniture);
+                    }
                   }
-                });
+                  this.dataSource = new MatTableDataSource(signitureLevelArray3);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig3 = false
+                  break;
+                case 4:
+                  let signitureLevelArray4 = []
 
-                this.dataSource = new MatTableDataSource(signitureLevelArray4);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig4 = false
-                break;
-              default:
-                this.dataSource = new MatTableDataSource(null);
-                break;
+
+                  this.getcontractSignitureObj.forEach(eachContractSigniture => {
+                    if (
+                      // eachContractSigniture.signiture4==null
+                      eachContractSigniture.signiture4 != null
+                      && eachContractSigniture.department == this.departmentId
+                    ) {
+                      signitureLevelArray4.push(eachContractSigniture);
+                    }
+                  });
+
+                  this.dataSource = new MatTableDataSource(signitureLevelArray4);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig4 = false
+                  break;
+                default:
+                  this.dataSource = new MatTableDataSource(null);
+                  break;
+              }
             }
           }
+
           this.commonService.loading = false;
         }
         );
