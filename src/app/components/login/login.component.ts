@@ -166,6 +166,7 @@ export class LoginComponent implements OnInit {
   private getCategoryList() {
     this.categoryService.getListOfcategorys().subscribe(
       (success) => {
+        console.log('this.commonService.categoryList', JSON.parse(success));
         this.commonService.categoryList = JSON.parse(success)
         this.connectToServer = true;
       },

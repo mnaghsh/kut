@@ -64,7 +64,7 @@
               (+{{myControl.value.length - 1}} {{myControl.value?.length === 2 ? 'other' : 'others'}})
             </span>
           </mat-select-trigger>
-          <mat-option *ngFor="let topping of toppingList" [value]="topping.xDepartment_Farsi">{{topping.xDepartment_Farsi}}</mat-option>
+          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.xDepartment_Farsi}}</mat-option>
         </mat-select>
       </mat-form-field>
       <!-- <mat-form-field class="full-width">

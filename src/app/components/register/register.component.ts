@@ -13,6 +13,8 @@ import { TeacherService } from 'src/app/services/teacher/teacherService';
 import { TeacherComponent } from '../teacher/teacher.component';
 import { MatDialog } from '@angular/material';
 import { RegisterService } from 'src/app/services/register/registerService';
+import { CategoryService } from 'src/app/services/category/categoryService';
+import { privateEncrypt } from 'crypto';
 export interface Term {
   id: number;
   name: string;
@@ -55,6 +57,7 @@ export class RegisterComponent implements OnInit {
     public commonService: CommonService,
     public registerService: RegisterService,
     public teacherService: TeacherService,
+    public categoryService: CategoryService,
     private dialog: MatDialog,
     private myRoute: Router) {
 
@@ -75,7 +78,7 @@ export class RegisterComponent implements OnInit {
 
 
   public saveData() {
-debugger
+    debugger
     if (this.registerForm.valid) {
 
       let body = {
@@ -89,12 +92,12 @@ debugger
         department: this.departmentArray,
         code: this.registerForm.value.code,
       }
-     
+
       this.commonService.loading = true;
       debugger
-      
 
-      this.registerService.checkDuplicateUser({username: this.registerForm.value.username}).subscribe(
+
+      this.registerService.checkDuplicateUser({ username: this.registerForm.value.username }).subscribe(
         (data: any) => {
           // if(data){
           this.commonService.loading = false;
@@ -105,45 +108,46 @@ debugger
           this.commonService.loading = false;
           //this.idOfUserForUpdate = null;
           //this.updateState = false;
-if(data.length==0)
-{
-          this.registerService.insertUsers(body).subscribe(
-            (data: any) => {
-              // if(data){
-              this.commonService.loading = false;
-              console.log(JSON.parse(data));
-              data = JSON.parse(data);
-    
-              this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
-              this.commonService.loading = false;
-              this.idOfUserForUpdate = null;
-              this.updateState = false;
-              this.teacherService.getListOfTeachers().subscribe(
-                (success) => {
-                  this.commonService.teacherList = JSON.parse(success)
-    
-                },
-                (error) => {
-                  this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-                }
-              )
-    
-    
-            }
-    
-            //  }
-            ,
-            (error) => {
-              this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-              this.commonService.loading = false;
-              this.idOfUserForUpdate = null;
-              this.updateState = false;
-            }
-          )
+          if (data.length == 0 || this.updateState == true)//یعنی اگر کاربر قبلا وجود نداشت
+          {
+            this.registerService.insertUsers(body).subscribe(
+              (data: any) => {
+                // if(data){
+                this.commonService.loading = false;
+                console.log(JSON.parse(data));
+                data = JSON.parse(data);
+                this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+                this.commonService.loading = false;
+                this.idOfUserForUpdate = null;
+                this.updateState = false;
+                this.getTeacherList()
+                this.getCategoryList()
+                this.teacherService.getListOfTeachers().subscribe(
+                  (success) => {
+                    this.commonService.teacherList = JSON.parse(success)
+
+                  },
+                  (error) => {
+                    this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+                  }
+                )
+
+
+              }
+
+              //  }
+              ,
+              (error) => {
+                this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+                this.commonService.loading = false;
+                this.idOfUserForUpdate = null;
+                this.updateState = false;
+              }
+            )
           }
-else{
-  this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
-}
+          else {
+            this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
+          }
 
         }
 
@@ -152,15 +156,15 @@ else{
         (error) => {
           this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
           this.commonService.loading = false;
-         // this.idOfUserForUpdate = null;
-         // this.updateState = false;
+          // this.idOfUserForUpdate = null;
+          // this.updateState = false;
         }
       )
 
-      
-    
+
+
     }
-  
+
   }
 
   private btnChooseUser() {
@@ -189,7 +193,7 @@ else{
           });
 
           this.typeId = data.type;
-         // let localDepartmentArray = JSON.parse(data.department);
+          // let localDepartmentArray = JSON.parse(data.department);
           //this.departmentArray = '[' + String(localDepartmentArray) + ']'
         }
       }
@@ -214,4 +218,30 @@ else{
     this.departmentArray = '[' + String(localDepartmentArray) + ']'
     debugger
   }
+
+  private getTeacherList() {
+    this.teacherService.getListOfTeachers().subscribe(
+      (success) => {
+        this.commonService.teacherList = JSON.parse(success)
+       
+      },
+      (error) => {
+        
+      }
+    )
+
+  }
+
+  private getCategoryList() {
+    this.categoryService.getListOfcategorys().subscribe(
+      (success) => {
+        console.log('this.commonService.categoryList', JSON.parse(success));
+        this.commonService.categoryList = JSON.parse(success)
+      },
+      (error) => {
+      }
+    )
+
+  }
+
 }

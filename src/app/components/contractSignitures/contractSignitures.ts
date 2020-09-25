@@ -65,6 +65,8 @@ export class ContractSignituresComponent implements OnInit {
           debugger
           let onlineUser = this.commonService.activeUser[0]
           this.dataSource = new MatTableDataSource(null);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
           if (this.commonService.activeUser[0].type == 1 ||//admin
             this.commonService.activeUser[0].type == 2) {
               debugger
@@ -95,7 +97,7 @@ export class ContractSignituresComponent implements OnInit {
                   let mhd = [];
                   for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
                     if (this.getcontractSignitureObj[i].signiture2 != null
-                      && this.getcontractSignitureObj[i].department == this.departmentId
+                      && Number(((this.getcontractSignitureObj[i].department).replace("[","")).replace("]","") )== this.departmentId
                     ) {
 
                       signitureLevelArray2.push(this.getcontractSignitureObj[i]);
@@ -150,6 +152,8 @@ export class ContractSignituresComponent implements OnInit {
                   break;
                 default:
                   this.dataSource = new MatTableDataSource(null);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
                   break;
               }
             }
