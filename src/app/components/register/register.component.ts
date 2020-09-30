@@ -14,7 +14,7 @@ import { TeacherComponent } from '../teacher/teacher.component';
 import { MatDialog } from '@angular/material';
 import { RegisterService } from 'src/app/services/register/registerService';
 import { CategoryService } from 'src/app/services/category/categoryService';
-import { privateEncrypt } from 'crypto';
+
 export interface Term {
   id: number;
   name: string;
