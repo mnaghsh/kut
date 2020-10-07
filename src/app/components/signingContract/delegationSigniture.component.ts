@@ -9,6 +9,7 @@ import { TeacherService } from 'src/app/services/teacher/teacherService';
 import { MatDialog, MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { TeacherComponent } from '../teacher/teacher.component';
 import { SigningContractService } from 'src/app/services/signingContract/signingContractService';
+import { CategoryComponent } from '../category/category.component';
 
 @Component({
   selector: 'app-delegationSigniture',
@@ -17,6 +18,7 @@ import { SigningContractService } from 'src/app/services/signingContract/signing
 })
 export class DelegationSignitureComponent implements OnInit {
   userId: number;
+  categoryName = "انتخاب گروه آموزشی";
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -42,11 +44,11 @@ export class DelegationSignitureComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.getSigningContractObj);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        this.commonService.loading = false;         
-        
+        this.commonService.loading = false;
+
       },
-      (error)=>{
-        this.commonService.showEventMessage( "خطایی به وجود آمده یا ارتباط با سرور قطع است"  )
+      (error) => {
+        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
       }
     )
   }
@@ -75,42 +77,59 @@ export class DelegationSignitureComponent implements OnInit {
     )
   }
 
-  public saveChanges(){
+  public saveChanges() {
     this.commonService.loading = true;
-  let insertScript="";
-    let deleteScript=`delete from signingContract;`
-this.getSigningContractObj.forEach(eachRowsOFData => {
-let dataOfUnCalculatedColumns=[]
-  dataOfUnCalculatedColumns.push(eachRowsOFData['signitureNumber'])
-  dataOfUnCalculatedColumns.push(eachRowsOFData['teacherId'])
-  dataOfUnCalculatedColumns.push(`'`+eachRowsOFData['post']+`'`)
-  console.log('dataOfUnCalculatedColumns',dataOfUnCalculatedColumns)
+    let insertScript = "";
+    let deleteScript = `delete from signingContract;`
+    this.getSigningContractObj.forEach(eachRowsOFData => {
+      let dataOfUnCalculatedColumns = []
+      dataOfUnCalculatedColumns.push(eachRowsOFData['signitureNumber'])
+      dataOfUnCalculatedColumns.push(eachRowsOFData['teacherId'])
+      dataOfUnCalculatedColumns.push(`'` + eachRowsOFData['post'] + `'`)
+      console.log('dataOfUnCalculatedColumns', dataOfUnCalculatedColumns)
 
-   insertScript+=`
+      insertScript += `
     
       insert into signingContract (signitureNumber,teacherId,post)
-      values(`+dataOfUnCalculatedColumns+`)`
-      console.log('insertScript',insertScript)
+      values(`+ dataOfUnCalculatedColumns + `)`
+      console.log('insertScript', insertScript)
 
-})
+    })
 
-  
+
     let body = {
       script: deleteScript + insertScript
     }
- 
-    console.log('body',body)   
+
+    console.log('body', body)
     this.signingContract.postSigningContract(body).subscribe(
-       (success) => {
+      (success) => {
         this.getSigningContract();
-        this.commonService.showEventMessage( "عملیات با موفقیت ذخیره شد"  )
-           
-        
+        this.commonService.showEventMessage("عملیات با موفقیت ذخیره شد")
+
+
       },
-      (error)=>{
-        this.commonService.showEventMessage( "خطایی به وجود آمده یا ارتباط با سرور قطع است"  )
+      (error) => {
+        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
       }
     )
   }
-
+  public btnChooseCategory() {
+    //this.showCourseValueTable = false
+    //this.newRowObj = {};
+    const dialogRef = this.dialog.open(CategoryComponent, {
+      width: "85%",
+      height: "85%",
+      data: {
+        //field: field,
+      }
+    });
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        if (data) {
+          this.categoryName = data.xDepartment_Farsi
+        }
+      }
+    )
+  }
 }

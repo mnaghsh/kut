@@ -71,17 +71,26 @@ export class ContractSignituresComponent implements OnInit {
         }
         else{
         this.getSigningContractObj = JSON.parse(success)
+        let localSigningContract=[];
+        this.getSigningContractObj.forEach(eachSigningContractObj => {
+          if(eachSigningContractObj.department==this.departmentId) {
+            localSigningContract.push(eachSigningContractObj)
+          }
+        });
+        this.getSigningContractObj=localSigningContract
         console.log('this.getSigningConturactObj', this.getSigningContractObj)
         this.getSigningContractObj.forEach(eachSigningContractObj => {
 
-          if (eachSigningContractObj.teacherId == onlineUser.id) {
+          if (eachSigningContractObj.teacherId == onlineUser.id 
+              ) {
             switch (eachSigningContractObj.signitureNumber) {
               case 1:
                 let signitureLevelArray1 = []
                 for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
                   if (
                     //this.getcontractSignitureObj[i].signiture1 == null  && 
-                    this.getcontractSignitureObj[i].department == this.departmentId
+                    this.getcontractSignitureObj[i].department == this.departmentId 
+                   
                   ) {
                     signitureLevelArray1.push(this.getcontractSignitureObj[i]);
                   }
@@ -186,22 +195,7 @@ export class ContractSignituresComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  // private btnChooseTeacher(row) {
-  //   //this.newRowObj = {};
-  //   const dialogRef = this.dialog.open(TeacherComponent, {
-  //     width: "85%",
-  //     height: "85%",
-  //     data: {
-  //       //field: field,
-  //     }
-  //   });
-  //   dialogRef.afterClosed().subscribe(
-  //     (data) => {
-  //       row.teacherId = data.id;
-  //       row.fullName = data.fullName;
-  //     }
-  //   )
-  // }
+
   public saveChanges() {
 
     let updateQuery
@@ -319,9 +313,7 @@ export class ContractSignituresComponent implements OnInit {
 
   }
   public btnChooseCategory() {
-    //this.showCourseValueTable = false
-    //this.newRowObj = {};
-    const dialogRef = this.dialog.open(CategoryComponent, {
+      const dialogRef = this.dialog.open(CategoryComponent, {
       width: "85%",
       height: "85%",
       data: {
@@ -336,15 +328,6 @@ export class ContractSignituresComponent implements OnInit {
           this.departmentId = data.x_
           //this.getSigningContract();
           this.contractSignitures();
-          //this.userId = data.id;
-          // this.categoryName = data.fullName;
-          //this.firstName=data.firstName;
-          //this.lastName=data.lastName;
-          // this.displayedColumns = null
-          //this.dataSource = null;
-          //this.columns = [];
-          //this.showCourseValueTable = true
-          //this.commonService.reportUserId = this.userId;
         }
       }
     )

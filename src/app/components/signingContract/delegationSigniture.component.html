@@ -6,8 +6,20 @@
 <mat-card  *ngIf="commonService.loading==true" class="spinner">
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </mat-card>
-
 <br>
+
+<div class="row ">
+  <div class="col-4"></div>
+  <div class="col-4 selectTeacher ">
+    <button mat-button color="accent" (click)="btnChooseCategory()">
+
+      <h4> {{this.categoryName}}</h4>
+    </button>
+  </div>
+
+  <div class="col-4"></div>
+</div>
+
 <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
 (click)="saveChanges()"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;   ذخیره &nbsp; </button>
 <button mat-raised-button color="primary"  class=" btnROllBack" aria-hidden="true"
