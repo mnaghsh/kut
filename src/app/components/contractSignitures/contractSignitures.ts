@@ -73,10 +73,21 @@ export class ContractSignituresComponent implements OnInit {
         this.getSigningContractObj = JSON.parse(success)
         let localSigningContract=[];
         this.getSigningContractObj.forEach(eachSigningContractObj => {
-          if(eachSigningContractObj.department==this.departmentId) {
-            localSigningContract.push(eachSigningContractObj)
-          }
+     
+            if(eachSigningContractObj.department==this.departmentId) {
+          localSigningContract.push(eachSigningContractObj);
+        }
+      
+
+      //   JSON.parse(eachSigningContractObj.department).forEach(eachSigningContractObjSeprateDepartment => {
+      //     if(eachSigningContractObjSeprateDepartment==this.departmentId) {
+      //   localSigningContract.push(eachSigningContractObj);
+      // }
+      // });
+
+        
         });
+        
         this.getSigningContractObj=localSigningContract
         console.log('this.getSigningConturactObj', this.getSigningContractObj)
         this.getSigningContractObj.forEach(eachSigningContractObj => {

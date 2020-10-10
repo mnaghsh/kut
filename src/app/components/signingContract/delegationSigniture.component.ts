@@ -18,12 +18,14 @@ import { CategoryComponent } from '../category/category.component';
 })
 export class DelegationSignitureComponent implements OnInit {
   userId: number;
+  //department: any;
   categoryName = "انتخاب گروه آموزشی";
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['signitureNumber', 'fullName', 'post'];
   getSigningContractObj: any;
+  categoryId: any;
   constructor(
     private configService: ConfigService,
     public commonService: CommonService,
@@ -33,14 +35,27 @@ export class DelegationSignitureComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.getSigningContract();
+    //this.getSigningContract();
   }
 
-  public getSigningContract() {
+  public getSigningContract(department) {
     this.commonService.loading = true;
+    let localSigningContract = [];
     this.signingContract.getSigningContract().subscribe(
       (success) => {
         this.getSigningContractObj = JSON.parse(success)
+        this.getSigningContractObj.forEach(eachSigningContract => {
+          if (eachSigningContract.department == department) {
+                localSigningContract.push(eachSigningContract)
+               }
+          // JSON.parse(eachSigningContract.department).forEach(eachSigningContractObjSeprateDepartment => {
+          //   if (eachSigningContractObjSeprateDepartment == department) {
+          //     localSigningContract.push(eachSigningContract)
+          //   }
+          // });
+          
+        });
+        this.getSigningContractObj = localSigningContract
         this.dataSource = new MatTableDataSource(this.getSigningContractObj);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -86,11 +101,12 @@ export class DelegationSignitureComponent implements OnInit {
       dataOfUnCalculatedColumns.push(eachRowsOFData['signitureNumber'])
       dataOfUnCalculatedColumns.push(eachRowsOFData['teacherId'])
       dataOfUnCalculatedColumns.push(`'` + eachRowsOFData['post'] + `'`)
+      dataOfUnCalculatedColumns.push(this.categoryId)
       console.log('dataOfUnCalculatedColumns', dataOfUnCalculatedColumns)
 
       insertScript += `
     
-      insert into signingContract (signitureNumber,teacherId,post)
+      insert into signingContract (signitureNumber,teacherId,post,department)
       values(`+ dataOfUnCalculatedColumns + `)`
       console.log('insertScript', insertScript)
 
@@ -104,7 +120,7 @@ export class DelegationSignitureComponent implements OnInit {
     console.log('body', body)
     this.signingContract.postSigningContract(body).subscribe(
       (success) => {
-        this.getSigningContract();
+        this.getSigningContract( this.categoryId);
         this.commonService.showEventMessage("عملیات با موفقیت ذخیره شد")
 
 
@@ -127,7 +143,10 @@ export class DelegationSignitureComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
+          debugger
           this.categoryName = data.xDepartment_Farsi
+          this.categoryId = data.x_
+          this.getSigningContract(data.x_);
         }
       }
     )
