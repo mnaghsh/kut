@@ -23,7 +23,7 @@
     *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;   ذخیره &nbsp;  </button>
   <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnROllBack" aria-hidden="true"
     *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="replaceNewData()"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
-  <table matSort class="table table-striped table-hover" mat-table dir="rtl" [dataSource]="dataSource">
+  <table matSort class="table table-striped table-responsive table-hover" mat-table dir="rtl" [dataSource]="dataSource">
     <!-- data Column -->
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
       <div>

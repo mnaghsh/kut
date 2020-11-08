@@ -16,10 +16,13 @@ export class DashboardComponent implements OnInit {
   panelOpenState = false;
   addItems: { label: string; path: string; icon: string; }[];
   cartable: { label: string; path: string; icon: string; }[];
+  onlineUser: any;
 
   constructor(private auth: AuthenticationService,
     public commonService:CommonService,
-    private myRoute: Router) { }
+    private myRoute: Router) { 
+      this.onlineUser = this.commonService.activeUser[0].type
+    }
 
   ngOnInit() {
   
@@ -50,18 +53,18 @@ this.addItems=[
  
 
     this.adminPages = [
-      { label: ' افزودن کاربر', path: "/register", icon: "fas fa-user-plus" },
+      { label: ' تنظیمات کاربرها', path: "/register", icon: "fas fa-user-plus" },
       // { label: ' بروزرسانی ', path: "/update", icon: "fas fa-refresh" },
       // { label: ' عملیات ', path: "/mission-info", icon: "fas fa-opera" },
     ];
     this.delegationSigniture = [
-      { label: 'اعطا حق امضا قرارداد به کاربران', path: "/delegationSigniture", icon: " fa-check-square-o" },
-      { label: 'اعطا حق امضا واحد های محاسبه شده به کاربران', path: "/delegationSignitureForCalculationUnits", icon: " fa-check" },
+      { label: 'اعطا حق امضا واحد های محاسبه شده به کاربران', path: "/delegationSigniture", icon: " fa-check-square-o" },
+      // { label: 'اعطا حق امضا واحد های محاسبه شده به کاربران', path: "/delegationSignitureForCalculationUnits", icon: " fa-check" },
      
     ];
     this.cartable = [
-      { label: ' تایید قراردادها', path: "/contractSignitures", icon: " fa fa-file" },
-      { label: ' تایید واحد های محاسبه شده', path: "/contractSignituresForCalculationUnits", icon: " fa fa-file-o" },
+      { label: 'تایید واحد های محاسبه شده', path: "/contractSignitures", icon: " fa fa-file" },
+      // { label: ' تایید واحد های محاسبه شده', path: "/contractSignituresForCalculationUnits", icon: " fa fa-file-o" },
      
     ];
     

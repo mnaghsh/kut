@@ -27,10 +27,11 @@ export class ContractSignituresComponent implements OnInit {
   sig2: boolean;
   sig3: boolean;
   sig4: boolean;
+  sig5: boolean;
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  displayedColumns: string[] = ['code', 'fullName', 'signiture1', 'signiture2', 'signiture3', 'signiture4', 'reasonForRejection'];
+  displayedColumns: string[] = ['code', 'fullName', 'signiture1', 'signiture2', 'signiture3', 'signiture4', 'signiture5', 'reasonForRejection'];
   getSigningContractObj: any;
   getcontractSignitureObj: any;
   changedSignitures = [];
@@ -64,116 +65,131 @@ export class ContractSignituresComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.getcontractSignitureObj);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-          this.sig1=false;
-          this.sig2=false;
-          this.sig3=false;
-          this.sig4=false;
+          this.sig1 = false;
+          this.sig2 = false;
+          this.sig3 = false;
+          this.sig4 = false;
         }
-        else{
-        this.getSigningContractObj = JSON.parse(success)
-        let localSigningContract=[];
-        this.getSigningContractObj.forEach(eachSigningContractObj => {
-     
-            if(eachSigningContractObj.department==this.departmentId) {
-          localSigningContract.push(eachSigningContractObj);
-        }
-      
+        else {
+          this.getSigningContractObj = JSON.parse(success)
+          let localSigningContract = [];
+          this.getSigningContractObj.forEach(eachSigningContractObj => {
 
-      //   JSON.parse(eachSigningContractObj.department).forEach(eachSigningContractObjSeprateDepartment => {
-      //     if(eachSigningContractObjSeprateDepartment==this.departmentId) {
-      //   localSigningContract.push(eachSigningContractObj);
-      // }
-      // });
-
-        
-        });
-        
-        this.getSigningContractObj=localSigningContract
-        console.log('this.getSigningConturactObj', this.getSigningContractObj)
-        this.getSigningContractObj.forEach(eachSigningContractObj => {
-
-          if (eachSigningContractObj.teacherId == onlineUser.id 
-              ) {
-            switch (eachSigningContractObj.signitureNumber) {
-              case 1:
-                let signitureLevelArray1 = []
-                for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (
-                    //this.getcontractSignitureObj[i].signiture1 == null  && 
-                    this.getcontractSignitureObj[i].department == this.departmentId 
-                   
-                  ) {
-                    signitureLevelArray1.push(this.getcontractSignitureObj[i]);
-                  }
-                }
-                this.dataSource = new MatTableDataSource(signitureLevelArray1);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig1 = false
-                break;
-              case 2:
-                let signitureLevelArray2 = []
-                let mhd = [];
-                for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (
-                    //this.getcontractSignitureObj[i].signiture2 != null && 
-                    //!!
-                  this.getcontractSignitureObj[i].department == this.departmentId
-                  ) {
-                    signitureLevelArray2.push(this.getcontractSignitureObj[i]);
-                  }
-                }
-                this.dataSource = new MatTableDataSource(signitureLevelArray2);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig2 = false
-                break;
-              case 3:
-                // 
-                let signitureLevelArray3 = []
-                for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
-                  if (
-                    //this.getcontractSignitureObj[i].signiture3 == null
-                  //  this.getcontractSignitureObj[i].signiture3 != null &&
-                     this.getcontractSignitureObj[i].department == this.departmentId
-                    //&& this.getcontractSignitureObj[i].signiture1 != null
-                  ) {
-                    signitureLevelArray3.push(this.getcontractSignitureObj[i]);
-                  }
-                }
-                this.dataSource = new MatTableDataSource(signitureLevelArray3);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig3 = false
-                break;
-              case 4:
-                let signitureLevelArray4 = []
-                this.getcontractSignitureObj.forEach(eachContractSigniture => {
-                  if (
-                    // eachContractSigniture.signiture4==null
-                   // eachContractSigniture.signiture4 != null &&
-                     eachContractSigniture.department == this.departmentId
-                  ) {
-                    signitureLevelArray4.push(eachContractSigniture);
-                  }
-                });
-
-                this.dataSource = new MatTableDataSource(signitureLevelArray4);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                this.sig4 = false
-                break;
-              default:
-                this.dataSource = new MatTableDataSource(null);
-                this.dataSource.paginator = this.paginator;
-                this.dataSource.sort = this.sort;
-                break;
+            if (eachSigningContractObj.department == this.departmentId) {
+              localSigningContract.push(eachSigningContractObj);
             }
-          }
 
+
+            //   JSON.parse(eachSigningContractObj.department).forEach(eachSigningContractObjSeprateDepartment => {
+            //     if(eachSigningContractObjSeprateDepartment==this.departmentId) {
+            //   localSigningContract.push(eachSigningContractObj);
+            // }
+            // });
+
+
+          });
+
+          this.getSigningContractObj = localSigningContract
+          console.log('this.getSigningConturactObj', this.getSigningContractObj)
+          this.getSigningContractObj.forEach(eachSigningContractObj => {
+
+            if (eachSigningContractObj.teacherId == onlineUser.id
+            ) {
+              switch (eachSigningContractObj.signitureNumber) {
+                case 1:
+                  let signitureLevelArray1 = []
+                  for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
+                    if (
+                      //this.getcontractSignitureObj[i].signiture1 == null  && 
+                      this.getcontractSignitureObj[i].department == this.departmentId
+
+                    ) {
+                      signitureLevelArray1.push(this.getcontractSignitureObj[i]);
+                    }
+                  }
+                  this.dataSource = new MatTableDataSource(signitureLevelArray1);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig1 = false
+                  break;
+                case 2:
+                  let signitureLevelArray2 = []
+                  let mhd = [];
+                  for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
+                    if (
+                      //this.getcontractSignitureObj[i].signiture2 != null && 
+                      //!!
+                      this.getcontractSignitureObj[i].department == this.departmentId
+                    ) {
+                      signitureLevelArray2.push(this.getcontractSignitureObj[i]);
+                    }
+                  }
+                  this.dataSource = new MatTableDataSource(signitureLevelArray2);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig2 = false
+                  break;
+                case 3:
+                  // 
+                  let signitureLevelArray3 = []
+                  for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
+                    if (
+                      //this.getcontractSignitureObj[i].signiture3 == null
+                      //  this.getcontractSignitureObj[i].signiture3 != null &&
+                      this.getcontractSignitureObj[i].department == this.departmentId
+                      //&& this.getcontractSignitureObj[i].signiture1 != null
+                    ) {
+                      signitureLevelArray3.push(this.getcontractSignitureObj[i]);
+                    }
+                  }
+                  this.dataSource = new MatTableDataSource(signitureLevelArray3);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig3 = false
+                  break;
+                case 4:
+                  let signitureLevelArray4 = []
+                  this.getcontractSignitureObj.forEach(eachContractSigniture => {
+                    if (
+                      // eachContractSigniture.signiture4==null
+                      // eachContractSigniture.signiture4 != null &&
+                      eachContractSigniture.department == this.departmentId
+                    ) {
+                      signitureLevelArray4.push(eachContractSigniture);
+                    }
+                  });
+
+                  this.dataSource = new MatTableDataSource(signitureLevelArray4);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig4 = false
+                  break;
+                case 5:
+                  let signitureLevelArray5 = []
+                  this.getcontractSignitureObj.forEach(eachContractSigniture => {
+                    if (
+                      eachContractSigniture.department == this.departmentId
+                    ) {
+                      signitureLevelArray5.push(eachContractSigniture);
+                    }
+                  });
+
+                  this.dataSource = new MatTableDataSource(signitureLevelArray5);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  this.sig5 = false
+                  break;
+                default:
+                  this.dataSource = new MatTableDataSource(null);
+                  this.dataSource.paginator = this.paginator;
+                  this.dataSource.sort = this.sort;
+                  break;
+              }
+            }
+
+          }
+          );
         }
-        );
-      }
       },
       (error) => {
         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
@@ -324,7 +340,7 @@ export class ContractSignituresComponent implements OnInit {
 
   }
   public btnChooseCategory() {
-      const dialogRef = this.dialog.open(CategoryComponent, {
+    const dialogRef = this.dialog.open(CategoryComponent, {
       width: "85%",
       height: "85%",
       data: {
