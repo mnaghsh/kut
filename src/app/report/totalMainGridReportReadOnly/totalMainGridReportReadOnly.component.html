@@ -1,26 +1,24 @@
 <h5 style="padding-right:1%">آیتم های کلی</h5>
 <div *ngIf="userId">
   <!-- <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true" -->
-    <!-- *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)">ذخیره</button> -->
+  <!-- *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)">ذخیره</button> -->
   <table matSort class="table table-striped table-hover" mat-table dir="rtl" [dataSource]="dataSource">
     <!-- data Column -->
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
       <div>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
       </div>
-      <td mat-cell *matCellDef="let row; let index = index" class="cells"      [innerHTML]="row[column.columnDef]">
-        
-          <!-- <input type="number" maxlength="4" *ngIf="column.columnDef!='CourseName'" matInput [placeholder]="column.label"
+      <td mat-cell *matCellDef="let row; let index = index" class="cells" [innerHTML]="row[column.columnDef]">
+
+        <!-- <input type="number" maxlength="4" *ngIf="column.columnDef!='CourseName'" matInput [placeholder]="column.label"
             (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
           -->
-       
+
       </td>
       <ng-container *ngIf="this.showAddRow">
-        <td mat-cell *matCellDef="let row; let index = index" class="cells"
-       
-        [innerHTML]="column.cell(row, column)">
-            <!-- <input    matInput placeholder="Favorite food" [value]="column.cell(row, column)"> -->
-          </td>
+        <td mat-cell *matCellDef="let row; let index = index" class="cells" [innerHTML]="column.cell(row, column)">
+          <!-- <input    matInput placeholder="Favorite food" [value]="column.cell(row, column)"> -->
+        </td>
       </ng-container>
     </ng-container>
     <!-- icon Column -->

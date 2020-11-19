@@ -27,6 +27,32 @@ export class TotalMainGridReportComponent implements OnInit {
     { id: 2, name: 'Shelley' },
     { id: 3, name: 'Igor' }
   ];
+
+  martabe = [
+    {value: 1, viewValue: 'مربی آموزشیار'},
+    {value: 2, viewValue: 'مربی'},
+    {value: 3, viewValue: 'استادیار'},
+    {value: 4, viewValue: 'دانشیار'},
+    {value: 5, viewValue: 'استاد'},
+    {value: 6, viewValue: 'حق التدریس'},
+
+  ];
+ 
+  post = [
+    {value: 1, viewValue: 'رئیس دانشگاه'},
+    {value: 2, viewValue: 'معاون دانشگاه'},
+    {value: 3, viewValue: 'رئیس دانشکده'},
+    {value: 4, viewValue: 'معاون دانشکده'},
+    {value: 5, viewValue: 'مدیر امور پژوهشی و فناوری'},
+    {value: 6, viewValue: 'مدیر امور فرهنگی و اجتماعی'},
+    {value: 7, viewValue: 'مدیر امور آموزشی و تحصیلات تکمیلی'},
+    {value: 8, viewValue: 'سرپرست اداره فناوری اطلاعات و خدمات رایانه ای'},
+    {value: 9, viewValue: 'سرپرست گروه نظارت و ارزیابی و تضمین کیفیت'},
+    {value: 10, viewValue: 'مدیر گروه آموزشی با تحصیلات تکمیلی '},
+    {value: 11, viewValue: 'مدیر گروه بدون تحصیلات تکمیلی'},
+    {value: 12, viewValue: 'بدون پست'},
+  ];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   myControl = new FormControl();
   @ViewChild(MatSort) sort: MatSort;

@@ -10,6 +10,8 @@ import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
   styleUrls: ['./contract.component.scss']
 })
 export class ContractComponent implements OnInit {
+  myDate = new Date().toLocaleDateString('fa-IR');
+  userDetails: any;
   displayName: string;
   description: string;
   mhd;
@@ -46,21 +48,47 @@ export class ContractComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-        if(data){
-        this.userId = data.id;
-        this.fullName = data.fullName;
-        this.firstName=data.firstName;
-        this.lastName=data.lastName;
-        this.displayedColumns = null
-        this.dataSource = null;
-        this.columns = [];
-        this.showCourseValueTable = true
-        this.commonService.reportUserId = this.userId;
+        if (data) {
+          console.log('userDetails', data)
+          this.userDetails = data;
+          this.userId = data.id;
+          this.fullName = data.fullName;
+          this.firstName = data.firstName;
+          this.lastName = data.lastName;
+          this.displayedColumns = null
+          this.dataSource = null;
+          this.columns = [];
+          this.showCourseValueTable = true
+          this.commonService.reportUserId = this.userId;
         }
       }
     )
   }
 
+  // print(): void {
+  //   let printContents, popupWin;
+  //   printContents = document.getElementById('print-section').innerHTML;
+  //   popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+  //   popupWin.document.open();
+  //   popupWin.document.write(`
+  //     <html>
+  //       <head>
+  //         <title>Print tab</title>
+  //         <style>
+  //          *{
+  //             direction:rtl;
+  //             font-family: 'B Nazanin';
+  //             text-align: right;
+
+  //           }
+  //         //........Customized style.......
+  //         </style>
+  //       </head>
+  //   <body onload="window.print();window.close()">${printContents}</body>
+  //     </html>`
+  //   );
+  //   popupWin.document.close();
+  // }
   print(): void {
     let printContents, popupWin;
     printContents = document.getElementById('print-section').innerHTML;
@@ -84,6 +112,10 @@ export class ContractComponent implements OnInit {
       </html>`
     );
     popupWin.document.close();
+  }
+
+  save(){
+   console.log('this.userDetails',this.userDetails) 
   }
 
 }

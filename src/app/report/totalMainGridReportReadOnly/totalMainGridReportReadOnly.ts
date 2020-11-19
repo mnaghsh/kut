@@ -16,6 +16,8 @@ export interface Term {
   id: number;
   name: string;
 }
+
+
 @Component({
   selector: 'app-totalMainGridReportReadOnly',
   templateUrl: './totalMainGridReportReadOnly.component.html',
@@ -28,6 +30,24 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
     { id: 2, name: 'Shelley' },
     { id: 3, name: 'Igor' }
   ];
+  courseSection = [
+    {value: 1, viewValue: 'کارشناسی'},
+    {value: 2, viewValue: 'ارشد'},
+    {value: 3, viewValue: 'دکتری'}
+  ];
+
+  courseType = [
+    {value: 1, viewValue: 'پایه و تخصصی'},
+    {value: 2, viewValue: 'آزمایشگاه'},
+    {value: 3, viewValue: 'کارگاه'},
+    {value: 4, viewValue: 'معرفی به استاد'},
+    {value: 5, viewValue: 'داوری'},
+    {value: 6, viewValue: 'پروژه'},
+    {value: 7, viewValue: 'کارآموزی'},
+    {value: 8, viewValue: 'سمینار'},
+    {value: 9, viewValue: 'عمومی'},
+  ];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   myControl = new FormControl();
   @ViewChild(MatSort) sort: MatSort;
@@ -63,7 +83,7 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
   emiters() {
     this.commonService.saveTotalMainGrid.subscribe({
       next: (event: any) => {
-        //debugger
+        debugger
         this.save(true)
           ;
       }

@@ -43,12 +43,17 @@ export class CalculatedFormulaComponent implements OnInit {
     {
       letter: 'عملگرها',
       names: ['+', '-', '*', 'dbo.divider', '%']
-    }, {
+    },
+    {
+      letter: 'عملگرهای منطقی',
+      names: ['and', 'or']
+    },
+    {
       letter: 'مقایسه گرها',
       names: ['<', '>', '<=', '>=', '=', '<>']
     }, {
       letter: 'شرط ها',
-      names: ['case when', 'then', 'else', 'end']
+      names: ['case' ,'when', 'then', 'else', 'end']
     }
 
   ];
@@ -219,7 +224,7 @@ debugger
           a.forEach(e => {
             let temp = {};
             if (!temp['letter']) {
-              temp['letter'] = 'آیتم های ثابت';
+              temp['letter'] = '';
             }
             //temp['backgroundFormul']=e.formula;
             temp['names'] = [];

@@ -19,10 +19,12 @@
 <div *ngIf="showCourseValueTable">
 
   <h5 style="padding-right:1%">ورود اطلاعات برای آیتم های مربوط به درس</h5>
-  <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
-    *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp;   ذخیره &nbsp;  </button>
-  <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnROllBack" aria-hidden="true"
-    *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="replaceNewData()"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
+  <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true" *ngIf="commonService.showSaveBtn==1"
+    mat-raised-button (click)="save(1)">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+  <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnROllBack" aria-hidden="true" *ngIf="commonService.showSaveBtn==1"
+    mat-raised-button (click)="replaceNewData()">
+    <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
   <table matSort class="table table-striped table-responsive table-hover" mat-table dir="rtl" [dataSource]="dataSource">
     <!-- data Column -->
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
@@ -31,28 +33,61 @@
       </div>
       <td mat-cell *matCellDef="let row; let index = index" class="cells">
         <mat-form-field>
-          <input required type="number" maxlength="4" *ngIf="column.columnDef!='CourseName'" matInput
-            [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtn=1"
-            [(ngModel)]="row[column.columnDef]">
-          <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color: #ff4081;"
-            (click)="chooseCourse(row)" aria-hidden="true"></i>
-          <input required matInput disabled maxlength="4" *ngIf="column.columnDef=='CourseName'"
-            (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row.CourseName">
+          <input *ngIf="column.columnDef!='CourseName' && column.columnDef!='C1' && column.columnDef!='C2'
+          && column.columnDef!='C3' " required type="number" maxlength="4"  matInput
+            [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+
+
+            <!-- <input *ngIf="column.columnDef!='CourseName' " required type="number" maxlength="4"  matInput
+              [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]"> -->
+
+          <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color: #ff4081;" (click)="chooseCourse(row)"
+            aria-hidden="true"></i>
+
+          <mat-select *ngIf="column.columnDef=='C1'"  (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+            <mat-option *ngFor="let f of firstTime"  [value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+
+          <mat-select *ngIf="column.columnDef=='C2'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+            <mat-option *ngFor="let f of courseSection"[value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+
+          <mat-select *ngIf="column.columnDef=='C3'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+            <mat-option *ngFor="let f of courseType"  [value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+
+          <input required matInput disabled maxlength="4" *ngIf="column.columnDef=='CourseName'" (ngModelChange)="commonService.showSaveBtn=1"
+            [(ngModel)]="row.CourseName">
         </mat-form-field>
 
       </td>
       <td class="footerInput" mat-footer-cell *matFooterCellDef="let row">
         <mat-form-field>
-         
-            <input required type="number" maxlength="4" *ngIf="column.columnDef!='CourseName'" matInput
-              [placeholder]="column.label" [(ngModel)]="newRowObj[column.columnDef]">
-        
-          <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color:#ff4081;"
-            (click)="chooseCourse(newRowObj)" aria-hidden="true">
-             <!-- &nbsp;<span style="color: red;">*</span>&nbsp; -->
-            </i>
-          <input required matInput maxlength="4" disabled *ngIf="column.columnDef=='CourseName'"
-            [(ngModel)]="newRowObj.CourseName">
+
+          <input required type="number" maxlength="4"
+           *ngIf="column.columnDef!='CourseName' && column.columnDef!='C1' && column.columnDef!='C2'
+           && column.columnDef!='C3' "
+            matInput [placeholder]="column.label"
+            [(ngModel)]="newRowObj[column.columnDef]">
+
+          <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color:#ff4081;" (click)="chooseCourse(newRowObj)"
+            aria-hidden="true">
+          </i>
+
+          <mat-select *ngIf="column.columnDef=='C1'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="newRowObj[column.columnDef]">
+            <mat-option *ngFor="let f of firstTime" [value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+ 
+          <mat-select *ngIf="column.columnDef=='C2'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="newRowObj[column.columnDef]" >
+            <mat-option *ngFor="let f of courseSection" [value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+
+          <mat-select *ngIf="column.columnDef=='C3'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="newRowObj[column.columnDef]" >
+            <mat-option *ngFor="let f of courseType" [value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+          
+
+          <input required matInput maxlength="4" disabled *ngIf="column.columnDef=='CourseName'" [(ngModel)]="newRowObj.CourseName">
         </mat-form-field>
       </td>
     </ng-container>
