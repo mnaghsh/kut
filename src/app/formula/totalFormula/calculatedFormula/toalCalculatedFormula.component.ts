@@ -35,23 +35,31 @@ export class TotalCalculatedFormulaComponent implements OnInit {
     stateGroup: '',
   });
 
+
+
+
   stateGroups: StateGroup[] = [
     {
-      letter: 'پرانتز',
-      names: ['(', ')']
+      letter: 'سایر',
+      names: ['(', ')',',']
     },
 
     {
       letter: 'عملگرها',
-      names: ['+', '-', '*', '/', '%']
-    }, {
+      names: ['+', '-', '*', 'dbo.divider', '%']
+    },
+    {
+      letter: 'عملگرهای منطقی',
+      names: ['and', 'or']
+    },
+    {
       letter: 'مقایسه گرها',
       names: ['<', '>', '<=', '>=', '=', '<>']
     }, {
       letter: 'شرط ها',
-      names: ['case when', 'then', 'else', 'end']
+      names: ['case' ,'when', 'then', 'else', 'end']
     }
-    
+
   ];
 
   stateGroupOptions: Observable<StateGroup[]>;
