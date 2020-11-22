@@ -22,6 +22,7 @@ export interface Term {
 })
 export class TotalMainGridReportComponent implements OnInit {
 
+  counter: boolean =false;
   options: Term[] = [
     { id: 1, name: 'Mary' },
     { id: 2, name: 'Shelley' },
@@ -92,7 +93,10 @@ export class TotalMainGridReportComponent implements OnInit {
     this.commonService.saveTotalMainGrid.subscribe({
       next: (event: any) => {
         debugger
-        this.save(true)
+        if(this.counter==false){
+         // this.save(true)
+        }
+       
           ;
       }
     })
@@ -100,7 +104,7 @@ export class TotalMainGridReportComponent implements OnInit {
       next: (event: any) => {
         debugger
         if (event = 2) {
-          this.replaceNewData();
+        //  this.replaceNewData();
         }
 
         ;
@@ -123,7 +127,7 @@ export class TotalMainGridReportComponent implements OnInit {
     this.columns = [];
     this.getDataOfReport();
     this.newRowObj = {};
-    this.commonService.showSaveBtn = false;
+    this.commonService.showSaveBtnTotal = false;
   }
   ngOnDestroy() {
     if (this.result) {
@@ -301,12 +305,12 @@ INSERT INTO totalValue (`+
     if (this.result.length == 0) {
       body = {
         script: this.deleteQuery = `delete from totalValue
-        where userid=`+ this.userId + ` and termid=` + this.termId
+        where userid=`+ this.userId + ` and termid=` + this.termId + this.attachmentEndScript
       }
     }
     else {
       body = {
-        script: this.deleteQuery + this.insertQuery
+        script: this.deleteQuery + this.insertQuery + this.attachmentEndScript
       }
     }
     this.setNullResult()
@@ -315,6 +319,7 @@ INSERT INTO totalValue (`+
     this.commonService.loading = true;
     //window.scrollTo(0, 0)
     if (this.nullRresult == false) {
+      this.counter=true;
       this.totalMainGridReportService.saveDataOfTotalReport(body)
         .subscribe(
           (sucsess) => {
@@ -330,8 +335,9 @@ INSERT INTO totalValue (`+
             this.columns = [];
             this.getDataOfReport();
             this.newRowObj = {};
-            this.commonService.showSaveBtn = false;
+            this.commonService.showSaveBtnTotal = false;
             this.commonService.loading = false;
+            
 
           });
       (error) => {
@@ -340,6 +346,7 @@ INSERT INTO totalValue (`+
         this.commonService.showEventMessage("داده ها با موفقیت ذخیره نشد-خطا!")
         this.getDataOfReport();
         this.commonService.loading = false;
+        
 
       }
     }
@@ -370,7 +377,7 @@ INSERT INTO totalValue (`+
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log('resuletAfterDel', this.result)
-    this.commonService.showSaveBtn = true
+    this.commonService.showSaveBtnTotal = true
     //this.save(true);
   }
 

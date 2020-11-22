@@ -120,17 +120,15 @@ export class TotalCalculatedFormulaComponent implements OnInit {
     return user ? user.name : undefined;
   }
   mhd(text) {
-    // //////debugger
+   debugger
     if (text != "") {
-      // //////debugger
-
       this.text = text;
       console.log("this.activeItems", this.activeItems);
     }
   }
 
   public addCalculatedFormul() {
-    
+    debugger;
     this.activeItems.forEach(activeItem => {
       this.getCalculatedCombo.forEach(eachCalculatedCombo => {
         if (eachCalculatedCombo.displayName == activeItem.label) {
@@ -149,7 +147,13 @@ export class TotalCalculatedFormulaComponent implements OnInit {
       let f = activeItem.label
       this.getCalculatedCombo.forEach(eachCalculatedCombo => {
         if (eachCalculatedCombo.columnName == activeItem.label) {
-          f = "(" + eachCalculatedCombo.formula + ")"
+          if(eachCalculatedCombo.isCaculated==1 && eachCalculatedCombo.isCourse==1){
+            f = "(" + eachCalculatedCombo.columnName + ")"
+          }
+          else{
+            f = "(" + eachCalculatedCombo.formula + ")"
+          }
+      
         }
       });
       

@@ -63,9 +63,11 @@ export class AddUnCalculatedFormulDependantToCourseComponent implements OnInit {
   }
 
   getData() {
+    this.commonService.loading=true
     this.UnCalculatedFormulDependantTOCourse.getUnCalculatedDependantToCourseServiceGrid()
       .subscribe(
         (sucsess) => {
+          this.commonService.loading=false
           //JSON.parse(sucsess).length
           this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
           this.dataSource.paginator = this.paginator;

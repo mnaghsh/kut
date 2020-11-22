@@ -3,6 +3,9 @@
       آیتم های محاسباتی کلی
     </h5>
   </mat-card>
+  <mat-card *ngIf="commonService.loading==true" class="spinner">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </mat-card>
   <br>
   <div class="content">
   <button class="btnAdd" (click)="btnAdd()" mat-raised-button color="primary"><i class="fa fa-plus-square-o" aria-hidden="true"></i><span style="padding: 5px;">ایجاد آیتم جدید</span></button>

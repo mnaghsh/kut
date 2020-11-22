@@ -62,9 +62,11 @@ export class AddTotalCalculatedFormulComponent implements OnInit {
   }
 
   getData() {
+    this.commonService.loading=true
     this.totalCalculatedService.getTotalCalculatedServiceGrid()
       .subscribe(
         (sucsess) => {
+          this.commonService.loading=false
           this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

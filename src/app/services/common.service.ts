@@ -11,6 +11,7 @@ export class CommonService {
 
  // public saveTotalMainGrid: Subject<any> = new Subject<any>();
   public showSaveBtn: boolean;
+  public showSaveBtnTotal: boolean;
   public rollback: Subject<any> = new Subject<any>();
   loading:boolean;
   coursesList;

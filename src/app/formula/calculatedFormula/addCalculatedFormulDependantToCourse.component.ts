@@ -70,10 +70,11 @@ export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
     
   }
   getData(){
-   
+    this.commonService.loading=true
     this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServiceGrid()
     .subscribe(
       (sucsess)=>{
+        this.commonService.loading=false;
       debugger
         this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
         this.dataSource.paginator = this.paginator;

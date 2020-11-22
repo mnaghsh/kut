@@ -251,7 +251,7 @@ INSERT INTO courseValue (`+
 
     this.attachmentEndScript = `Declare @Q nvarchar(max)
     Set @Q = ''
-    
+     
     Select @Q += 'Declare @' + columnName + ' decimal(38,20)
     '
     From columnDescription
