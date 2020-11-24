@@ -49,7 +49,28 @@ export class MainGridReportReadOnlyComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;  
+  firstTime = [
+    {value: 1, viewValue: 'بلی'},
+    {value: 2, viewValue: 'خیر'}
+  ];
+  // مقطع درس
+  courseSection = [
+    {value: 1, viewValue: 'کارشناسی'},
+    {value: 2, viewValue: 'ارشد'},
+    {value: 3, viewValue: 'دکتری'}
+  ];
 
+  courseType = [
+    {value: 1, viewValue: 'پایه و تخصصی'},
+    {value: 2, viewValue: 'آزمایشگاه'},
+    {value: 3, viewValue: 'کارگاه'},
+    {value: 4, viewValue: 'معرفی به استاد'},
+    {value: 5, viewValue: 'داوری'},
+    {value: 6, viewValue: 'پروژه'},
+    {value: 7, viewValue: 'کارآموزی'}, 
+    {value: 8, viewValue: 'سمینار'},
+    {value: 9, viewValue: 'عمومی'},
+  ];
   constructor(private configService: ConfigService,
     private _formBuilder: FormBuilder,
     private mainGridReport: MainGridReportReadOnlyService,

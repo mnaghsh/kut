@@ -70,7 +70,7 @@ export class MainGridReportComponent implements OnInit {
     {value: 4, viewValue: 'معرفی به استاد'},
     {value: 5, viewValue: 'داوری'},
     {value: 6, viewValue: 'پروژه'},
-    {value: 7, viewValue: 'کارآموزی'},
+    {value: 7, viewValue: 'کارآموزی'}, 
     {value: 8, viewValue: 'سمینار'},
     {value: 9, viewValue: 'عمومی'},
   ];

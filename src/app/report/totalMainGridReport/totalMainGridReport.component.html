@@ -8,29 +8,16 @@
     mat-raised-button (click)="replaceNewData()">
     <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
   <table matSort class="table table-striped table-hover" mat-table dir="rtl" [dataSource]="dataSource">
-    <!-- data Column -->
+   
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
       <div>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
       </div>
       <td mat-cell *matCellDef="let row; let index = index" class="cells">
-        <!-- <mat-form-field>
-          <input type="number" required maxlength="2" *ngIf="column.columnDef!='CourseName'" matInput [placeholder]="column.label"
-            (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
-         
-        </mat-form-field> -->
-
+       
         <mat-form-field>
-          <input *ngIf="column.columnDef!='CourseName' && column.columnDef!='C22' && column.columnDef!='C23'
-           " required type="number" maxlength="4" matInput [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtnTotal=1"
-            [(ngModel)]="row[column.columnDef]">
-
-
-          <!-- <input *ngIf="column.columnDef!='CourseName' " required type="number" maxlength="4"  matInput
-              [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]"> -->
-          <!-- 
-          <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color: #ff4081;" (click)="chooseCourse(row)"
-            aria-hidden="true"></i> -->
+          <input *ngIf="column.columnDef!='CourseName' && column.columnDef!='C22' && column.columnDef!='C23'" required type="number"
+            maxlength="4" matInput [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
 
           <mat-select *ngIf="column.columnDef=='C22'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
             <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
@@ -39,9 +26,7 @@
           <mat-select *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
             <mat-option *ngFor="let f of post" [value]="f.value">{{f.viewValue}}</mat-option>
           </mat-select>
-          <!-- 
-          <input required matInput disabled maxlength="4" *ngIf="column.columnDef=='CourseName'" (ngModelChange)="commonService.showSaveBtnTotal=1"
-            [(ngModel)]="row.CourseName"> -->
+      
         </mat-form-field>
 
       </td>

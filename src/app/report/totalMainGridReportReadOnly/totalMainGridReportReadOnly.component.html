@@ -8,11 +8,27 @@
       <div>
         <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
       </div>
-      <td mat-cell *matCellDef="let row; let index = index" class="cells" [innerHTML]="row[column.columnDef]">
+      <td mat-cell *matCellDef="let row; let index = index" class="cells">
 
-        <!-- <input type="number" maxlength="4" *ngIf="column.columnDef!='CourseName'" matInput [placeholder]="column.label"
-            (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
-          -->
+        <label maxlength="4" *ngIf=" column.columnDef!='C22' && column.columnDef!='C23'
+      && column.columnDef!='C3' " [innerHTML]="row[column.columnDef]"></label>
+
+      <!-- <input *ngIf="column.columnDef!='CourseName' && column.columnDef!='C22' && column.columnDef!='C23'" required type="number"
+      maxlength="4" matInput [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
+ -->
+
+
+<!-- 
+        <label *ngIf=" column.columnDef!='C1' && column.columnDef!='C2'
+          && column.columnDef!='C3' " [innerHTML]="row[column.columnDef]"></label> -->
+
+        <mat-select  disabled=true *ngIf="column.columnDef=='C22'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
+          <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
+        </mat-select>
+
+        <mat-select  disabled=true *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
+          <mat-option *ngFor="let f of post" [value]="f.value">{{f.viewValue}}</mat-option>
+        </mat-select>
 
       </td>
       <ng-container *ngIf="this.showAddRow">

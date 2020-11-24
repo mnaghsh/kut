@@ -23,6 +23,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { DelegationSignitureForCalculationUnitsComponent } from './components/signingContractForCalculationUnits/delegationSignitureForCalculationUnits.component';
 import { ContractSignituresForCalculationUnitsComponent } from './components/contractSignituresForCalculationUnits/contractSignituresForCalculationUnits';
 import { CategoryComponent } from './components/category/category.component';
+import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
+//import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 
 
 const myRoots: Routes = [
@@ -37,7 +39,8 @@ const myRoots: Routes = [
       { path: 'delegationSignitureForCalculationUnits', component: DelegationSignitureForCalculationUnitsComponent},
       { path: 'contractSignitures', component: ContractSignituresComponent},
       { path: 'contractSignituresForCalculationUnits', component: ContractSignituresForCalculationUnitsComponent},
-      { path: 'register', component: RegisterComponent}
+      { path: 'register', component: RegisterComponent},
+       { path: 'teachersDetail', component: TeachersDetailComponent}
 
 
     ],
@@ -54,6 +57,7 @@ const myRoots: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    TeachersDetailComponent,
     DelegationSignitureComponent,
     DelegationSignitureForCalculationUnitsComponent,
     DashboardComponent,
@@ -62,7 +66,7 @@ const myRoots: Routes = [
     ContractSignituresForCalculationUnitsComponent,
   ],
   imports: [
-   
+  
     AngularFontAwesomeModule,
     MatTabsModule,
     MatListModule,

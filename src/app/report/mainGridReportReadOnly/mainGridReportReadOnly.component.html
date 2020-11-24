@@ -1,64 +1,85 @@
 <mat-card class="titrCard">
-  <h5 class="titr">
-    چاپ گزارش
-  </h5>
-</mat-card>
-<app-loading *ngIf="commonService.loading==true"></app-loading>
-
-<br>
-<div class="row ">
-  <div class="col-4"></div>
-  <div class="col-4 selectTeacher ">
-    <button mat-button color="accent" (click)="btnChooseTeacher()">
-
-      <h4> {{this.fullName}}</h4>
-    </button>
+    <h5 class="titr">
+      چاپ گزارش
+    </h5>
+  </mat-card>
+  <app-loading *ngIf="commonService.loading==true"></app-loading>
+  
+  <br>
+  <div class="row ">
+    <div class="col-4"></div>
+    <div class="col-4 selectTeacher ">
+      <button mat-button color="accent" (click)="btnChooseTeacher()">
+  
+        <h4> {{this.fullName}}</h4>
+      </button>
+    </div>
+  
+    <div class="col-4"></div>
   </div>
-
-  <div class="col-4"></div>
-</div>
-<button mat-raised-button color="primary" matTooltip="چاپ" class=" btnSave" aria-hidden="true"
-  *ngIf="commonService.showSaveBtn==true" mat-raised-button (click)="save(1)">&nbsp; چاپ &nbsp; </button>
-<button mat-raised-button color="primary" matTooltip="بازنشانی " class="btnROllBack" aria-hidden="true"
-  *ngIf="commonService.showSaveBtn==true" mat-raised-button (click)="replaceNewData()">بازنشانی</button>
-
-  <button  *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnPrint" (click)="print()">
-  <i class="fa fa-print" aria-hidden="true"></i> چاپ
-</button>
-<div dir="rtl" id="print-section">
-
-
-  <div *ngIf="showCourseValueTable">
-    <br>
-    <br>
-    <h5 > آیتم های مربوط به درس</h5>
-    <table matSort class="table table-striped  table-hover" mat-table dir="rtl" [dataSource]="dataSource">
-      <!-- data Column -->
-      <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
-        <div>
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
-        </div>
-        <td mat-cell *matCellDef="let row; let index = index" class="cells" [innerHTML]="column.cell(row, column)">
-          <!-- <input    matInput placeholder="Favorite food" [value]="column.cell(row, column)"> -->
-        </td>
-        <!-- <td class="footerInput" mat-footer-cell *matFooterCellDef="let row">
-        <mat-form-field>
-          <input type="number"  maxlength="4"*ngIf="column.columnDef!='CourseName'" matInput [placeholder]="column.label"
-            [(ngModel)]="newRowObj[column.columnDef]">
-
-          <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color:#ff4081;"
-            (click)="chooseCourse(newRowObj)" aria-hidden="true"></i>
-          <input matInput  maxlength="4" disabled *ngIf="column.columnDef=='CourseName'" [(ngModel)]="newRowObj.CourseName">
-        </mat-form-field>
-      </td> -->
-      </ng-container>
-      <!-- icon Column -->
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr class="rows" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; "></tr> -->
-    </table>
-    <!-- <mat-paginator [pageSizeOptions]="[10, 5, 20]" showFirstLastButtons></mat-paginator> -->
-
-    <app-totalMainGridReportReadOnly></app-totalMainGridReportReadOnly>
-  </div>
+  <button mat-raised-button color="primary" matTooltip="چاپ" class=" btnSave" aria-hidden="true" *ngIf="commonService.showSaveBtn==true"
+    mat-raised-button (click)="save(1)">&nbsp; چاپ &nbsp; </button>
+  <button mat-raised-button color="primary" matTooltip="بازنشانی " class="btnROllBack" aria-hidden="true" *ngIf="commonService.showSaveBtn==true"
+    mat-raised-button (click)="replaceNewData()">بازنشانی</button>
+  
+  <button *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnPrint" (click)="print()">
+    <i class="fa fa-print" aria-hidden="true"></i> چاپ
+  </button>
+  <div dir="rtl" id="print-section">
+  
+  
+    <div *ngIf="showCourseValueTable">
+      <br>
+      <br>
+      <h5> آیتم های مربوط به درس</h5>
+      <table matSort class="table table-striped  table-hover" mat-table dir="rtl" [dataSource]="dataSource">
+        <!-- data Column -->
+        <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
+          <div>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
+          </div>
+          <td mat-cell *matCellDef="let row; let index = index" class="cells">
+            <label *ngIf=" column.columnDef!='C1' && column.columnDef!='C2'
+            && column.columnDef!='C3' "  [innerHTML]="row[column.columnDef]"></label>
+  
+            <!-- <input    matInput placeholder="Favorite food" [value]="column.cell(row, column)"> -->
+            <!-- <mat-select *ngIf="column.columnDef=='C'"  [(ngModel)]="row[column.columnDef]">
+              <mat-option *ngFor="let f of courseSection"[value]="f.value">{{f.viewValue}}</mat-option>
+            </mat-select> -->
+  
+            <mat-select disabled=true *ngIf="column.columnDef=='C1'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+              <mat-option *ngFor="let f of firstTime" [value]="f.value">{{f.viewValue}}</mat-option>
+            </mat-select>
+  
+            <mat-select disabled=true  *ngIf="column.columnDef=='C2'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+              <mat-option *ngFor="let f of courseSection" [value]="f.value">{{f.viewValue}}</mat-option>
+            </mat-select>
+  
+            <mat-select disabled=true  *ngIf="column.columnDef=='C3'" (ngModelChange)="commonService.showSaveBtn=1" [(ngModel)]="row[column.columnDef]">
+              <mat-option *ngFor="let f of courseType" [value]="f.value">{{f.viewValue}}</mat-option>
+            </mat-select>
+  
+  
+  
+          </td>
+          <!-- <td class="footerInput" mat-footer-cell *matFooterCellDef="let row">
+          <mat-form-field>
+            <input type="number"  maxlength="4"*ngIf="column.columnDef!='CourseName'" matInput [placeholder]="column.label"
+              [(ngModel)]="newRowObj[column.columnDef]">
+  
+            <i *ngIf="column.columnDef=='CourseName'" class="fa fa-pencil-square-o" style="color:#ff4081;"
+              (click)="chooseCourse(newRowObj)" aria-hidden="true"></i>
+            <input matInput  maxlength="4" disabled *ngIf="column.columnDef=='CourseName'" [(ngModel)]="newRowObj.CourseName">
+          </mat-form-field>
+        </td> -->
+        </ng-container>
+        <!-- icon Column -->
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr class="rows" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- <tr mat-footer-row *matFooterRowDef="displayedColumns; "></tr> -->
+      </table>
+      <!-- <mat-paginator [pageSizeOptions]="[10, 5, 20]" showFirstLastButtons></mat-paginator> -->
+  
+      <app-totalMainGridReportReadOnly></app-totalMainGridReportReadOnly>
+    </div>

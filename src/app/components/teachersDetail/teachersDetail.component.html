@@ -45,7 +45,7 @@
       <br> -->
 
       <mat-form-field class="full-width">
-        <mat-select [(ngModel)]="typeId" [ngModelOptions]="{standalone: true}">
+        <mat-select [(ngModel)]="typeId"  [ngModelOptions]="{standalone: true}">
           <mat-option *ngFor="let t of typeList" [value]="t.id">{{t.name}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -67,17 +67,29 @@
           <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.xDepartment_Farsi}}</mat-option>
         </mat-select>
       </mat-form-field>
-    
+      <!-- <mat-form-field class="full-width">
+        <input matInput type="text" value={{department}} placeholder="گروه " formControlName="department" />
+      </mat-form-field>
+      <br> -->
       <br>
-      <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true">
-        <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
-      <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true">
-        <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
+
+      <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"><i
+          class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+      <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack"
+        aria-hidden="true"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
+
+
+
+
     </form>
+
+
+
+
+
     <br>
   </mat-card>
 </div>
 
 
 <router-outlet></router-outlet>
-

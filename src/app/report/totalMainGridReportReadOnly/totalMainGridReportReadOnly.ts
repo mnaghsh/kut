@@ -15,7 +15,7 @@ import { totalMainGridReportReadOnlyService } from 'src/app/services/TotalmainGr
 export interface Term {
   id: number;
   name: string;
-}
+} 
 
 
 @Component({
@@ -25,27 +25,29 @@ export interface Term {
 })
 export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
-  options: Term[] = [
-    { id: 1, name: 'Mary' },
-    { id: 2, name: 'Shelley' },
-    { id: 3, name: 'Igor' }
-  ];
-  courseSection = [
-    {value: 1, viewValue: 'کارشناسی'},
-    {value: 2, viewValue: 'ارشد'},
-    {value: 3, viewValue: 'دکتری'}
-  ];
+  martabe = [
+    {value: 1, viewValue: 'مربی آموزشیار'},
+    {value: 2, viewValue: 'مربی'},
+    {value: 3, viewValue: 'استادیار'},
+    {value: 4, viewValue: 'دانشیار'},
+    {value: 5, viewValue: 'استاد'},
+    {value: 6, viewValue: 'حق التدریس'},
 
-  courseType = [
-    {value: 1, viewValue: 'پایه و تخصصی'},
-    {value: 2, viewValue: 'آزمایشگاه'},
-    {value: 3, viewValue: 'کارگاه'},
-    {value: 4, viewValue: 'معرفی به استاد'},
-    {value: 5, viewValue: 'داوری'},
-    {value: 6, viewValue: 'پروژه'},
-    {value: 7, viewValue: 'کارآموزی'},
-    {value: 8, viewValue: 'سمینار'},
-    {value: 9, viewValue: 'عمومی'},
+  ];
+ 
+  post = [
+    {value: 1, viewValue: 'رئیس دانشگاه'},
+    {value: 2, viewValue: 'معاون دانشگاه'},
+    {value: 3, viewValue: 'رئیس دانشکده'},
+    {value: 4, viewValue: 'معاون دانشکده'},
+    {value: 5, viewValue: 'مدیر امور پژوهشی و فناوری'},
+    {value: 6, viewValue: 'مدیر امور فرهنگی و اجتماعی'},
+    {value: 7, viewValue: 'مدیر امور آموزشی و تحصیلات تکمیلی'},
+    {value: 8, viewValue: 'سرپرست اداره فناوری اطلاعات و خدمات رایانه ای'},
+    {value: 9, viewValue: 'سرپرست گروه نظارت و ارزیابی و تضمین کیفیت'},
+    {value: 10, viewValue: 'مدیر گروه آموزشی با تحصیلات تکمیلی '},
+    {value: 11, viewValue: 'مدیر گروه بدون تحصیلات تکمیلی'},
+    {value: 12, viewValue: 'بدون پست'},
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

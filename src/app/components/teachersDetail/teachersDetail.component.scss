@@ -1,0 +1,54 @@
+p.error{
+  color: #f5554a;
+  text-size: 15px;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff6f6;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+.image{
+  width: 36%;
+  position: absolute;
+
+  margin-top: 3px;
+    
+  margin-right: 32%;
+}
+.full-width{
+  width: 35%;
+
+  /* margin:auto;
+  width: 20%;
+  padding: 10px; */
+}
+
+.ltr{
+  direction: ltr;
+}
+.center{
+  text-align: center;
+
+}
+.button{
+  background-color: orange
+}
+
+input{
+  text-align: left;
+  direction: ltr;
+}
+.selectTeacher{
+  text-align: center;
+   cursor: pointer;
+    }
+    .cardContainer{
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+    }
+    
+    .example-additional-selection {
+      opacity: 0.75;
+      font-size: 0.75em;
+    }
