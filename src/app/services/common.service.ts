@@ -16,6 +16,7 @@ export class CommonService {
   loading:boolean;
   coursesList;
   teacherList;
+  usersList;
   categoryList;
   reportUserId:any; 
   termId; 

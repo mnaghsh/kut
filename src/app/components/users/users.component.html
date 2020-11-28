@@ -1,0 +1,35 @@
+<mat-card class="titrCard">
+  <h5 class="titr">
+    انتخاب استاد
+  </h5>
+</mat-card>
+<br>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="جستجو در لیست اساتید">
+</mat-form-field>
+
+  <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+<mat-spinner dir="rtl" *ngIf="commonService.loading==true" style="margin-left: 48%;" ></mat-spinner>
+
+
+<div class="mat-elevation-z8">
+  <table dir="rtl" mat-table [dataSource]="dataSource" matSort >
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> کد استاد </th>
+      <td mat-cell *matCellDef="let row"> {{row.code}} </td>
+    </ng-container>
+    <!-- ID Column -->
+    <ng-container matColumnDef="fullName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> نام و نام خانوادگی </th>
+      <td mat-cell *matCellDef="let row"> {{row.fullName}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row (click)="selectTeacher(row)" *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

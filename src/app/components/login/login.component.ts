@@ -21,7 +21,7 @@ export interface Term {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  termId = 23;
+  termId = 22;
   loginForm;
   termList: any;
   myControl = new FormControl();

@@ -14,6 +14,7 @@ import { TeacherComponent } from '../teacher/teacher.component';
 import { MatDialog } from '@angular/material';
 import { RegisterService } from 'src/app/services/register/registerService';
 import { CategoryService } from 'src/app/services/category/categoryService';
+import { UsersComponent } from '../users/users.component';
 
 export interface Term {
   id: number;
@@ -91,6 +92,7 @@ export class RegisterComponent implements OnInit {
         //department: this.registerForm.value.department,
         department: this.departmentArray,
         code: this.registerForm.value.code,
+        haveAccount:1
       }
 
       this.commonService.loading = true;
@@ -167,9 +169,12 @@ export class RegisterComponent implements OnInit {
 
   }
 
+
+
+
   private btnChooseUser() {
 
-    const dialogRef = this.dialog.open(TeacherComponent, {
+    const dialogRef = this.dialog.open(UsersComponent, {
       width: "85%",
       height: "85%",
       data: {
@@ -179,6 +184,7 @@ export class RegisterComponent implements OnInit {
 
       (data) => {
         if (data) {
+          console.log('mhds',data)
           this.fullName = data.fullName
           this.idOfUserForUpdate = data.id
           this.updateState = true;

@@ -95,7 +95,7 @@ export class DelegationSignitureComponent implements OnInit {
   public saveChanges() {
     this.commonService.loading = true;
     let insertScript = "";
-    let deleteScript = `delete from signingContract;`
+    let deleteScript = `delete from signingContract where department = `+this.categoryId
     this.getSigningContractObj.forEach(eachRowsOFData => {
       let dataOfUnCalculatedColumns = []
       dataOfUnCalculatedColumns.push(eachRowsOFData['signitureNumber'])
