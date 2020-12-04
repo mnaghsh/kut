@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 })
 
 export class CommonService {
+  teachers: any[];
   @Output() saveTotalMainGrid = new EventEmitter();
 
  // public saveTotalMainGrid: Subject<any> = new Subject<any>();

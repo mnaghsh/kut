@@ -1,6 +1,6 @@
 <nav mat-tab-nav-bar class="nav">
-  <div mat-tab-link class="flex-fill" *ngFor="let link of navBarItem" [routerLink]="link.path" routerLinkActive
-    #rla="routerLinkActive" [active]="rla.isActive">
+  <div mat-tab-link class="flex-fill" *ngFor="let link of navBarItem" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
     <div class="menu-item">
       <fa class="tabIcons" [name]="link.icon" size="2x"></fa>
       <div class="menu-label">{{link.label}}</div>
@@ -39,8 +39,7 @@
       ">اعطا حق امضا</p>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of delegationSigniture"
-            [routerLink]="link.path">
+          <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of delegationSigniture" [routerLink]="link.path">
             <fa [name]="link.icon" class="rightIcons"></fa>
             <span class="label">{{link.label}}</span>
             <mat-divider>
@@ -55,8 +54,7 @@
       ">افزودن آیتم</p>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of addItems"
-            [routerLink]="link.path">
+          <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of addItems" [routerLink]="link.path">
             <fa [name]="link.icon" class="rightIcons"></fa>
             <span class="label">{{link.label}}</span>
             <mat-divider>
@@ -72,8 +70,7 @@
       ">کارتابل</p>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of cartable"
-            [routerLink]="link.path">
+          <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of cartable" [routerLink]="link.path">
             <fa [name]="link.icon" class="rightIcons"></fa>
             <span class="label">{{link.label}}</span>
             <mat-divider>
@@ -85,14 +82,24 @@
 
 
 
-<div *ngIf="onlineUser==1">
-      <mat-list-item   (click)="drawer.toggle()" role="listitem" *ngFor="let link of adminPages" [routerLink]="link.path">
-        <fa [name]="link.icon" class="rightIcons"></fa>
-        <span class="label">{{link.label}}</span>
-        <mat-divider>
-        </mat-divider>
-      </mat-list-item>
-    </div>
+      <div *ngIf="onlineUser==1">
+        <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of adminPages" [routerLink]="link.path">
+          <fa [name]="link.icon" class="rightIcons"></fa>
+          <span class="label">{{link.label}}</span>
+          <mat-divider>
+          </mat-divider>
+        </mat-list-item>
+      </div>
+
+      <div *ngIf="onlineUser==1">
+        <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of expertPages" [routerLink]="link.path">
+          <fa [name]="link.icon" class="rightIcons"></fa>
+          <span class="label">{{link.label}}</span>
+          <mat-divider>
+          </mat-divider>
+        </mat-list-item>
+      </div>
+
       <mat-list-item (click)="logout()" role="listitem">
         <fa name="fas fa-sign-out" size="1x"></fa>
         <span class="label">خروج</span>

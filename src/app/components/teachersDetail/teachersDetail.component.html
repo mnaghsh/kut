@@ -1,84 +1,192 @@
 <mat-card class="titrCard">
   <h5 class="titr">
-    ویرایش مشخصات کاربران
+    چاپ قرارداد استاد
   </h5>
 </mat-card>
-<mat-card *ngIf="commonService.loading==true" class="spinner">
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</mat-card>
+
+<!-- <app-loading *ngIf="commonService.loading==true"></app-loading> -->
+
 <br>
+<div class="row ">
+  <div class="col-4"></div>
+  <div class="col-4 selectTeacher ">
+    <button mat-button color="accent" (click)="btnChooseTeacher()">
 
-<div>
-  <div class="row ">
-    <div class="col-4"></div>
-    <div class="col-4 selectTeacher ">
-      <button mat-button color="accent" (click)="btnChooseUser()">
-        <h4>{{this.fullName}}</h4>
-      </button>
-    </div>
-
-    <div class="col-4"></div>
+      <h4> {{this.fullName}}</h4>
+    </button>
   </div>
-  <br>
-  <mat-card class="cardContainer">
-    <form [formGroup]="registerForm" (ngSubmit)="saveData()" class="center">
 
-      <mat-form-field class="full-width">
-        <input matInput type="text" value={{username}} placeholder="نام کاربری" formControlName="username" />
-      </mat-form-field>
-      <br>
-      <mat-form-field class="full-width">
-        <input matInput type="password" value={{password}} placeholder="رمز عبور" formControlName="password" />
-      </mat-form-field>
-      <br>
-      <mat-form-field class="full-width">
-        <input matInput type="text" value={{firstName}} placeholder="نام " formControlName="firstName" />
-      </mat-form-field>
-      <br>
-      <mat-form-field class="full-width">
-        <input matInput type="text" value={{lastName}} placeholder="نام خانوادگی " formControlName="lastName" />
-      </mat-form-field>
-      <br>
-      <!-- <mat-form-field class="full-width">
-        <input matInput type="text" value={{type}} placeholder=" دسترسی کاربر" formControlName="type" />
-      </mat-form-field>
-      <br> -->
-
-      <mat-form-field class="full-width">
-        <mat-select [(ngModel)]="typeId"  [ngModelOptions]="{standalone: true}">
-          <mat-option *ngFor="let t of typeList" [value]="t.id">{{t.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <br>
-      <mat-form-field class="full-width">
-        <input matInput type="text" value={{code}} placeholder="شماره پرسنلی" formControlName="code" />
-      </mat-form-field>
-      <br>
-      <mat-form-field class="full-width">
-        <mat-label>گروه آموزشی</mat-label>
-        <mat-select (closed)="closeSelect(myControl.value)" [formControl]="myControl" multiple>
-          <mat-select-trigger>
-            {{myControl.value ? myControl.value[0] : ''}}
-            <span *ngIf="myControl.value?.length > 1" class="example-additional-selection">
-              (+{{myControl.value.length - 1}} {{myControl.value?.length === 2 ? 'other' : 'others'}})
-            </span>
-          </mat-select-trigger>
-          <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.xDepartment_Farsi}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <!-- <mat-form-field class="full-width">
-        <input matInput type="text" value={{department}} placeholder="گروه " formControlName="department" />
-      </mat-form-field>
-      <br> -->
-      <br>
-
-      <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"><i
-          class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
-      <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack"
-        aria-hidden="true"><i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
-    </form>
-    <br>
-  </mat-card>
+  <div class="col-4"></div>
 </div>
-<router-outlet></router-outlet>
+<button *ngIf="showCourseValueTable" type="submit" mat-raised-button color="primary" matTooltip="ذخیره "
+  class=" btnSave" aria-hidden="true" mat-raised-button (click)="save()">
+  <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+
+
+<div style="padding: 1%;" *ngIf="showCourseValueTable" dir="rtl" id="print-section">
+<table width="1698" >
+  <tbody>
+    <tr>
+      <td width="1698">
+        <p>
+          <strong>1- مشخصات مدرس:&nbsp; </strong>نام خانوادگی: &nbsp;
+          <strong>{{lastName}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نام:
+          <strong>&nbsp;{{firstName}}
+          </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;شماره&zwnj;شناسنامه:
+          <strong>&nbsp;&nbsp;&nbsp; <span><input class="textBox"  [(ngModel)]="userDetails.shomareShenasname"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره ملی:&nbsp;
+          <input class="textBox"   [(ngModel)]="userDetails.shomareMeli">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;</p>
+        <p>نام پدر:
+          <strong>&nbsp;&nbsp;&nbsp;<input   class="textBox"  [(ngModel)]="userDetails.namePedar"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:  
+          <strong> <input class="textBox"  [(ngModel)]="userDetails.tarikhTavalod"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد: &nbsp;&nbsp;<input class="textBox"  [(ngModel)]="userDetails.mahaleTavalod">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;وضعیت
+          تأهل:
+          <strong>  <input class="textBox"  [(ngModel)]="userDetails.vaziateTaahol"></strong>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;جنسیت:
+          <strong>  <input class="textBox" [(ngModel)]="userDetails.jensiat"></strong>
+        </p>
+        <p>2-
+          <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
+          <strong> <input class="textBox"  [(ngModel)]="userDetails.jensiat"></strong>&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
+          تحصیلی:  <input class="textBox"  [(ngModel)]="userDetails.reshteTahsili">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
+          اخذ:  <input class="textBox"  [(ngModel)]="userDetails.saleAkhz">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
+        <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp;  <input class="textBox" [(ngModel)]="userDetails.mahaleAkhzAkharinMadrak">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
+          : &nbsp;
+          <strong>
+            <input class="textBox"  [(ngModel)]="userDetails.rotbeElmi"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
+          <strong>  <input class="textBox"  [(ngModel)]="userDetails.paye"></strong>
+        </p>
+        <p>
+          <strong>3- وضعیت شغلی:</strong> چنانچه در دانشگاه شاغل هستید چند ساعت تدریس می&zwnj;نمایید؟
+          <input class="textBox"  [(ngModel)]="userDetails.vaziateShoghli"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
+          سابقه:
+          <strong> <input class="textBox"  [(ngModel)]="userDetails.saleSabeghe">&nbsp;&nbsp;&nbsp; </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال</p>
+        <p>در کدام دانشگاه&shy;ها: &nbsp; <input class="textBox" [(ngModel)]="userDetails.kodamDaneshgahha">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          شماره
+          حساب بانک تجارت:&nbsp;&nbsp;
+          <strong><input class="textBox"  [(ngModel)]="userDetails.shomareHesab"></strong>
+        </p>
+        <p>نشانی و تلفن:
+          <strong><input class="textBoxWide" [(ngModel)]="userDetails.neshaniVaTelephone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن
+            همراه&nbsp; <input class="textBox" [(ngModel)]="userDetails.mobile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </strong>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<table>
+  <tbody>
+  <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  </tbody>
+  </table>
+  <!-- DivTable.com -->
+  <!-- <table class="table table-striped table-responsive table-hover">
+    <tbody>
+    <tr>
+    <td>
+      <input class="textBox" matInput placeholder="شماره شناسنامه" [(ngModel)]="{{userDetails.shomareShenasname}}">
+    </td>
+    <td>
+      <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+    </td>
+    <td>
+      <input class="textBox" matInput placeholder=" نام پدر" [(ngModel)]="{{userDetails.shomareMeli}}">
+    </td>
+    <td>
+      <input class="textBox" matInput placeholder="تاریخ تولد " [(ngModel)]="{{userDetails.shomareMelli}}">
+    </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="textBox" matInput placeholder="محل تولد " [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="وضعیت تاهل" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder=" جنسیت" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="آخرین مدرک تحصیلی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="textBox" matInput placeholder="رشته تحصیلی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="سال اخذ" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="محل اخذ آخرین مدرک(کشور و دانشگاه)" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="وضعیت شغلی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="textBox" matInput placeholder="پایه " [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+      <td>
+        <input class="textBox" matInput placeholder="شماره ملی" [(ngModel)]="{{userDetails.shomareMelli}}">
+      </td>
+    </tr>
+    </tbody>
+    </table> -->
+
+</div>

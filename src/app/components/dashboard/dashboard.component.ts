@@ -9,6 +9,8 @@ import { CommonService } from 'src/app/services/common.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  expertPages: { label: string; path: string; icon: string; }[];
+ 
   pages: Array<{ label: string, path: any, icon: any }>;
   adminPages: Array<{ label: string, path: any, icon: any }>;
   navBarItem: { label: string; path: string; icon: string; }[];
@@ -54,6 +56,13 @@ this.addItems=[
 
     this.adminPages = [
       { label: ' تنظیمات کاربرها', path: "/register", icon: "fas fa-user-plus" },
+     
+      // { label: ' بروزرسانی ', path: "/update", icon: "fas fa-refresh" },
+      // { label: ' عملیات ', path: "/mission-info", icon: "fas fa-opera" },
+    ];
+    this.expertPages = [
+     
+      { label: ' تغییر اطلاعات اساتید', path: "/teachersDetail", icon: "fas fa-users" },
       // { label: ' بروزرسانی ', path: "/update", icon: "fas fa-refresh" },
       // { label: ' عملیات ', path: "/mission-info", icon: "fas fa-opera" },
     ];

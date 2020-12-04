@@ -11,15 +11,15 @@ import { CommonService } from 'src/app/services/common.service';
 })
 export class TeacherComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  
+
   @ViewChild(MatSort) sort: MatSort;
   displayName: string;
   description: string;
   mhd;
-  displayedColumns: string[] = ['code','fullName'];
+  displayedColumns: string[] = ['code', 'fullName'];
   dataSource: MatTableDataSource<any>;
   constructor(private configService: ConfigService,
-    public commonService:CommonService,
+    public commonService: CommonService,
     public dialogRef: MatDialogRef<any>,
     private teacherService: TeacherService) {
 
@@ -29,14 +29,20 @@ export class TeacherComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
     this.getTeacherList();
   }
   private getTeacherList() {
-        
-        this.dataSource = new MatTableDataSource(this.commonService.teacherList);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;  
+    let localUsers = []
+    this.commonService.teacherList.forEach(eachUser => {
+      if (eachUser.haveAccount == 0) {
+        localUsers.push(eachUser)
+      }
+    });
+    this.commonService.teachers=localUsers
+    this.dataSource = new MatTableDataSource( this.commonService.teachers);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
   }
   applyFilter(filterValue: string) {
@@ -46,9 +52,9 @@ export class TeacherComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  private selectTeacher(row){
+  private selectTeacher(row) {
     this.dialogRef.close(row)
-//////debugger
+    //////debugger
   }
 
 

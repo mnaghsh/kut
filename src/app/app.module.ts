@@ -23,8 +23,8 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { DelegationSignitureForCalculationUnitsComponent } from './components/signingContractForCalculationUnits/delegationSignitureForCalculationUnits.component';
 import { ContractSignituresForCalculationUnitsComponent } from './components/contractSignituresForCalculationUnits/contractSignituresForCalculationUnits';
 import { CategoryComponent } from './components/category/category.component';
-import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 import { UsersComponent } from './components/users/users.component';
+import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 //import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 
 

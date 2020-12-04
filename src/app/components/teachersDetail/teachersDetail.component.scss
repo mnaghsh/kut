@@ -52,3 +52,13 @@ input{
       opacity: 0.75;
       font-size: 0.75em;
     }
+    .textBox{
+     //@at-root border: 0px;
+    // width: 6%;
+     border-radius:5px;
+ }
+ .textBoxWide{
+    //border: 0px;
+   width:35%;
+   border-radius: 5px;
+}

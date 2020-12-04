@@ -14,9 +14,6 @@
 
       <h4> {{this.fullName}}</h4>
     </button>
-
-
-
   </div>
 
   <div class="col-4"></div>
@@ -24,10 +21,10 @@
 <!-- 
 <button *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnPrint" (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> چاپ -->
-  
-<button  *ngIf="showCourseValueTable" type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true" 
-mat-raised-button (click)="save()">
-<i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+
+<button *ngIf="showCourseValueTable" type="submit" mat-raised-button color="primary" matTooltip="ذخیره "
+  class=" btnSave" aria-hidden="true" mat-raised-button (click)="save()">
+  <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
 <button *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnROllBack" (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> چاپ
 </button>
@@ -66,8 +63,8 @@ mat-raised-button (click)="save()">
     <strong>
       <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp; </u>
     </strong>&nbsp;واحد با احتساب ضرایب دروس در نیمسال
-    <strong> {{this.commonService.termName}}</strong> 
-    
+    <strong> {{this.commonService.termName}}</strong>
+
     در دانشگاه صنعتی کرمانشاه طبق مقررات دانشگاه&zwnj;ها و موسسات آموزش عالی و با شرایط زیر
     منعقد می&zwnj;گردد.</p>
   <table width="1698">
@@ -79,44 +76,59 @@ mat-raised-button (click)="save()">
             <strong>{{lastName}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نام:
             <strong>&nbsp;{{firstName}}
             </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;شماره&zwnj;شناسنامه:
-            <strong>&nbsp;&nbsp;&nbsp; <span><input class="textBox"  value="{{userDetails.shomareShenasname}}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره ملی:&nbsp;
-            <input class="textBox"  value="{{userDetails.shomareMeli}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>&nbsp;&nbsp;&nbsp; <span><input class="textBox"
+                  value="{{userDetails.shomareShenasname}}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره
+            ملی:&nbsp;
+            <input class="textBox"
+              value="{{userDetails.shomareMeli}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;</p>
           <p>نام پدر:
-            <strong>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="userDetails.namePedar"  class="textBox"  value="{{userDetails.namePedar}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:
-            <strong> <input class="textBox"  value="{{userDetails.tarikhTavalod}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد: &nbsp;&nbsp;<input class="textBox"  value="{{userDetails.mahaleTavalod}}">
+            <strong>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="userDetails.namePedar" class="textBox"
+                value="{{userDetails.namePedar}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:
+            <strong> <input class="textBox"
+                value="{{userDetails.tarikhTavalod}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد:
+            &nbsp;&nbsp;<input class="textBox" value="{{userDetails.mahaleTavalod}}">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;وضعیت
             تأهل:
-            <strong>  <input class="textBox"  value="{{userDetails.vaziateTaahol}}"></strong>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;جنسیت:
-            <strong>  <input class="textBox"  value="{{userDetails.jensiat}}"></strong>
+            <strong> <input class="textBox" value="{{userDetails.vaziateTaahol}}"></strong>&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;جنسیت:
+            <strong> <input class="textBox" value="{{userDetails.jensiat}}"></strong>
           </p>
           <p>2-
             <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
-            <strong> <input class="textBox"  value="{{userDetails.jensiat}}"></strong>&nbsp;
+            <strong> <input class="textBox" value="{{userDetails.jensiat}}"></strong>&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
-            تحصیلی:  <input class="textBox"  value="{{userDetails.reshteTahsili}}">
+            تحصیلی: <input class="textBox" value="{{userDetails.reshteTahsili}}">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
-            اخذ:  <input class="textBox"  value="{{userDetails.saleAkhz}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
-          <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp;  <input class="textBox"  value="{{userDetails.mahaleAkhzAkharinMadrak}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
+            اخذ: <input class="textBox"
+              value="{{userDetails.saleAkhz}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;</p>
+          <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp; <input class="textBox"
+              value="{{userDetails.mahaleAkhzAkharinMadrak}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
             : &nbsp;
             <strong>
-              <input class="textBox"  value="{{userDetails.rotbeElmi}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
-            <strong>  <input class="textBox"  value="{{userDetails.paye}}"></strong>
+              <input class="textBox"
+                value="{{userDetails.rotbeElmi}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
+            <strong> <input class="textBox" value="{{userDetails.paye}}"></strong>
           </p>
           <p>
             <strong>3- وضعیت شغلی:</strong> چنانچه در دانشگاه شاغل هستید چند ساعت تدریس می&zwnj;نمایید؟
-            <input class="textBox"  value="{{userDetails.vaziateShoghli}}"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp;
+            <input class="textBox"
+              value="{{userDetails.vaziateShoghli}}"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
             سابقه:
-            <strong> <input class="textBox"  value="{{userDetails.saleSabeghe}}">&nbsp;&nbsp;&nbsp; </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال</p>
-          <p>در کدام دانشگاه&shy;ها: &nbsp; <input class="textBox"  value="{{userDetails.kodamDaneshgahha}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong> <input class="textBox" value="{{userDetails.saleSabeghe}}">&nbsp;&nbsp;&nbsp;
+            </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال</p>
+          <p>در کدام دانشگاه&shy;ها: &nbsp; <input class="textBox"
+              value="{{userDetails.kodamDaneshgahha}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             شماره
             حساب بانک تجارت:&nbsp;&nbsp;
-            <strong><input class="textBox"  value="{{userDetails.shomareHesab}}"></strong>
+            <strong><input class="textBox" value="{{userDetails.shomareHesab}}"></strong>
           </p>
           <p>نشانی و تلفن:
-            <strong><input class="textBoxWide"  value="{{userDetails.neshaniVaTelephone}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن
-              همراه&nbsp; <input class="textBox"  value="{{userDetails.mobile}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong><input class="textBoxWide"
+                value="{{userDetails.neshaniVaTelephone}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن
+              همراه&nbsp; <input class="textBox" value="{{userDetails.mobile}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </strong>
           </p>
         </td>
@@ -126,14 +138,16 @@ mat-raised-button (click)="save()">
   <p>&nbsp;</p>
   <p>
     <strong>ماده1&ndash; </strong>این قرارداد از تاریخ&nbsp;
-    <strong>  <input class="textBox"  value="{{userDetails.azTarikh}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp; لغایت
-    <strong>  <input class="textBox"  value="{{userDetails.taTarikh}}"></strong>&nbsp; بمدت یک نیم سال تحصیلی (17هفته) منعقد می&zwnj;گردد.</p>
+    <strong> <input class="textBox" value="{{userDetails.azTarikh}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp; لغایت
+    <strong> <input class="textBox" value="{{userDetails.taTarikh}}"></strong>&nbsp; بمدت یک نیم سال تحصیلی (17هفته)
+    منعقد می&zwnj;گردد.</p>
   <p>
     <strong>ماده2&ndash; </strong>میزان مبلغ حق&zwnj;التدریس هر&zwnj;ساعت معادل با یک پنجاهم بند الف و ب ردیف 22 حکم
     کارگزینی اعضای
     هیأت&zwnj;علمی با رتبه
-    <strong> <input class="textBox"  value="{{userDetails.rotbeElmi}}"> </strong>پایه
-    <strong> <input class="textBox"  value="{{userDetails.paye}}"> </strong>می&zwnj;باشد که در مقابل گواهی انجام&zwnj;کار از طرف واحد مربوطه، از محل اعتبارات دانشگاه قابل
+    <strong> <input class="textBox" value="{{userDetails.rotbeElmi}}"> </strong>پایه
+    <strong> <input class="textBox" value="{{userDetails.paye}}"> </strong>می&zwnj;باشد که در مقابل گواهی انجام&zwnj;کار
+    از طرف واحد مربوطه، از محل اعتبارات دانشگاه قابل
     پرداخت است.
     درصورت نیاز و با تایید معاون آموزشی دانشگاه در قبال کار انجام شده، بخشی از حق التدریس
     <strong>به</strong> صورت علی الحساب قابل پرداخت است و در هر حال تسویه حساب نهایی منوط به تحویل اوراق امتحانی کتبی و
@@ -179,9 +193,10 @@ mat-raised-button (click)="save()">
     <strong>ماده7</strong>- نظارت بر حسن انجام کار مدرس بر عهده معاونت آموزشی دانشگاه می&zwnj;باشد.</p>
   <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox"  value="{{userDetails.emzaAval}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="textBox"
+        value="{{userDetails.emzaAval}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox"  value="{{userDetails.emzaDovom}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
+      <input class="textBox" value="{{userDetails.emzaDovom}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
   </p>
   <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
@@ -190,10 +205,11 @@ mat-raised-button (click)="save()">
     <strong>&nbsp;</strong>
   </p>
   <p>
-    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-      <input class="textBox"  value="{{userDetails.emzaSevom}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="textBox"
+        value="{{userDetails.emzaSevom}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox"  value="{{userDetails.emzaChaharom}}"> </strong>
+      <input class="textBox" value="{{userDetails.emzaChaharom}}"> </strong>
   </p>
   <p>
     <strong>&nbsp;</strong>
@@ -209,5 +225,5 @@ mat-raised-button (click)="save()">
       (&nbsp;&nbsp;&nbsp;
       )&nbsp;&nbsp;&nbsp; آمار پرسنلی (&nbsp;&nbsp; )</strong>
   </p>
-  
-</div>  
+
+</div>

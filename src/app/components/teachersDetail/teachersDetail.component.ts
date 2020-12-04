@@ -14,6 +14,7 @@ import { TeacherComponent } from '../teacher/teacher.component';
 import { MatDialog } from '@angular/material';
 import { RegisterService } from 'src/app/services/register/registerService';
 import { CategoryService } from 'src/app/services/category/categoryService';
+import { TeacherDetailService } from 'src/app/services/teacherDetail/teacherDetailService';
 
 export interface Term {
   id: number;
@@ -29,7 +30,7 @@ export class TeachersDetailComponent implements OnInit {
   toppingList: string[] = this.commonService.categoryList
 
   registerForm;
-  fullName = "ویرایش کاربران قبلی"
+  fullName = "ویرایش اساتید قبلی"
   myControl = new FormControl();
   departmentArray: string;
 
@@ -49,6 +50,14 @@ export class TeachersDetailComponent implements OnInit {
     { id: 4, name: " کارشناس" },
     { id: 5, name: "مدرس" },
   ];
+  userDetails: any;
+  userId: any;
+  firstName: any;
+  lastName: any;
+  displayedColumns: any;
+  dataSource: any;
+  columns: any[];
+  showCourseValueTable: boolean;
 
 
   constructor(private fb: FormBuilder,
@@ -58,190 +67,186 @@ export class TeachersDetailComponent implements OnInit {
     public registerService: RegisterService,
     public teacherService: TeacherService,
     public categoryService: CategoryService,
+    public teacherDetail: TeacherDetailService,
     private dialog: MatDialog,
     private myRoute: Router) {
 
-    this.registerForm = fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      //type: ['', Validators.required],
-      //department: ['', Validators.required],
-      code: ['', Validators.required]
-    });
+    // this.registerForm = fb.group({
+    //   username: ['', Validators.required],
+    //   password: ['', Validators.required],
+    //   firstName: ['', Validators.required],
+    //   lastName: ['', Validators.required],
+    //   //type: ['', Validators.required],
+    //   //department: ['', Validators.required],
+    //   code: ['', Validators.required]
+    // });
   }
 
   ngOnInit() {
 
   }
 
+  public save() {
+    console.log('userDetails', this.userDetails)
+    let body = {
+   
 
-  public saveData() {
-    debugger
-    if (this.registerForm.valid) {
-
-      let body = {
-        id: this.idOfUserForUpdate,
-        username: this.registerForm.value.username,
-        password: this.registerForm.value.password,
-        firstName: this.registerForm.value.firstName,
-        lastName: this.registerForm.value.lastName,
-        type: this.typeId,
-        //department: this.registerForm.value.department,
-        department: this.departmentArray,
-        code: this.registerForm.value.code,
-      }
-
-      this.commonService.loading = true;
-      debugger
-
-
-      this.registerService.checkDuplicateUser({ username: this.registerForm.value.username }).subscribe(
-        (data: any) => {
-          // if(data){
-          this.commonService.loading = false;
-          console.log(JSON.parse(data));
-          data = JSON.parse(data);
-
-          //this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
-          this.commonService.loading = false;
-          //this.idOfUserForUpdate = null;
-          //this.updateState = false;
-          if (data.length == 0 || this.updateState == true)//یعنی اگر کاربر قبلا وجود نداشت
-          {
-            this.registerService.insertUsers(body).subscribe(
-              (data: any) => {
-                // if(data){
-                this.commonService.loading = false;
-                console.log(JSON.parse(data));
-                data = JSON.parse(data);
-                this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
-                this.commonService.loading = false;
-                this.idOfUserForUpdate = null;
-                this.updateState = false;
-                this.getTeacherList()
-                this.getCategoryList()
-                this.teacherService.getListOfTeachers().subscribe(
-                  (success) => {
-                    this.commonService.teacherList = JSON.parse(success)
-
-                  },
-                  (error) => {
-                    this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-                  }
-                )
-
-
-              }
-
-              //  }
-              ,
-              (error) => {
-                this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-                this.commonService.loading = false;
-                this.idOfUserForUpdate = null;
-                this.updateState = false;
-              }
-            )
-          }
-          else {
-            this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
-          }
-
-        }
-
-        //  }
-        ,
-        (error) => {
-          this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-          this.commonService.loading = false;
-          // this.idOfUserForUpdate = null;
-          // this.updateState = false;
-        }
-      )
-
-
+      id                              :  this.userId,
+      jensiat                        : this.userDetails.jensiat,
+      kodamDaneshgahha               : this.userDetails.kodamDaneshgahha,
+      mahaleAkhzAkharinMadrak        : this.userDetails.mahaleAkhzAkharinMadrak,
+      mahaleTavalod                  : this.userDetails.mahaleTavalod,
+      mobile                         : this.userDetails.mobile,
+      namePedar                      : this.userDetails.namePedar,
+      neshaniVaTelephone             : this.userDetails.neshaniVaTelephone,
+      paye                           : this.userDetails.paye,
+      reshteTahsili                  : this.userDetails.reshteTahsili,
+      rotbeElmi                      : this.userDetails.rotbeElmi,
+      saleAkhz                       : this.userDetails.saleAkhz,
+      saleSabeghe                    : this.userDetails.saleSabeghe,
+      shomareHesab                   : this.userDetails.shomareHesab,
+      shomareMeli                    : this.userDetails.shomareMeli,
+      shomareShenasname              : this.userDetails.shomareShenasname,
+     // taTarikh                       : this.userDetails.taTarikh,
+      tarikhTavalod                  : this.userDetails.tarikhTavalod,
+      vaziateShoghli                 : this.userDetails.vaziateShoghli,
+      vaziateTaahol                  : this.userDetails.vaziateTaahol,
 
     }
+    this.commonService.loading = true;
+    this.teacherDetail.saveTeacherDetail(body).subscribe(
+      (data: any) => {
+
+        this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+        this.commonService.loading = false;
+      }
+
+
+      ,
+      (error) => {
+        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+        this.commonService.loading = false;
+      }
+    )
+
+
+
 
   }
+  // public saveData() {
+  //   debugger
 
-  private btnChooseUser() {
+  //     let body = {
+  //       id: this.idOfUserForUpdate,
+  //       username: this.registerForm.value.username,
+  //       password: this.registerForm.value.password,
+  //       firstName: this.registerForm.value.firstName,
+  //       lastName: this.registerForm.value.lastName,
+  //       type: this.typeId,
+  //       //department: this.registerForm.value.department,
+  //       department: this.departmentArray,
+  //       code: this.registerForm.value.code,
+  //     }
 
+  //     this.commonService.loading = true;
+  //     debugger
+
+
+  //     this.registerService.checkDuplicateUser({ username: this.registerForm.value.username }).subscribe(
+  //       (data: any) => {
+  //         // if(data){
+  //         this.commonService.loading = false;
+  //         console.log(JSON.parse(data));
+  //         data = JSON.parse(data);
+
+  //         //this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+  //         this.commonService.loading = false;
+  //         //this.idOfUserForUpdate = null;
+  //         //this.updateState = false;
+  //         if (data.length == 0 || this.updateState == true)//یعنی اگر کاربر قبلا وجود نداشت
+  //         {
+  //           this.registerService.insertUsers(body).subscribe(
+  //             (data: any) => {
+  //               // if(data){
+  //               this.commonService.loading = false;
+  //               console.log(JSON.parse(data));
+  //               data = JSON.parse(data);
+  //               this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
+  //               this.commonService.loading = false;
+  //               this.idOfUserForUpdate = null;
+  //               this.updateState = false;
+  //               this.getTeacherList()
+  //               this.getCategoryList()
+  //               this.teacherService.getListOfTeachers().subscribe(
+  //                 (success) => {
+  //                   this.commonService.teacherList = JSON.parse(success)
+
+  //                 },
+  //                 (error) => {
+  //                   this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+  //                 }
+  //               )
+
+
+  //             }
+
+  //             //  }
+  //             ,
+  //             (error) => {
+  //               this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+  //               this.commonService.loading = false;
+  //               this.idOfUserForUpdate = null;
+  //               this.updateState = false;
+  //             }
+  //           )
+  //         }
+  //         else {
+  //           this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
+  //         }
+
+  //       }
+
+  //       //  }
+  //       ,
+  //       (error) => {
+  //         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+  //         this.commonService.loading = false;
+  //         // this.idOfUserForUpdate = null;
+  //         // this.updateState = false;
+  //       }
+  //     )
+
+
+
+  // }
+
+  public btnChooseTeacher() {
+    //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
       height: "85%",
       data: {
+        //field: field,
       }
     });
     dialogRef.afterClosed().subscribe(
-
       (data) => {
         if (data) {
-          this.fullName = data.fullName
-          this.idOfUserForUpdate = data.id
-          this.updateState = true;
-          this.registerForm = this.fb.group({
-            username: [data.username, Validators.required],
-            password: [data.password, Validators.required],
-            firstName: [data.firstName, Validators.required],
-            lastName: [data.lastName, Validators.required],
-            // type: [data.type, Validators.required],
-            department: [data.department, Validators.required],
-            code: [data.code, Validators.required]
-          });
-
-          this.typeId = data.type;
-          // let localDepartmentArray = JSON.parse(data.department);
-          //this.departmentArray = '[' + String(localDepartmentArray) + ']'
+          console.log('userDetails', data)
+          this.userDetails = data;
+          this.userId = data.id;
+          this.fullName = data.fullName;
+          this.firstName = data.firstName;
+          this.lastName = data.lastName;
+          this.displayedColumns = null
+          this.dataSource = null;
+          this.columns = [];
+          this.showCourseValueTable = true
+          this.commonService.reportUserId = this.userId;
         }
       }
-
     )
-
-  }
-  resetFrom() {
-    this.updateState = false;
-    this.idOfUserForUpdate = null;
-    this.fullName = "ویرایش کاربران قبلی";
-  }
-  changeType(inputTypeId) {
-    debugger
-    this.typeId = inputTypeId
-  }
-  closeSelect(selectedDepartments) {
-    let localDepartmentArray = [];
-    selectedDepartments.forEach(eachSelectedDepartments => {
-      localDepartmentArray.push(Number(eachSelectedDepartments.x_))
-    });
-    this.departmentArray = '[' + String(localDepartmentArray) + ']'
-    debugger
   }
 
-  private getTeacherList() {
-    this.teacherService.getListOfTeachers().subscribe(
-      (success) => {
-        this.commonService.teacherList = JSON.parse(success)
-       
-      },
-      (error) => {
-        
-      }
-    )
-
-  }
-
-  private getCategoryList() {
-    this.categoryService.getListOfcategorys().subscribe(
-      (success) => {
-        console.log('this.commonService.categoryList', JSON.parse(success));
-        this.commonService.categoryList = JSON.parse(success)
-      },
-      (error) => {
-      }
-    )
-
-  }
 
 }
