@@ -65,6 +65,7 @@ const myRoots: Routes = [
     CategoryComponent,TeacherComponent,UsersComponent,CoursesComponent,ConfirmComponent,
     ContractSignituresComponent,
     ContractSignituresForCalculationUnitsComponent,
+    TotalMainGridReportComponent
   ],
   imports: [
   

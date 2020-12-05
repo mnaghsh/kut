@@ -16,13 +16,11 @@
         <h4>{{this.fullName}}</h4>
       </button>
     </div>
-
     <div class="col-4"></div>
   </div>
   <br>
   <mat-card class="cardContainer">
     <form [formGroup]="registerForm" (ngSubmit)="saveData()" class="center">
-
       <mat-form-field class="full-width">
         <input matInput type="text" value={{username}} placeholder="نام کاربری" formControlName="username" />
       </mat-form-field>
@@ -67,17 +65,15 @@
           <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.xDepartment_Farsi}}</mat-option>
         </mat-select>
       </mat-form-field>
-    
+
       <br>
       <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true">
         <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
-      <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true">
+      <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack"
+        aria-hidden="true">
         <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button>
     </form>
     <br>
   </mat-card>
 </div>
-
-
 <router-outlet></router-outlet>
-

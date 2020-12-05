@@ -30,7 +30,7 @@ export class TeachersDetailComponent implements OnInit {
   toppingList: string[] = this.commonService.categoryList
 
   registerForm;
-  fullName = "ویرایش اساتید قبلی"
+  fullName = "انتخاب استاد"
   myControl = new FormControl();
   departmentArray: string;
 
@@ -90,29 +90,30 @@ export class TeachersDetailComponent implements OnInit {
     console.log('userDetails', this.userDetails)
     let body = {
    
-
-      id                              :  this.userId,
-      jensiat                        : this.userDetails.jensiat,
-      kodamDaneshgahha               : this.userDetails.kodamDaneshgahha,
-      mahaleAkhzAkharinMadrak        : this.userDetails.mahaleAkhzAkharinMadrak,
-      mahaleTavalod                  : this.userDetails.mahaleTavalod,
-      mobile                         : this.userDetails.mobile,
-      namePedar                      : this.userDetails.namePedar,
-      neshaniVaTelephone             : this.userDetails.neshaniVaTelephone,
-      paye                           : this.userDetails.paye,
-      reshteTahsili                  : this.userDetails.reshteTahsili,
-      rotbeElmi                      : this.userDetails.rotbeElmi,
-      saleAkhz                       : this.userDetails.saleAkhz,
-      saleSabeghe                    : this.userDetails.saleSabeghe,
-      shomareHesab                   : this.userDetails.shomareHesab,
-      shomareMeli                    : this.userDetails.shomareMeli,
-      shomareShenasname              : this.userDetails.shomareShenasname,
+     // user ? user.name : undefined;
+      id                             : this.userId? this.userId :"",
+      jensiat                        : this.userDetails.jensiat? this.userDetails.jensiat:"",
+      kodamDaneshgahha               : this.userDetails.kodamDaneshgahha? this.userDetails.kodamDaneshgahha:"",
+      mahaleAkhzAkharinMadrak        : this.userDetails.mahaleAkhzAkharinMadrak? this.userDetails.mahaleAkhzAkharinMadrak:"",
+      mahaleTavalod                  : this.userDetails.mahaleTavalod ? this.userDetails.mahaleTavalod:"",
+      mobile                         : this.userDetails.mobile ? this.userDetails.mobile:"",
+      namePedar                      : this.userDetails.namePedar ? this.userDetails.namePedar:"",
+      neshaniVaTelephone             : this.userDetails.neshaniVaTelephone ? this.userDetails.neshaniVaTelephone:"",
+      paye                           : this.userDetails.paye ? this.userDetails.paye:"",
+      reshteTahsili                  : this.userDetails.reshteTahsili ? this.userDetails.reshteTahsili:"",
+      rotbeElmi                      : this.userDetails.rotbeElmi  ? this.userDetails.rotbeElmi:"",
+      saleAkhz                       : this.userDetails.saleAkhz ? this.userDetails.saleAkhz:"",
+      saleSabeghe                    : this.userDetails.saleSabeghe  ? this.userDetails.saleSabeghe:"",
+      shomareHesab                   : this.userDetails.shomareHesab  ? this.userDetails.shomareHesab:"",
+      shomareMeli                    : this.userDetails.shomareMeli  ? this.userDetails.shomareMeli:"",
+      shomareShenasname              : this.userDetails.shomareShenasname  ? this.userDetails.shomareShenasname:"",
      // taTarikh                       : this.userDetails.taTarikh,
-      tarikhTavalod                  : this.userDetails.tarikhTavalod,
-      vaziateShoghli                 : this.userDetails.vaziateShoghli,
-      vaziateTaahol                  : this.userDetails.vaziateTaahol,
+      tarikhTavalod                  : this.userDetails.tarikhTavalod ? this.userDetails.tarikhTavalod:"",
+      vaziateShoghli                 : this.userDetails.vaziateShoghli ? this.userDetails.vaziateShoghli:"",
+      vaziateTaahol                  : this.userDetails.vaziateTaahol ? this.userDetails.vaziateTaahol:"",
 
     }
+    console.log('body', body)
     this.commonService.loading = true;
     this.teacherDetail.saveTeacherDetail(body).subscribe(
       (data: any) => {

@@ -24,6 +24,6 @@ import { LoadingComponent } from '../components/loading/loading.component';
   entryComponents: [],
   declarations: [IndexComponent,
     LoadingComponent, MainGridReportComponent,TotalMainGridReportReadOnlyComponent
-    , MainGridReportReadOnlyComponent, ContractComponent,TotalMainGridReportComponent]
+    , MainGridReportReadOnlyComponent, ContractComponent,]
 })
 export class ReportModule { }
