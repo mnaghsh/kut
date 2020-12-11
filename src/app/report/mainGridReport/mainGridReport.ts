@@ -479,6 +479,7 @@ debugger
       (data) => {
 
         if (data) {
+          
           this.selectedRow.CourseName = data.name
           this.selectedRow.courseId = data.id
           this.commonService.showSaveBtn = true

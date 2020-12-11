@@ -199,10 +199,20 @@ export class ContractSignituresComponent implements OnInit {
   }
 
   public contractSignitures() {
+    let localusersWithCourse = [];
     this.commonService.loading = true;
     this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
       (success) => {
+        debugger
         this.getcontractSignitureObj = JSON.parse(success)
+        this.getcontractSignitureObj.forEach(eachSigningContractObj => {
+          this.commonService.usersWithCourse.forEach(eachUsersWithCourse => {
+            if (eachUsersWithCourse.xTeacher_Number == eachSigningContractObj.teacherId) {
+              localusersWithCourse.push(eachSigningContractObj)
+            }
+          });
+        });
+        this.getcontractSignitureObj=localusersWithCourse
         // this.dataSource = new MatTableDataSource(this.getcontractSignitureObj);
         // this.dataSource.paginator = this.paginator;
         //this.dataSource.sort = this.sort;

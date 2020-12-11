@@ -10,6 +10,7 @@ import { MatDialog, MatTableDataSource, MatSort, MatPaginator } from '@angular/m
 import { TeacherComponent } from '../teacher/teacher.component';
 import { SigningContractService } from 'src/app/services/signingContract/signingContractService';
 import { CategoryComponent } from '../category/category.component';
+import { UsersComponent } from '../users/users.component';
 
 @Component({
   selector: 'app-delegationSigniture',
@@ -77,7 +78,7 @@ export class DelegationSignitureComponent implements OnInit {
 
   private btnChooseTeacher(row) {
     //this.newRowObj = {};
-    const dialogRef = this.dialog.open(TeacherComponent, {
+    const dialogRef = this.dialog.open(UsersComponent, {
       width: "85%",
       height: "85%",
       data: {

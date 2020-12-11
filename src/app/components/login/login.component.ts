@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
     this.getCourseList();
     this.getTeacherList();
     this.getCategoryList();
+    this.getTeachersWithCourse();
     this.commonService.termId = this.termId;
   }
 
@@ -158,6 +159,19 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.connectToServer = false;
+      }
+    )
+
+  }
+
+  private getTeachersWithCourse() {
+    this.teacherService.getListOfTeachersWithCourse(this.termId).subscribe(
+      (success) => {
+        this.commonService.usersWithCourse = JSON.parse(success)
+       
+      },
+      (error) => {
+      
       }
     )
 

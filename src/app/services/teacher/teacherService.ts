@@ -12,6 +12,9 @@ export class TeacherService {
 public getListOfTeachers():Observable<any>{
   return this.configService.get('users');
 }
+public getListOfTeachersWithCourse(academicYear):Observable<any>{
+  return this.configService.get('teachersWithCourse/'+academicYear);
+}
 
 
 

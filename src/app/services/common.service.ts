@@ -21,6 +21,7 @@ export class CommonService {
   categoryList;
   reportUserId:any; 
   termId; 
+  usersWithCourse;
   onlineUserDepartmentId;
   showTotalValueTable=true;
   activeUser: any;
