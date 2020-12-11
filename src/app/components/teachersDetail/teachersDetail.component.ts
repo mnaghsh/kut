@@ -244,6 +244,7 @@ export class TeachersDetailComponent implements OnInit {
           this.columns = [];
           this.showCourseValueTable = true
           this.commonService.reportUserId = this.userId;
+          //this.commonService.reportUserId;
         }
       }
     )
