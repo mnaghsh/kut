@@ -258,7 +258,7 @@ export class ContractSignituresComponent implements OnInit {
                   `, signiture2=` + null +
                   `, signiture3=` + null +
                   `, signiture4=` + null +
-                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
+                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection  ? eachContractSigniture.reasonForRejection :""   +
                   `'  where teacherId=` + eachContractSigniture.teacherId +
                   ` and termId=` + eachContractSigniture.termId
                 this.sendToServer(updateQuery)
@@ -271,7 +271,7 @@ export class ContractSignituresComponent implements OnInit {
                   `, signiture2=` + Number(eachContractSigniture.signiture2) +
                   `, signiture3=` + Number(eachContractSigniture.signiture3) +
                   `, signiture4=` + Number(eachContractSigniture.signiture4) +
-                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
+                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection  ? eachContractSigniture.reasonForRejection :""    +
                   `'  where teacherId=` + eachContractSigniture.teacherId +
                   ` and termId=` + eachContractSigniture.termId
                 this.sendToServer(updateQuery)
@@ -291,7 +291,7 @@ export class ContractSignituresComponent implements OnInit {
             `, signiture2=` + Number(eachContractSigniture.signiture2) +
             `, signiture3=` + Number(eachContractSigniture.signiture3) +
             `, signiture4=` + Number(eachContractSigniture.signiture4) +
-            `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
+            `, reasonForRejection='` + eachContractSigniture.reasonForRejection ? eachContractSigniture.reasonForRejection :""  +
             `'  where teacherId=` + eachContractSigniture.teacherId +
             ` and termId=` + eachContractSigniture.termId
           this.sendToServer(updateQuery)

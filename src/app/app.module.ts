@@ -25,6 +25,7 @@ import { ContractSignituresForCalculationUnitsComponent } from './components/con
 import { CategoryComponent } from './components/category/category.component';
 import { UsersComponent } from './components/users/users.component';
 import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
+import { AllPersonsComponent } from './components/allPersons/allPersons.component';
 //import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 
 
@@ -55,6 +56,7 @@ const myRoots: Routes = [
 
 @NgModule({
   declarations: [
+    AllPersonsComponent,
     AppComponent,
     LoginComponent,
     RegisterComponent,
@@ -83,7 +85,7 @@ const myRoots: Routes = [
        {useHash: true}
     ),
   ],
-  entryComponents: [CategoryComponent,UsersComponent,TeacherComponent,CoursesComponent,ConfirmComponent],
+  entryComponents: [CategoryComponent,AllPersonsComponent,UsersComponent,TeacherComponent,CoursesComponent,ConfirmComponent],
  
   providers: [],
   bootstrap: [AppComponent]

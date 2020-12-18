@@ -11,6 +11,7 @@ import { map, startWith } from 'rxjs/operators';
 import { MainGridReportService } from 'src/app/services/mainGridReport/mainGridReport';
 import { TeacherService } from 'src/app/services/teacher/teacherService';
 import { TeacherComponent } from '../teacher/teacher.component';
+import { AllPersonsComponent } from '../allPersons/allPersons.component';
 import { MatDialog } from '@angular/material';
 import { RegisterService } from 'src/app/services/register/registerService';
 import { CategoryService } from 'src/app/services/category/categoryService';
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
   fullName = "ویرایش کاربران قبلی"
   myControl = new FormControl();
   departmentArray: string;
-
+  haveAccount:any;
   // code: any;
   // department: any;
   typeId: any;
@@ -92,7 +93,7 @@ export class RegisterComponent implements OnInit {
         //department: this.registerForm.value.department,
         department: this.departmentArray,
         code: this.registerForm.value.code,
-        haveAccount:1
+        haveAccount:this.haveAccount
       }
 
       this.commonService.loading = true;
@@ -174,7 +175,7 @@ export class RegisterComponent implements OnInit {
 
   private btnChooseUser() {
 
-    const dialogRef = this.dialog.open(UsersComponent, {
+    const dialogRef = this.dialog.open(AllPersonsComponent, {
       width: "85%",
       height: "85%",
       data: {

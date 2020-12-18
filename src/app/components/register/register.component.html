@@ -67,6 +67,13 @@
       </mat-form-field>
 
       <br>
+      <!-- <mat-checkbox class="example-margin" [(indeterminate)]="indeterminate"
+        [labelPosition]="labelPosition"> آیا کاربر قابلیت ورود به سامانه را دارد؟
+      </mat-checkbox> -->
+       </mat-form-field>
+      <mat-slide-toggle [(ngModel)]="haveAccount">آیا کاربر قابلیت ورود به سامانه را دارد؟</mat-slide-toggle>
+    </mat-form-field>
+      <br>
       <button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true">
         <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
       <button (click)="resetFrom()" type="reset" mat-raised-button color="primary" class=" btnROllBack"

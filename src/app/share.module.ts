@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatAutocompleteModule, MatTableModule, MatPaginatorModule, MatDialogModule, MatDividerModule, MatSortModule, MatTooltipModule, MatStepperModule, MatSpinner, MatProgressSpinnerModule, MatProgressBarModule, MatExpansionModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatCardModule, MatInputModule, MatFormFieldModule, MatSelectModule, MatSidenavModule, MatSnackBarModule, MatAutocompleteModule, MatTableModule, MatPaginatorModule, MatDialogModule, MatDividerModule, MatSortModule, MatTooltipModule, MatStepperModule, MatSpinner, MatProgressSpinnerModule, MatProgressBarModule, MatExpansionModule, MatSlideToggleModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
@@ -40,7 +40,8 @@ import { TextFieldModule } from '@angular/cdk/text-field';
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatExpansionModule,
-    TextFieldModule
+    TextFieldModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: []

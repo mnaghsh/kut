@@ -33,11 +33,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-bottom: 4%!important;
 }
 .mat-raised-button{
-  background-color: #00BCD4 !important;
+  background-color: #ff4081 !important;
 }
 .titrCard{
   position: static;
-  background-color: #00BCD4;
+  background-color: #ff4081;
  color:white;
  //margin-right: 4.5%;
  //margin-left: 1%;
@@ -80,3 +80,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    .btnAdd{
     background-color:#bcd400!important;
    }
+   .mat-expansion-indicator::after, .mat-expansion-panel-header-description{
+    color:#f8f9fa;
+  } 
+  

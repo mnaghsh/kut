@@ -155,6 +155,7 @@ export class LoginComponent implements OnInit {
     this.teacherService.getListOfTeachers().subscribe(
       (success) => {
         this.commonService.teacherList = JSON.parse(success)
+        this.commonService.allPersonsList = JSON.parse(success)
         this.connectToServer = true;
       },
       (error) => {

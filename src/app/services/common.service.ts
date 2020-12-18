@@ -26,7 +26,7 @@ export class CommonService {
   showTotalValueTable=true;
   activeUser: any;
   termName: any;
- 
+  allPersonsList;
   constructor(  private snackBar: MatSnackBar,) { }
   showEventMessage(message,duration=3000,type?) {
     this.snackBar.open(message, '', {
