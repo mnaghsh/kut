@@ -70,7 +70,9 @@ export class RegisterComponent implements OnInit {
       lastName: ['', Validators.required],
       //type: ['', Validators.required],
       //department: ['', Validators.required],
-      code: ['', Validators.required]
+      code: ['', Validators.required],
+      haveAccount: ['', Validators.required]
+      
     });
   }
 
@@ -93,7 +95,7 @@ export class RegisterComponent implements OnInit {
         //department: this.registerForm.value.department,
         department: this.departmentArray,
         code: this.registerForm.value.code,
-        haveAccount:this.haveAccount
+        haveAccount: this.registerForm.value.haveAccount
       }
 
       this.commonService.loading = true;
@@ -186,6 +188,7 @@ export class RegisterComponent implements OnInit {
       (data) => {
         if (data) {
           console.log('mhds',data)
+         // this.haveAccount=data.haveAccount;
           this.fullName = data.fullName
           this.idOfUserForUpdate = data.id
           this.updateState = true;
@@ -196,7 +199,8 @@ export class RegisterComponent implements OnInit {
             lastName: [data.lastName, Validators.required],
             // type: [data.type, Validators.required],
             department: [data.department, Validators.required],
-            code: [data.code, Validators.required]
+            code: [data.code, Validators.required],
+            haveAccount: [data.haveAccount, Validators.required]
           });
 
           this.typeId = data.type;

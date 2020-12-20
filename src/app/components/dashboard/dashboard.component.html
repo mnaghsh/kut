@@ -91,7 +91,7 @@
         </mat-list-item>
       </div>
 
-      <div *ngIf="onlineUser==1">
+      <div >
         <mat-list-item (click)="drawer.toggle()" role="listitem" *ngFor="let link of expertPages" [routerLink]="link.path">
           <fa [name]="link.icon" class="rightIcons"></fa>
           <span class="label">{{link.label}}</span>

@@ -120,6 +120,9 @@ export class TeachersDetailComponent implements OnInit {
 
         this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
         this.commonService.loading = false;
+        debugger
+        this.myRoute.navigate(['login']);
+
       }
 
 

@@ -18,6 +18,7 @@
 
   <div class="col-4"></div>
 </div>
+<h3 style="padding-right: 30%;"  *ngIf="!showContract">  {{error}}</h3>
 <!-- 
 <button *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnPrint" (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> چاپ -->
@@ -67,7 +68,7 @@
 
     در دانشگاه صنعتی کرمانشاه طبق مقررات دانشگاه&zwnj;ها و موسسات آموزش عالی و با شرایط زیر
     منعقد می&zwnj;گردد.</p>
-  <table width="1698">
+  <table *ngIf="this.showContract==true" width="1698">
     <tbody>
       <tr>
         <td width="1698">
@@ -225,5 +226,7 @@
       (&nbsp;&nbsp;&nbsp;
       )&nbsp;&nbsp;&nbsp; آمار پرسنلی (&nbsp;&nbsp; )</strong>
   </p>
+
+
 
 </div>

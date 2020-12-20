@@ -49,6 +49,7 @@ export class ContractSignituresComponent implements OnInit {
     this.sig2 = true
     this.sig3 = true
     this.sig4 = true
+    this.sig5 = true
   }
   ngOnInit() {
     //this.contractSignitures();
@@ -69,6 +70,8 @@ export class ContractSignituresComponent implements OnInit {
           this.sig2 = false;
           this.sig3 = false;
           this.sig4 = false;
+          this.sig5 = false;
+          
         }
         else {
           this.getSigningContractObj = JSON.parse(success)

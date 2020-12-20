@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { MatDialog } from '@angular/material';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
+import { ContractSignituresService } from 'src/app/services/contractSignitures/contractSignituresService';
 
 @Component({
   selector: 'app-contract',
@@ -23,8 +24,12 @@ export class ContractComponent implements OnInit {
   fullName = "انتخاب استاد";
   firstName: any;
   lastName: any;
+  getcontractSignitureObj: any;
+  error: any;
+  showContract: boolean;
   constructor(private configService: ConfigService,
     public commonService: CommonService,
+    private contractSigniture: ContractSignituresService,
     private dialog: MatDialog,
   ) {
     this.mhd = "mhd2"
@@ -49,17 +54,43 @@ export class ContractComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
-          console.log('userDetails', data)
-          this.userDetails = data;
-          this.userId = data.id;
-          this.fullName = data.fullName;
-          this.firstName = data.firstName;
-          this.lastName = data.lastName;
-          this.displayedColumns = null
-          this.dataSource = null;
-          this.columns = [];
-          this.showCourseValueTable = true
-          this.commonService.reportUserId = this.userId;
+          this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
+            (success) => {
+              debugger
+              this.getcontractSignitureObj = JSON.parse(success)
+              this.getcontractSignitureObj.forEach(eachContractSignitureObj => {
+                if(eachContractSignitureObj.teacherId==data.id){
+                  if(eachContractSignitureObj.signiture1!=null&&
+                    eachContractSignitureObj.signiture2!=null&&
+                    eachContractSignitureObj.signiture2!=null&&
+                    eachContractSignitureObj.signiture2!=null||this.commonService.activeUser[0].type==1
+                    ){
+
+                      console.log('userDetails', data)
+                      this.userDetails = data;
+                      this.userId = data.id;
+                      this.fullName = data.fullName;
+                      this.firstName = data.firstName;
+                      this.lastName = data.lastName;
+                      this.displayedColumns = null
+                      this.dataSource = null;
+                      this.columns = [];
+                      this.showCourseValueTable = true
+                      this.commonService.reportUserId = this.userId;
+                      this.showContract=true;
+
+                    }
+                    else{
+                      this.error="همه ی امضا ها برای مشاهده این قرارداد هنوز انجام نشده است"
+                      this.showContract=false;
+
+                    }
+                }
+              });
+            }
+          )
+
+          
         }
       }
     )
@@ -114,8 +145,8 @@ export class ContractComponent implements OnInit {
     popupWin.document.close();
   }
 
-  save(){
-   console.log('this.userDetails',this.userDetails) 
+  save() {
+    console.log('this.userDetails', this.userDetails)
   }
 
 }
