@@ -71,6 +71,7 @@ export class ContractSignituresComponent implements OnInit {
           this.sig3 = false;
           this.sig4 = false;
           this.sig5 = false;
+          this.commonService.loading = false;
           
         }
         else {
@@ -192,6 +193,7 @@ export class ContractSignituresComponent implements OnInit {
 
           }
           );
+          this.commonService.loading = false;
         }
       },
       (error) => {
@@ -209,10 +211,14 @@ export class ContractSignituresComponent implements OnInit {
         debugger
         this.getcontractSignitureObj = JSON.parse(success)
         this.getcontractSignitureObj.forEach(eachSigningContractObj => {
+          if(eachSigningContractObj['reasonForRejection']=="null"){
+            eachSigningContractObj['reasonForRejection']=""
+          }
           this.commonService.usersWithCourse.forEach(eachUsersWithCourse => {
             if (eachUsersWithCourse.xTeacher_Number == eachSigningContractObj.teacherId) {
               localusersWithCourse.push(eachSigningContractObj)
             }
+          
           });
         });
         this.getcontractSignitureObj=localusersWithCourse
@@ -221,7 +227,7 @@ export class ContractSignituresComponent implements OnInit {
         //this.dataSource.sort = this.sort;
 
         this.getSigningContract();
-        this.commonService.loading = false;
+        
       },
       (error) => {
         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
@@ -237,7 +243,7 @@ export class ContractSignituresComponent implements OnInit {
   }
 
   public saveChanges() {
-
+    debugger
     let updateQuery
     this.changedRows = []
     this.getcontractSignitureObj.forEach(eachContractSigniture => {
@@ -254,13 +260,14 @@ export class ContractSignituresComponent implements OnInit {
           });
           dialogRef.afterClosed().subscribe(
             (data) => {
-              // 
+              debugger
               if (data == 1) {
                 updateQuery = `update contractSignitures 
                 set signiture1=`+ null +
                   `, signiture2=` + null +
                   `, signiture3=` + null +
                   `, signiture4=` + null +
+                  `, signiture5=` + null +
                   `, reasonForRejection='` + eachContractSigniture.reasonForRejection  ? eachContractSigniture.reasonForRejection :""   +
                   `'  where teacherId=` + eachContractSigniture.teacherId +
                   ` and termId=` + eachContractSigniture.termId
@@ -274,7 +281,8 @@ export class ContractSignituresComponent implements OnInit {
                   `, signiture2=` + Number(eachContractSigniture.signiture2) +
                   `, signiture3=` + Number(eachContractSigniture.signiture3) +
                   `, signiture4=` + Number(eachContractSigniture.signiture4) +
-                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection  ? eachContractSigniture.reasonForRejection :""    +
+                  `, signiture5=` + Number(eachContractSigniture.signiture4) +
+                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
                   `'  where teacherId=` + eachContractSigniture.teacherId +
                   ` and termId=` + eachContractSigniture.termId
                 this.sendToServer(updateQuery)
@@ -294,7 +302,8 @@ export class ContractSignituresComponent implements OnInit {
             `, signiture2=` + Number(eachContractSigniture.signiture2) +
             `, signiture3=` + Number(eachContractSigniture.signiture3) +
             `, signiture4=` + Number(eachContractSigniture.signiture4) +
-            `, reasonForRejection='` + eachContractSigniture.reasonForRejection ? eachContractSigniture.reasonForRejection :""  +
+            `, signiture5=` + Number(eachContractSigniture.signiture4) +
+            `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
             `'  where teacherId=` + eachContractSigniture.teacherId +
             ` and termId=` + eachContractSigniture.termId
           this.sendToServer(updateQuery)
