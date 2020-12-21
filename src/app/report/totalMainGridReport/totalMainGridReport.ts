@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 import { totalMainGridReportService } from 'src/app/services/TotalmainGridReport/totalMainGridReport';
+import { Router } from '@angular/router';
 
 export interface Term {
   id: number;
@@ -86,6 +87,7 @@ export class TotalMainGridReportComponent implements OnInit {
   constructor(private configService: ConfigService,
     private totalMainGridReportService: totalMainGridReportService,
     private dialog: MatDialog,
+    private myRoute: Router,
     public commonService: CommonService) {
 
   }
@@ -337,7 +339,7 @@ INSERT INTO totalValue (`+
             this.newRowObj = {};
             this.commonService.showSaveBtnTotal = false;
             this.commonService.loading = false;
-            
+            this.myRoute.navigate(['report/mainGridReport']);
 
           });
       (error) => {

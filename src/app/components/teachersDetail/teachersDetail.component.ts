@@ -111,7 +111,8 @@ export class TeachersDetailComponent implements OnInit {
       tarikhTavalod                  : this.userDetails.tarikhTavalod ? this.userDetails.tarikhTavalod:"",
       vaziateShoghli                 : this.userDetails.vaziateShoghli ? this.userDetails.vaziateShoghli:"",
       vaziateTaahol                  : this.userDetails.vaziateTaahol ? this.userDetails.vaziateTaahol:"",
-
+      akharinMadrakTahsili           : this.userDetails.akharinMadrakTahsili ? this.userDetails.akharinMadrakTahsili:""
+      
     }
     console.log('body', body)
     this.commonService.loading = true;
@@ -120,8 +121,8 @@ export class TeachersDetailComponent implements OnInit {
 
         this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
         this.commonService.loading = false;
-        debugger
-        this.myRoute.navigate(['login']);
+        
+       
 
       }
 
