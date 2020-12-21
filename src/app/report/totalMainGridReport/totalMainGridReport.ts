@@ -339,7 +339,7 @@ INSERT INTO totalValue (`+
             this.newRowObj = {};
             this.commonService.showSaveBtnTotal = false;
             this.commonService.loading = false;
-            this.myRoute.navigate(['report/mainGridReport']);
+          //  this.myRoute.navigate(['report/mainGridReport']);
 
           });
       (error) => {

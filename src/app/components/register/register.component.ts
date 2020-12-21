@@ -175,7 +175,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-  private btnChooseUser() {
+  public btnChooseUser() {
 
     const dialogRef = this.dialog.open(AllPersonsComponent, {
       width: "85%",
