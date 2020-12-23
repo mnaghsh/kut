@@ -281,7 +281,7 @@ export class ContractSignituresComponent implements OnInit {
                   `, signiture2=` + Number(eachContractSigniture.signiture2) +
                   `, signiture3=` + Number(eachContractSigniture.signiture3) +
                   `, signiture4=` + Number(eachContractSigniture.signiture4) +
-                  `, signiture5=` + Number(eachContractSigniture.signiture4) +
+                  `, signiture5=` + Number(eachContractSigniture.signiture5) +
                   `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
                   `'  where teacherId=` + eachContractSigniture.teacherId +
                   ` and termId=` + eachContractSigniture.termId
@@ -302,7 +302,7 @@ export class ContractSignituresComponent implements OnInit {
             `, signiture2=` + Number(eachContractSigniture.signiture2) +
             `, signiture3=` + Number(eachContractSigniture.signiture3) +
             `, signiture4=` + Number(eachContractSigniture.signiture4) +
-            `, signiture5=` + Number(eachContractSigniture.signiture4) +
+            `, signiture5=` + Number(eachContractSigniture.signiture5) +
             `, reasonForRejection='` + eachContractSigniture.reasonForRejection +
             `'  where teacherId=` + eachContractSigniture.teacherId +
             ` and termId=` + eachContractSigniture.termId
