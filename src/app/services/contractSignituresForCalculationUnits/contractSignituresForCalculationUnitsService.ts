@@ -10,7 +10,7 @@ export class ContractSignituresForCalculationUnitsService {
   constructor(public configService:ConfigService) { }
 
 public getContractSignituresForCalculationUnits(inputTermId):Observable<any>{
-  debugger
+  //debugger
   return this.configService.get('contractSignituresForCalculationUnits/16');
 }
 

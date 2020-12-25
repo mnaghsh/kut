@@ -208,7 +208,7 @@ export class ContractSignituresComponent implements OnInit {
     this.commonService.loading = true;
     this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
       (success) => {
-        debugger
+        //debugger
         this.getcontractSignitureObj = JSON.parse(success)
         this.getcontractSignitureObj.forEach(eachSigningContractObj => {
           if(eachSigningContractObj['reasonForRejection']=="null"){
@@ -243,7 +243,7 @@ export class ContractSignituresComponent implements OnInit {
   }
 
   public saveChanges() {
-    debugger
+    //debugger
     let updateQuery
     this.changedRows = []
     this.getcontractSignitureObj.forEach(eachContractSigniture => {
@@ -260,7 +260,7 @@ export class ContractSignituresComponent implements OnInit {
           });
           dialogRef.afterClosed().subscribe(
             (data) => {
-              debugger
+              //debugger
               if (data == 1) {
                 updateQuery = `update contractSignitures 
                 set signiture1=`+ null +

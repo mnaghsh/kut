@@ -94,7 +94,7 @@ export class TotalMainGridReportComponent implements OnInit {
   emiters() {
     this.commonService.saveTotalMainGrid.subscribe({
       next: (event: any) => {
-        debugger
+        //debugger
         if(this.counter==false){
          // this.save(true)
         }
@@ -104,7 +104,7 @@ export class TotalMainGridReportComponent implements OnInit {
     })
     this.commonService.rollback.subscribe({
       next: (event: any) => {
-        debugger
+        //debugger
         if (event = 2) {
         //  this.replaceNewData();
         }
@@ -116,7 +116,7 @@ export class TotalMainGridReportComponent implements OnInit {
 
   ngOnInit() {
 
-    //debugger
+    ////debugger
     this.termId = this.commonService.termId;
     this.userId = this.commonService.reportUserId;
     this.getDataOfReport();
@@ -142,7 +142,7 @@ export class TotalMainGridReportComponent implements OnInit {
   }
   ngDoCheck() {
     if (this.columns == undefined) {
-      ////debugger
+      //////debugger
     }
   }
   private getColumnsOfReport() {
@@ -150,7 +150,7 @@ export class TotalMainGridReportComponent implements OnInit {
     this.totalMainGridReportService.getColumnsOfTotalReport()
       .subscribe(
         (sucsess) => {
-          ////debugger
+          //////debugger
           console.log('jafaricolumns', JSON.parse(sucsess));
 
           let result = JSON.parse(sucsess)
@@ -165,7 +165,7 @@ export class TotalMainGridReportComponent implements OnInit {
                 return row[c.columnDef];
               }
             };
-            ////debugger
+            //////debugger
             this.columns.push(mhd)
           }
           );
@@ -183,7 +183,7 @@ export class TotalMainGridReportComponent implements OnInit {
 
   private getDataOfReport() {
 
-    ////debugger
+    //////debugger
     let body = {
       termId: this.termId, userId: this.userId
     }
@@ -191,7 +191,7 @@ export class TotalMainGridReportComponent implements OnInit {
     this.totalMainGridReportService.getTotalDataOfReport(body)
       .subscribe(
         (sucsess) => {
-          ////debugger
+          //////debugger
           this.result = JSON.parse(sucsess)
 
           if (this.result.length == 0) {
@@ -209,7 +209,7 @@ export class TotalMainGridReportComponent implements OnInit {
   }
 
   private save(message?: boolean, textMessage?: string, mode?: any) {
-debugger
+//debugger
 this.nullRresult = false
     if (this.newRowObj) {
       if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {
@@ -231,7 +231,7 @@ this.nullRresult = false
     this.uncalculatedColumns.unshift("userId")
     console.log(' this.uncalculatedColumns', this.uncalculatedColumns)
     console.log('this.result', this.result)
-    debugger
+    //debugger
     this.clonedResult = JSON.stringify(this.result)
     this.clonedUncalculatedColumns = JSON.stringify(this.uncalculatedColumns)
     this.result.forEach(eachRowsOFData => {
@@ -317,7 +317,7 @@ INSERT INTO totalValue (`+
     }
     this.setNullResult()
     console.log('body', body)
-    debugger
+    //debugger
     this.commonService.loading = true;
     //window.scrollTo(0, 0)
     if (this.nullRresult == false) {
@@ -360,7 +360,7 @@ INSERT INTO totalValue (`+
     }
   }
   addRow() {
-    //////////////debugger
+    ////////////////debugger
     // let tmp = this.newRowObj[Object.keys(this.newRowObj)[0]]
     if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {
       console.log(' this.mhd', this.newRowObj)
@@ -372,7 +372,7 @@ INSERT INTO totalValue (`+
     }
   }
   deleteRow(row) {
-    //debugger
+    ////debugger
     this.result.splice(0, 1);
     // this.result = this.result.concat([this.newRowObj])
     this.dataSource = new MatTableDataSource(this.result);
@@ -423,7 +423,7 @@ INSERT INTO totalValue (`+
         }
       }
     });
-    debugger
+    //debugger
     JSON.parse(this.clonedResult).forEach(eachRowsOFData => {
       JSON.parse(this.clonedUncalculatedColumns).forEach(eachuncalculatedColumns => {
         if (eachRowsOFData[eachuncalculatedColumns] = null || eachRowsOFData[eachuncalculatedColumns] == undefined) {

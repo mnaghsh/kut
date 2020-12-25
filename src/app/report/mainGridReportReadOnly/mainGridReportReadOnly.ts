@@ -23,7 +23,7 @@ export interface Term {
 })
 export class MainGridReportReadOnlyComponent implements OnInit {
   myControl = new FormControl();
-  options=[] ;
+  options = [];
   filteredOptions: Observable<string[]>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -44,32 +44,32 @@ export class MainGridReportReadOnlyComponent implements OnInit {
   fullName = "انتخاب استاد"
   attachmentEndScript: string;
   selectedRow: any;
-  showSaveBtn:boolean;
+  showSaveBtn: boolean;
 
   isLinear = false;
   firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;  
+  secondFormGroup: FormGroup;
   firstTime = [
-    {value: 1, viewValue: 'بلی'},
-    {value: 2, viewValue: 'خیر'}
+    { value: 1, viewValue: 'بلی' },
+    { value: 2, viewValue: 'خیر' }
   ];
   // مقطع درس
   courseSection = [
-    {value: 1, viewValue: 'کارشناسی'},
-    {value: 2, viewValue: 'ارشد'},
-    {value: 3, viewValue: 'دکتری'}
+    { value: 1, viewValue: 'کارشناسی' },
+    { value: 2, viewValue: 'ارشد' },
+    { value: 3, viewValue: 'دکتری' }
   ];
 
   courseType = [
-    {value: 1, viewValue: 'پایه و تخصصی'},
-    {value: 2, viewValue: 'آزمایشگاه'},
-    {value: 3, viewValue: 'کارگاه'},
-    {value: 4, viewValue: 'معرفی به استاد'},
-    {value: 5, viewValue: 'داوری'},
-    {value: 6, viewValue: 'پروژه'},
-    {value: 7, viewValue: 'کارآموزی'}, 
-    {value: 8, viewValue: 'سمینار'},
-    {value: 9, viewValue: 'عمومی'},
+    { value: 1, viewValue: 'پایه و تخصصی' },
+    { value: 2, viewValue: 'آزمایشگاه' },
+    { value: 3, viewValue: 'کارگاه' },
+    { value: 4, viewValue: 'معرفی به استاد' },
+    { value: 5, viewValue: 'داوری' },
+    { value: 6, viewValue: 'پروژه' },
+    { value: 7, viewValue: 'کارآموزی' },
+    { value: 8, viewValue: 'سمینار' },
+    { value: 9, viewValue: 'عمومی' },
   ];
   constructor(private configService: ConfigService,
     private _formBuilder: FormBuilder,
@@ -83,44 +83,44 @@ export class MainGridReportReadOnlyComponent implements OnInit {
 
 
   ngOnInit() {
-    this.coursesList=this.commonService.coursesList
+    this.coursesList = this.commonService.coursesList
     this.getDataOfReport();
     this.filterAutoCompelete();
 
-    
+
   }
 
-private filterAutoCompelete(){
-  //debugger
-  this.options=this.coursesList
-this.filteredOptions = this.myControl.valueChanges
-.pipe(
-  startWith(''),
-  map(value => this.filter(value))
-);
-}
-private filter(value: string): string[] {
-  //debugger
-  value=value['key']
-  const filterValue = value.toLowerCase();
+  private filterAutoCompelete() {
+    ////debugger
+    this.options = this.coursesList
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this.filter(value))
+      );
+  }
+  private filter(value: string): string[] {
+    ////debugger
+    value = value['key']
+    const filterValue = value.toLowerCase();
 
-  return this.options.filter(option => option.toLowerCase().includes(filterValue));
-}
-ngOnDestroy() {
-        if (this.commonService.showSaveBtn==true) {
-          this.commonService.showEventMessage(" برخی ردیف ها تغییر یافته ولی ذخیره نشدند")
-        }
-        
-    
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+  ngOnDestroy() {
+    if (this.commonService.showSaveBtn == true) {
+      this.commonService.showEventMessage(" برخی ردیف ها تغییر یافته ولی ذخیره نشدند")
+    }
+
+
     this.newRowObj = {};
   }
 
   private getColumnsOfReport() {
-this.commonService.loading=true
+    this.commonService.loading = true
     this.mainGridReport.getColumnsOfReportReadOnly()
       .subscribe(
         (sucsess) => {
-          this.commonService.loading=false
+          this.commonService.loading = false
           console.log('sucsess', JSON.parse(sucsess));
           this.columns.push({
             columnDef: 'CourseName',
@@ -161,39 +161,57 @@ this.commonService.loading=true
     let body = {
       termId: this.termId, userId: this.userId
     }
-    this.commonService.loading=true
+    this.commonService.loading = true
     this.mainGridReport.getDataOfReportReadOnly(body)
       .subscribe(
         (sucsess) => {
-          this.commonService.loading=false
+          this.commonService.loading = false
           console.log('rows', JSON.parse(sucsess));
           this.result = JSON.parse(sucsess)
+          this.result.forEach(eachRow => {
+
+            var num = eachRow['C16']
+            var roundedString = num.toFixed(2);
+            var rounded = Number(roundedString);
+            eachRow['C16'] = rounded
+
+            var num = eachRow['C18']
+            var roundedString = num.toFixed(2);
+            var rounded = Number(roundedString);
+            eachRow['C18'] = rounded
+
+            var num = eachRow['C19']
+            var roundedString = num.toFixed(2);
+            var rounded = Number(roundedString);
+            eachRow['C19'] = rounded
+
+          });
           this.getColumnsOfReport();
 
         })
   }
 
- 
- private replaceNewData(){
-  this.displayedColumns = null
-  this.dataSource = null;
-  this.columns = [];
-  this.getDataOfReport();
-  this.newRowObj = {};
-  this.commonService.showSaveBtn=false;
-  this.commonService.rollback.next(2);
- }
+
+  private replaceNewData() {
+    this.displayedColumns = null
+    this.dataSource = null;
+    this.columns = [];
+    this.getDataOfReport();
+    this.newRowObj = {};
+    this.commonService.showSaveBtn = false;
+    this.commonService.rollback.next(2);
+  }
   addRow() {
     let textMessage
-    //debugger
+    ////debugger
     if (this.result) {
       this.result.forEach(eachRowsOfTable => {
-        if (this.commonService.showSaveBtn==true) {
-           textMessage=" ردیف جدید با همه ی ردیف های در حال ویرایش ذخیره شدند "
+        if (this.commonService.showSaveBtn == true) {
+          textMessage = " ردیف جدید با همه ی ردیف های در حال ویرایش ذخیره شدند "
         }
       });
     }
-  
+
     // let tmp = this.newRowObj[Object.keys(this.newRowObj)[0]]
     if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {
       console.log(' this.mhd', this.newRowObj)
@@ -202,13 +220,13 @@ this.commonService.loading=true
       //this.newRowObj['courseId'] = 3
       this.result = this.result.concat([this.newRowObj])
       //this.save(true,textMessage,"addRow")
-      //debugger
-     // this.result.push(this.newRowObj)
+      ////debugger
+      // this.result.push(this.newRowObj)
       this.dataSource = new MatTableDataSource(this.result);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.newRowObj={}
-     
+      this.newRowObj = {}
+
     }
   }
   deleteRow(row) {
@@ -223,12 +241,12 @@ this.commonService.loading=true
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     console.log('resuletAfterDel', this.result)
-    this.commonService.showSaveBtn=true
+    this.commonService.showSaveBtn = true
     //this.save(true);
   }
 
 
- 
+
   displayFn(user?: Term): string | undefined {
     return user ? user.name : undefined;
   }
@@ -248,7 +266,7 @@ this.commonService.loading=true
     this.showCourseValueTable = false
     //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {
-      
+
       width: "85%",
       height: "85%",
       data: {
@@ -257,23 +275,24 @@ this.commonService.loading=true
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-      if(data){
-        this.userId = data.id;
-        this.fullName = data.fullName;
-        this.displayedColumns = null
-        this.dataSource = null;
-        this.columns = [];
-        this.showCourseValueTable = true
-        this.getDataOfReport();
-        this.commonService.reportUserId = this.userId;
-            
-      }
+        if (data) {
+          this.userId = data.id;
+          this.fullName = data.fullName;
+          this.commonService.nameOfSelectedTeacher=data.firstName+' '+data.lastName;
+          this.displayedColumns = null
+          this.dataSource = null;
+          this.columns = [];
+          this.showCourseValueTable = true
+          this.getDataOfReport();
+          this.commonService.reportUserId = this.userId;
+
+        }
       }
     )
   }
-  private chooseCourse(row){
-    this.selectedRow=row
-    
+  private chooseCourse(row) {
+    this.selectedRow = row
+
     const dialogRef = this.dialog.open(CoursesComponent, {
       width: "85%",
       height: "85%",
@@ -283,12 +302,12 @@ this.commonService.loading=true
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-        this.commonService.loading=false
-        if(data){
-        this.selectedRow.CourseName=data.name
-        this.selectedRow.courseId=data.id
-       this.commonService.showSaveBtn=true
-      }
+        this.commonService.loading = false
+        if (data) {
+          this.selectedRow.CourseName = data.name
+          this.selectedRow.courseId = data.id
+          this.commonService.showSaveBtn = true
+        }
       }
     )
   }
@@ -307,6 +326,31 @@ this.commonService.loading=true
               font-family: 'B Nazanin';
               text-align: right;
 
+            }
+            td{
+                
+              border: 0px solid gray;
+              border-left: 1px solid gray;
+              border-bottom: 1px solid gray;
+             
+            }
+            .table-striped tbody tr:nth-of-type(odd) {
+              background-color: rgba(0,0,0,.05);
+          }
+
+         .headerGridTotal{
+          font-size: small !important;
+         }
+         .gridTotal{
+          width:100%;
+         }
+           
+            .mat-sort-header-button{
+              border-bottom: 1px solid gray;
+              font-size: xx-small;
+              background-color: white;
+              border: 0px solid gray;
+              text-align: center;
             }
           //........Customized style.......
           </style>

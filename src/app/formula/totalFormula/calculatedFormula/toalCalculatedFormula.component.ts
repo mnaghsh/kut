@@ -92,7 +92,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
   }
 
   addItem() {
-    // //////debugger
+    // ////////debugger
     this.activeItems.push({
       label: " "
     })
@@ -120,7 +120,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
     return user ? user.name : undefined;
   }
   mhd(text) {
-   debugger
+   //debugger
     if (text != "") {
       this.text = text;
       console.log("this.activeItems", this.activeItems);
@@ -128,7 +128,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
   }
 
   public addCalculatedFormul() {
-    debugger;
+    //debugger;
     this.activeItems.forEach(activeItem => {
       this.getCalculatedCombo.forEach(eachCalculatedCombo => {
         if (eachCalculatedCombo.displayName == activeItem.label) {
@@ -194,7 +194,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
       totalUsedList += "," + usedList
 
     });
-    //////debugger
+    ////////debugger
     let splitTotalUsedList= totalUsedList.split(","); 
     var filtered = splitTotalUsedList.filter(function (el) {
       return el != "";
@@ -208,7 +208,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
       DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
       UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
     }
-    //////debugger
+    ////////debugger
     this.configService.post("addCalculatedTotalFormul", body).subscribe(
       (data) => {
         this.commonService.showEventMessage("فرمول با موفقیت ذخیره شد", 5000)
@@ -232,7 +232,7 @@ export class TotalCalculatedFormulaComponent implements OnInit {
     this.TotalCalculatedService.getTotalCalculatedServicecombo()
       .subscribe(
         (sucsess) => {
-          //////debugger
+          ////////debugger
           this.buildFormulCmb = [];
           let a = JSON.parse(sucsess)
           this.getCalculatedCombo = JSON.parse(sucsess)

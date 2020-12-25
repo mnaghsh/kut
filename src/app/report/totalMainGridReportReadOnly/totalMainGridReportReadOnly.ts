@@ -158,6 +158,13 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
           );
 
           this.displayedColumns = this.columns.map(c => c.columnDef);
+          this.displayedColumns.push("a")
+          this.displayedColumns.push("b")
+          this.displayedColumns.push("c")
+          this.displayedColumns.push("d")
+          this.displayedColumns.push("e")
+          this.displayedColumns.push("f")
+          this.displayedColumns.push("g")
           // this.displayedColumns.push('icon')
 
           this.dataSource = new MatTableDataSource(this.result);
@@ -174,12 +181,26 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
     let body = {
       termId: this.termId, userId: this.userId
     }
-debugger
+
     this.totalMainGridReportReadOnlyService.getTotalDataOfReport(body)
       .subscribe(
         (sucsess) => {
           ////debugger
           this.result = JSON.parse(sucsess)
+
+          this.result.forEach(eachRow => {
+
+            var num = eachRow['C26']
+            var roundedString = num.toFixed(2);
+            var rounded = Number(roundedString);
+            eachRow['C26'] = rounded
+
+            var num = eachRow['C28']
+            var roundedString = num.toFixed(2);
+            var rounded = Number(roundedString);
+            eachRow['C28'] = rounded
+
+          });
 
           if (this.result.length == 0) {
             this.getColumnsOfReport();

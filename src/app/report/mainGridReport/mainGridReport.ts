@@ -100,7 +100,7 @@ export class MainGridReportComponent implements OnInit {
   }
 
   private filterAutoCompelete() {
-    ////debugger
+    //////debugger
     this.options = this.coursesList
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -109,7 +109,7 @@ export class MainGridReportComponent implements OnInit {
       );
   }
   private filter(value: string): string[] {
-    ////debugger
+    //////debugger
     value = value['key']
     const filterValue = value.toLowerCase();
 
@@ -168,7 +168,7 @@ export class MainGridReportComponent implements OnInit {
 
   private getDataOfReport() {
 
-    //////debugger
+    ////////debugger
     let body = {
       termId: this.termId, userId: this.userId
     }
@@ -194,7 +194,7 @@ export class MainGridReportComponent implements OnInit {
         //this.newRowObj['courseId'] = 3
         this.result = this.result.concat([this.newRowObj])
         //this.save(true,textMessage,"addRow")
-        ////debugger
+        //////debugger
         // this.result.push(this.newRowObj)
         this.dataSource = new MatTableDataSource(this.result);
         this.dataSource.paginator = this.paginator;
@@ -204,7 +204,7 @@ export class MainGridReportComponent implements OnInit {
       }
       mode = "addRow"
     }
-    ////debugger
+    //////debugger
     this.uncalculatedColumns = []
     this.dataOfUnCalculatedColumns = []
     this.columns.forEach(eachuncalculatedColumns => {
@@ -246,7 +246,7 @@ INSERT INTO courseValue (`+
       }
       this.dataOfUnCalculatedColumns = [];
     });
-    //debugger
+    ////debugger
     // if (this.insertQuery != undefined && this.insertQuery != "") {
 
     this.attachmentEndScript = `Declare @Q nvarchar(max)
@@ -306,7 +306,7 @@ INSERT INTO courseValue (`+
     this.setNullResult();
 
     this.commonService.loading = true;
-    //debugger
+    ////debugger
     console.log('body', body)
     if (this.nullRresult == false) {
       this.mainGridReport.saveDataOfReport(body)
@@ -318,7 +318,7 @@ INSERT INTO courseValue (`+
             this.insertQuery = "";
 
             if (message) {
-              //debugger
+              ////debugger
               this.commonService.showEventMessage(textMessage ? textMessage : "داده ها با موفقیت ذخیره شد", 2000)
             }
             //ebugger
@@ -370,7 +370,7 @@ INSERT INTO courseValue (`+
         }
       }
     });
-debugger
+//debugger
     JSON.parse(this.clonedResult).forEach(eachRowsOFData => {
       JSON.parse(this.clonedUncalculatedColumns).forEach(eachuncalculatedColumns => {
         if (eachRowsOFData[eachuncalculatedColumns] = null||eachRowsOFData[eachuncalculatedColumns] == undefined) {
@@ -382,7 +382,7 @@ debugger
 
   addRow() {
     let textMessage
-    ////debugger
+    //////debugger
     if (this.result) {
       this.result.forEach(eachRowsOfTable => {
         if (this.commonService.showSaveBtn == true) {
@@ -399,7 +399,7 @@ debugger
       //this.newRowObj['courseId'] = 3
       this.result = this.result.concat([this.newRowObj])
       //this.save(true,textMessage,"addRow")
-      ////debugger
+      //////debugger
       // this.result.push(this.newRowObj)
       this.dataSource = new MatTableDataSource(this.result);
       this.dataSource.paginator = this.paginator;

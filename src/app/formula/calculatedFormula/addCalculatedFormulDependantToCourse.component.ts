@@ -75,7 +75,7 @@ export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
     .subscribe(
       (sucsess)=>{
         this.commonService.loading=false;
-      debugger
+      //debugger
         this.dataSource = new MatTableDataSource(JSON.parse(sucsess));
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -96,7 +96,7 @@ export class AddCalculatedFormulDependantToCourseComponent implements OnInit {
 
   
   deleteRow(row){
-    debugger
+    //debugger
         this.CalculatedFormulDependantTOCourse.deleteCalculatedDependantToCourseServiceGrid(row.columnName.substr(1,9999999999))
         .subscribe(
           (sucsess) => {

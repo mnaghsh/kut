@@ -88,7 +88,7 @@ export class AddUnCalculatedFormulDependantToCourseComponent implements OnInit {
   }
 
   deleteRow(row) {
-    debugger
+    //debugger
     this.UnCalculatedFormulDependantTOCourse.deleteUnCalculatedDependantToCourseServiceGrid(row.columnName.substr(1, 9999999999))
       .subscribe(
         (sucsess) => {

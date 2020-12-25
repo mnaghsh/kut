@@ -54,7 +54,7 @@ export class TeacherComponent implements OnInit {
   }
   private selectTeacher(row) {
     this.dialogRef.close(row)
-    //////debugger
+    ////////debugger
   }
 
 

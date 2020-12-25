@@ -2,41 +2,69 @@
 <div *ngIf="userId">
   <!-- <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true" -->
   <!-- *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)">ذخیره</button> -->
-  <table matSort class="table table-striped table-hover" mat-table dir="rtl" [dataSource]="dataSource">
+  <table matSort class="table table-striped table-hover gridTotal" mat-table dir="rtl" [dataSource]="dataSource">
     <!-- data Column -->
+    <ng-container matColumnDef="a">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header>  نام و نام خانوادگی </th>
+      <td mat-cell *matCellDef="let element"  class="cells">{{commonService.nameOfSelectedTeacher}} </td>
+    </ng-container>
+    <ng-container matColumnDef="b">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> گروه آموزشی </th>
+      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+    </ng-container>
+    <ng-container matColumnDef="c">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> دانشکده </th>
+      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+    </ng-container>
+    <ng-container matColumnDef="d">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ شروع ترم </th>
+      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+    </ng-container>
+    <ng-container matColumnDef="e">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ پایان ترم </th>
+      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+    </ng-container>
+    <ng-container matColumnDef="f">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> پایه </th>
+      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+    </ng-container>
+    <ng-container matColumnDef="g">
+      <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> مدرک تحصیلی </th>
+      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+    </ng-container>
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
       <div>
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
+        <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> {{column.label}}</th>
       </div>
       <td mat-cell *matCellDef="let row; let index = index" class="cells">
 
         <label maxlength="4" *ngIf=" column.columnDef!='C22' && column.columnDef!='C23'
       && column.columnDef!='C3' " [innerHTML]="row[column.columnDef]"></label>
 
-      <!-- <input *ngIf="column.columnDef!='CourseName' && column.columnDef!='C22' && column.columnDef!='C23'" required type="number"
-      maxlength="4" matInput [placeholder]="column.label" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
- -->
 
-
-<!-- 
-        <label *ngIf=" column.columnDef!='C1' && column.columnDef!='C2'
-          && column.columnDef!='C3' " [innerHTML]="row[column.columnDef]"></label> -->
-
-        <mat-select  disabled=true *ngIf="column.columnDef=='C22'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
+        <mat-select disabled=true *ngIf="column.columnDef=='C22'" (ngModelChange)="commonService.showSaveBtnTotal=1"
+          [(ngModel)]="row[column.columnDef]">
           <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
         </mat-select>
 
-        <mat-select  disabled=true *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
+        <mat-select disabled=true *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1"
+          [(ngModel)]="row[column.columnDef]">
           <mat-option *ngFor="let f of post" [value]="f.value">{{f.viewValue}}</mat-option>
         </mat-select>
-
+     
       </td>
-      <ng-container *ngIf="this.showAddRow">
+  
+     
+      <!-- <ng-container *ngIf="this.showAddRow">
         <td mat-cell *matCellDef="let row; let index = index" class="cells" [innerHTML]="column.cell(row, column)">
-          <!-- <input    matInput placeholder="Favorite food" [value]="column.cell(row, column)"> -->
+
         </td>
-      </ng-container>
+      </ng-container> -->
+
+
+
     </ng-container>
+   
     <!-- icon Column -->
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

@@ -39,7 +39,7 @@ export class ContractComponent implements OnInit {
   }
 
   ngOnInit() {
-    //debugger
+    ////debugger
   }
   public btnChooseTeacher() {
     this.showCourseValueTable = false
@@ -56,7 +56,7 @@ export class ContractComponent implements OnInit {
         if (data) {
           this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
             (success) => {
-              debugger
+              //debugger
               this.getcontractSignitureObj = JSON.parse(success)
               this.getcontractSignitureObj.forEach(eachContractSignitureObj => {
                 if(eachContractSignitureObj.teacherId==data.id){

@@ -144,7 +144,7 @@ export class DelegationSignitureComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
-          debugger
+          //debugger
           this.categoryName = data.xDepartment_Farsi
           this.categoryId = data.x_
           this.getSigningContract(data.x_);

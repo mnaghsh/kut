@@ -82,7 +82,7 @@ export class RegisterComponent implements OnInit {
 
 
   public saveData() {
-    debugger
+    //debugger
     if (this.registerForm.valid) {
 
       let body = {
@@ -99,7 +99,7 @@ export class RegisterComponent implements OnInit {
       }
 
       this.commonService.loading = true;
-      debugger
+      //debugger
 
 
       this.registerService.checkDuplicateUser({ username: this.registerForm.value.username }).subscribe(
@@ -218,7 +218,7 @@ export class RegisterComponent implements OnInit {
     this.fullName = "ویرایش کاربران قبلی";
   }
   changeType(inputTypeId) {
-    debugger
+    //debugger
     this.typeId = inputTypeId
   }
   closeSelect(selectedDepartments) {
@@ -227,7 +227,7 @@ export class RegisterComponent implements OnInit {
       localDepartmentArray.push(Number(eachSelectedDepartments.x_))
     });
     this.departmentArray = '[' + String(localDepartmentArray) + ']'
-    debugger
+    //debugger
   }
 
   private getTeacherList() {

@@ -188,7 +188,7 @@ export class CalculatedFormulaComponent implements OnInit {
       return self.indexOf(value) === index;
     }
     if (this.addFormul.valid && formula!=" " ) {
-debugger
+//debugger
       let body = {
         DisplayName: this.displayName, Description: this.description, Formula: formula, ShowFormula: showFormula,
         UsedList: usedList, TotalUsedList: unique.toString(), JsonFormula: JSON.stringify(jsonFormula)
@@ -217,7 +217,7 @@ debugger
     this.CalculatedFormulDependantTOCourse.getCalculatedDependantToCourseServicecombo()
       .subscribe(
         (sucsess) => {
-          //////debugger
+          ////////debugger
           this.buildFormulCmb = [];
           let a = JSON.parse(sucsess)
           this.getCalculatedCombo = JSON.parse(sucsess)

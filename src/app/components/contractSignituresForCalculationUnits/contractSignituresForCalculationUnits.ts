@@ -60,7 +60,7 @@ export class ContractSignituresForCalculationUnitsComponent implements OnInit {
         console.log('  this.getSigningContractObj', this.getSigningContractObj)
 
         this.getSigningContractObj.forEach(eachSigningContractObj => {
-          //debugger
+          ////debugger
           let onlineUser = this.commonService.activeUser[0]
           if (eachSigningContractObj.teacherId == onlineUser.id) {
             switch (eachSigningContractObj.signitureNumber) {
@@ -96,7 +96,7 @@ export class ContractSignituresForCalculationUnitsComponent implements OnInit {
                 this.sig2 = false
                 break;
               case 3:
-                //debugger
+                ////debugger
                 let signitureLevelArray3 = []
                 for (let i = 0; i < this.getcontractSignitureObj.length; i++) {
                   if (
@@ -195,7 +195,7 @@ default:
   }
 
   public saveChanges() {
-debugger
+//debugger
     let updateQuery
     this.changedRows = []
     this.getcontractSignitureObj.forEach(eachContractSigniture => {
@@ -212,7 +212,7 @@ debugger
           });
           dialogRef.afterClosed().subscribe(
             (data) => {
-              //debugger
+              ////debugger
               if (data == 1) {
                 updateQuery = `update contractSignituresForCalculationUnits 
                 set signiture1=`+ null +

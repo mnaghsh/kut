@@ -13,7 +13,7 @@ export class ContractSignituresService {
     ) { }
 
 public getContractSignitures(inputTermId):Observable<any>{
-  debugger
+  //debugger
   return this.configService.get('contractSignitures/'+this.commonService.termId);
 }
 
