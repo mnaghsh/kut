@@ -28,6 +28,7 @@ export class CommonService {
   termName: any;
   allPersonsList;
   nameOfSelectedTeacher: any;
+  userDetails: any;
   constructor(  private snackBar: MatSnackBar,) { }
   showEventMessage(message,duration=3000,type?) {
     this.snackBar.open(message, '', {

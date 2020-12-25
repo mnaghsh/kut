@@ -18,27 +18,36 @@
 
   <div class="col-4"></div>
 </div>
-<h3 style="padding-right: 30%;"  *ngIf="!showContract">  {{error}}</h3>
+<h3 style="padding-right: 30%;" *ngIf="!showContract"> {{error}}</h3>
 <!-- 
 <button *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnPrint" (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> چاپ -->
 
-<button *ngIf="showCourseValueTable" type="submit" mat-raised-button color="primary" matTooltip="ذخیره "
-  class=" btnSave" aria-hidden="true" mat-raised-button (click)="save()">
-  <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
+
 <button *ngIf="showCourseValueTable" mat-raised-button color="primary" class="btnROllBack" (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> چاپ
 </button>
 
 <div *ngIf="showCourseValueTable" dir="rtl" id="print-section">
-
+  <img src="./././assets/logo.png" style="    float: right;" width="50" height="60">
   <table width="100%">
     <tbody>
       <tr>
         <td>
-          <p>شماره:</p>
-          <p>تاریخ:</p>{{myDate}}
+     
+        <p style="float: left;">
+         
+          <strong>
+            <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </u>
+          </strong>&nbsp;شماره: 
+        </p>
+       
         </td>
+      </tr>
+      <tr>
+        <td> <p>
+        <strong><p style="float: left;"> تاریخ:{{myDate}}</p></strong>
+      </p></td>
       </tr>
     </tbody>
   </table>
@@ -62,12 +71,13 @@
     <strong>&nbsp; {{this.fullName}} </strong> که در این قرارداد
     <strong>مدرس</strong> نامیده می&zwnj;شود، بمنظور تدریس
     <strong>
-      <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp; </u>
+      <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vahedNahaie}}&nbsp;&nbsp;&nbsp; </u>
     </strong>&nbsp;واحد با احتساب ضرایب دروس در نیمسال
     <strong> {{this.commonService.termName}}</strong>
 
     در دانشگاه صنعتی کرمانشاه طبق مقررات دانشگاه&zwnj;ها و موسسات آموزش عالی و با شرایط زیر
-    منعقد می&zwnj;گردد.</p>
+    منعقد می&zwnj;گردد.
+  </p>
   <table *ngIf="this.showContract==true" width="1698">
     <tbody>
       <tr>
@@ -77,83 +87,139 @@
             <strong>{{lastName}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نام:
             <strong>&nbsp;{{firstName}}
             </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;شماره&zwnj;شناسنامه:
-            <strong>&nbsp;&nbsp;&nbsp; <span><input class="textBox"
-                  value="{{userDetails.shomareShenasname}}"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره
+            <strong>&nbsp;&nbsp;&nbsp; <span>
+
+                <label>{{userDetails.shomareShenasname}}</label>
+
+              </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره
             ملی:&nbsp;
-            <input class="textBox"
-              value="{{userDetails.shomareMeli}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;</p>
+      
+              <label>{{userDetails.shomareMeli}}</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
+          </p>
           <p>نام پدر:
-            <strong>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="userDetails.namePedar" class="textBox"
-                value="{{userDetails.namePedar}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:
-            <strong> <input class="textBox"
-                value="{{userDetails.tarikhTavalod}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد:
-            &nbsp;&nbsp;<input class="textBox" value="{{userDetails.mahaleTavalod}}">
+            <strong>&nbsp;&nbsp;&nbsp;
+
+              <label>{{userDetails.namePedar}}</label>
+            </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:
+            <strong>
+
+              <label>{{userDetails.tarikhTavalod}}</label>
+            </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد:
+            &nbsp;&nbsp;
+         
+            <label>{{userDetails.mahaleTavalod}}</label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;وضعیت
             تأهل:
-            <strong> <input class="textBox" value="{{userDetails.vaziateTaahol}}"></strong>&nbsp;
+            <strong>
+            
+               <label>{{userDetails.vaziateTaahol}}</label>
+              </strong>&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;جنسیت:
-            <strong> <input class="textBox" value="{{userDetails.jensiat}}"></strong>
+            <strong> 
+              <label>{{userDetails.jensiat}}</label> </strong>
           </p>
           <p>2-
             <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
-            <strong> <input class="textBox" value="{{userDetails.jensiat}}"></strong>&nbsp;
+            <strong> 
+              <label>{{userDetails.akharinMadrakTahsili}}</label>
+            </strong>&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
-            تحصیلی: <input class="textBox" value="{{userDetails.reshteTahsili}}">
+            تحصیلی: 
+           
+            <label>{{userDetails.reshteTahsili}}</label>
+
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
-            اخذ: <input class="textBox"
-              value="{{userDetails.saleAkhz}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;</p>
-          <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp; <input class="textBox"
-              value="{{userDetails.mahaleAkhzAkharinMadrak}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
+            اخذ:
+            
+              <label>{{userDetails.saleAkhz}}</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
+          </p>
+          <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp; 
+            
+              <label>{{userDetails.mahaleAkhzAkharinMadrak}}</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
             : &nbsp;
             <strong>
-              <input class="textBox"
-                value="{{userDetails.rotbeElmi}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
-            <strong> <input class="textBox" value="{{userDetails.paye}}"></strong>
+             
+                <label>{{userDetails.rotbeElmi}}</label>
+              </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
+            <strong> 
+          
+              <label>{{userDetails.paye}}</label>
+            </strong>
           </p>
           <p>
             <strong>3- وضعیت شغلی:</strong> چنانچه در دانشگاه شاغل هستید چند ساعت تدریس می&zwnj;نمایید؟
-            <input class="textBox"
-              value="{{userDetails.vaziateShoghli}}"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp;
+         
+              <label>{{userDetails.vaziateShoghli}}</label>
+              <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
             سابقه:
-            <strong> <input class="textBox" value="{{userDetails.saleSabeghe}}">&nbsp;&nbsp;&nbsp;
-            </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال</p>
-          <p>در کدام دانشگاه&shy;ها: &nbsp; <input class="textBox"
-              value="{{userDetails.kodamDaneshgahha}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong> 
+              
+              <label>{{userDetails.saleSabeghe}}</label>
+              &nbsp;&nbsp;&nbsp;
+            </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال
+          </p>
+          <p>در کدام دانشگاه&shy;ها: &nbsp; 
+            
+              <label>{{userDetails.kodamDaneshgahha}}</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             شماره
             حساب بانک تجارت:&nbsp;&nbsp;
-            <strong><input class="textBox" value="{{userDetails.shomareHesab}}"></strong>
+            <strong>
+             
+              <label>{{userDetails.shomareHesab}}</label>
+            </strong>
           </p>
           <p>نشانی و تلفن:
-            <strong><input class="textBoxWide"
-                value="{{userDetails.neshaniVaTelephone}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن
-              همراه&nbsp; <input class="textBox" value="{{userDetails.mobile}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>
+            
+                <label>{{userDetails.neshaniVaTelephone}}</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن
+              همراه&nbsp; 
+             
+              <label>{{userDetails.mobile}}</label>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </strong>
           </p>
         </td>
       </tr>
     </tbody>
   </table>
-  <p>&nbsp;</p>
+  <!-- <p>&nbsp;</p> -->
   <p>
     <strong>ماده1&ndash; </strong>این قرارداد از تاریخ&nbsp;
-    <strong> <input class="textBox" value="{{userDetails.azTarikh}}"></strong>&nbsp;&nbsp;&nbsp;&nbsp; لغایت
-    <strong> <input class="textBox" value="{{userDetails.taTarikh}}"></strong>&nbsp; بمدت یک نیم سال تحصیلی (17هفته)
-    منعقد می&zwnj;گردد.</p>
+    <strong> 
+      
+      <label>1399</label>
+    </strong>&nbsp;&nbsp;&nbsp;&nbsp; لغایت
+    <strong> 
+      <!-- <input class="textBox" value="{{userDetails.taTarikh}}"> -->
+      1399
+    </strong>&nbsp; بمدت یک نیم سال تحصیلی (17هفته)
+    منعقد می&zwnj;گردد.
+  </p>
   <p>
     <strong>ماده2&ndash; </strong>میزان مبلغ حق&zwnj;التدریس هر&zwnj;ساعت معادل با یک پنجاهم بند الف و ب ردیف 22 حکم
     کارگزینی اعضای
     هیأت&zwnj;علمی با رتبه
-    <strong> <input class="textBox" value="{{userDetails.rotbeElmi}}"> </strong>پایه
-    <strong> <input class="textBox" value="{{userDetails.paye}}"> </strong>می&zwnj;باشد که در مقابل گواهی انجام&zwnj;کار
+    <strong> 
+      <label>{{userDetails.rotbeElmi}}</label>
+    </strong>پایه
+    <strong> 
+      <label>{{userDetails.paye}}</label>
+     </strong>می&zwnj;باشد که در مقابل گواهی انجام&zwnj;کار
     از طرف واحد مربوطه، از محل اعتبارات دانشگاه قابل
     پرداخت است.
     درصورت نیاز و با تایید معاون آموزشی دانشگاه در قبال کار انجام شده، بخشی از حق التدریس
     <strong>به</strong> صورت علی الحساب قابل پرداخت است و در هر حال تسویه حساب نهایی منوط به تحویل اوراق امتحانی کتبی و
     لیست کامل
-    نمرات امتحان همان نیم&shy;سال می&zwnj;باشد.</p>
+    نمرات امتحان همان نیم&shy;سال می&zwnj;باشد.
+  </p>
   <p>
     <strong>ماده3- </strong>تعهدات مدرس:
     <strong>الف</strong>&ndash; بموجب این قرارداد مدرس موظف است طبق برنامه&zwnj;ای که از طرف دانشکده تعیین می&zwnj;شود
@@ -174,13 +240,16 @@
     <strong>ج</strong>&ndash; مدرس نمی&zwnj;تواند تعهدات مندرج در این ماده را کلاً یا جزاً به غیر واگذار نماید.
     <strong>د</strong>- مدرس تعهد می&zwnj;نماید که مجموع ساعات تدریس وی در دانشگاه&zwnj;ها و موسسات آموزش عالی از حداکثر
     ساعات مجاز
-    مصوب هیأت امنای مؤسسه تجاوز ننماید.</p>
+    مصوب هیأت امنای مؤسسه تجاوز ننماید.
+  </p>
   <p>
-    <u>تبصره: </u>تشخیص عذر موجه در همه مواد این قرارداد به عهده مؤسسه می&zwnj;باشد. &nbsp;</p>
+    <u>تبصره: </u>تشخیص عذر موجه در همه مواد این قرارداد به عهده مؤسسه می&zwnj;باشد. &nbsp;
+  </p>
   <p>
     <strong>ماده4-</strong> تدریس در موسسه طبق این قرارداد جنبه موقت داشته و در هیچ مورد نمی&zwnj;تواند مبنای استخدام یا
     تبدیل وضع
-    مدرس به صورت عضو هیات علمی مؤسسه قرار گیرد و تدریس طبق این قرارداد مؤید هیچگونه سمت رسمی دانشگاهی نمی&zwnj;باشد.</p>
+    مدرس به صورت عضو هیات علمی مؤسسه قرار گیرد و تدریس طبق این قرارداد مؤید هیچگونه سمت رسمی دانشگاهی نمی&zwnj;باشد.
+  </p>
   <p>
     <strong>ماده5- </strong>مؤسسه می&zwnj;تواند در صورتی که صلاح بداند این قرارداد را با اطلاع قبلی یک ماهه فسخ نماید.
   </p>
@@ -189,38 +258,41 @@
     حاضر نشود
     و یا از انجام امتحانات و تحویل اوراق استنکاف نماید متعهد و ملزم می&zwnj;شود که دو برابر وجوهی را که به موجب این
     قرارداد
-    دریافت داشته است به مؤسسه مسترد دارد.</p>
+    دریافت داشته است به مؤسسه مسترد دارد.
+  </p>
   <p>
-    <strong>ماده7</strong>- نظارت بر حسن انجام کار مدرس بر عهده معاونت آموزشی دانشگاه می&zwnj;باشد.</p>
+    <strong>ماده7</strong>- نظارت بر حسن انجام کار مدرس بر عهده معاونت آموزشی دانشگاه می&zwnj;باشد.
+  </p>
   <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox"
-        value="{{userDetails.emzaAval}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- <input class="textBox"
+        value="{{userDetails.emzaAval}}"> -->
+        <label>مدرس</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox" value="{{userDetails.emzaDovom}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
+      <!-- <input class="textBox" value="{{userDetails.emzaDovom}}"> -->
+      <label>مدیرگروه</label>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
   </p>
   <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
   </p>
-  <p>
-    <strong>&nbsp;</strong>
-  </p>
+ 
   <p>
     <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox"
-        value="{{userDetails.emzaSevom}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <!-- <input class="textBox"
+        value="{{userDetails.emzaSevom}}"> -->
+        <label>معاون آموزشی پژوهشی</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <input class="textBox" value="{{userDetails.emzaChaharom}}"> </strong>
+      <!-- <input class="textBox" value="{{userDetails.emzaChaharom}}">  -->
+      <label>معاون اداری مالی</label>
+    </strong>
   </p>
   <p>
     <strong>&nbsp;</strong>
   </p>
-  <p>
-    <strong>&nbsp;</strong>
-  </p>
-  <p>
-    <strong>&nbsp;</strong>
-  </p>
+ 
   <p>
     <strong>رونوشت به : مستخدم (&nbsp;&nbsp; )&nbsp;&nbsp; کارگزینی (&nbsp;&nbsp;&nbsp; )&nbsp;&nbsp;&nbsp; حسابداری
       (&nbsp;&nbsp;&nbsp;

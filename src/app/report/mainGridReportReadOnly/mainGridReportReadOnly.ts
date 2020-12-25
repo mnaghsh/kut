@@ -71,6 +71,7 @@ export class MainGridReportReadOnlyComponent implements OnInit {
     { value: 8, viewValue: 'سمینار' },
     { value: 9, viewValue: 'عمومی' },
   ];
+  userDetails: any;
   constructor(private configService: ConfigService,
     private _formBuilder: FormBuilder,
     private mainGridReport: MainGridReportReadOnlyService,
@@ -276,6 +277,8 @@ export class MainGridReportReadOnlyComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
+          this.commonService.userDetails = data;
+          console.log(' this.userDetails',  this.userDetails)
           this.userId = data.id;
           this.fullName = data.fullName;
           this.commonService.nameOfSelectedTeacher=data.firstName+' '+data.lastName;
@@ -319,7 +322,7 @@ export class MainGridReportReadOnlyComponent implements OnInit {
     popupWin.document.write(`
       <html>
         <head>
-         
+        <title>پرینت محاسبات ضرایب</title>
           <style>
            *{
               direction:rtl;

@@ -10,27 +10,27 @@
     </ng-container>
     <ng-container matColumnDef="b">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> گروه آموزشی </th>
-      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+      <td mat-cell *matCellDef="let element"  class="cells"> {{commonService.userDetails.gorohAmozeshi}} </td>
     </ng-container>
     <ng-container matColumnDef="c">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> دانشکده </th>
-      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+      <td mat-cell *matCellDef="let element"  class="cells"> {{commonService.userDetails.daneshkade}}  </td>
     </ng-container>
     <ng-container matColumnDef="d">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ شروع ترم </th>
-      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+      <td mat-cell *matCellDef="let element"  class="cells"> 1399 </td>
     </ng-container>
     <ng-container matColumnDef="e">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> تاریخ پایان ترم </th>
-      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+      <td mat-cell *matCellDef="let element"  class="cells"> 1399 </td>
     </ng-container>
     <ng-container matColumnDef="f">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> پایه </th>
-      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+      <td mat-cell *matCellDef="let element"  class="cells"> {{commonService.userDetails.paye}} </td>
     </ng-container>
     <ng-container matColumnDef="g">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header> مدرک تحصیلی </th>
-      <td mat-cell *matCellDef="let element"  class="cells"> mhd </td>
+      <td mat-cell *matCellDef="let element"  class="cells"> {{commonService.akharinMadrakTahsili}}  </td>
     </ng-container>
     <ng-container *ngFor="let column of columns" matColumnDef="{{column.columnDef}}">
       <div>

@@ -4,7 +4,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { MatDialog } from '@angular/material';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 import { ContractSignituresService } from 'src/app/services/contractSignitures/contractSignituresService';
-
+import { totalMainGridReportService } from 'src/app/services/TotalmainGridReport/totalMainGridReport';
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
@@ -27,8 +27,11 @@ export class ContractComponent implements OnInit {
   getcontractSignitureObj: any;
   error: any;
   showContract: boolean;
+  result: any;
+  vahedNahaie: any;
   constructor(private configService: ConfigService,
     public commonService: CommonService,
+    private totalMainGridReportService: totalMainGridReportService,
     private contractSigniture: ContractSignituresService,
     private dialog: MatDialog,
   ) {
@@ -39,6 +42,7 @@ export class ContractComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.getDataOfReport()
     ////debugger
   }
   public btnChooseTeacher() {
@@ -57,6 +61,7 @@ export class ContractComponent implements OnInit {
           this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
             (success) => {
               //debugger
+             
               this.getcontractSignitureObj = JSON.parse(success)
               this.getcontractSignitureObj.forEach(eachContractSignitureObj => {
                 if(eachContractSignitureObj.teacherId==data.id){
@@ -69,6 +74,7 @@ export class ContractComponent implements OnInit {
                       console.log('userDetails', data)
                       this.userDetails = data;
                       this.userId = data.id;
+                      this.getDataOfReport()
                       this.fullName = data.fullName;
                       this.firstName = data.firstName;
                       this.lastName = data.lastName;
@@ -128,7 +134,7 @@ export class ContractComponent implements OnInit {
     popupWin.document.write(`
       <html>
         <head>
-          <title>Print tab</title>
+          <title>پرینت قرارداد </title>
           <style>
            *{
               direction:rtl;
@@ -146,7 +152,26 @@ export class ContractComponent implements OnInit {
   }
 
   save() {
-    console.log('this.userDetails', this.userDetails)
+    
   }
+
+  private getDataOfReport() {
+
+    //////debugger
+    let body = {
+      termId: this.commonService.termId,userId: this.userId
+    }
+
+    this.totalMainGridReportService.getTotalDataOfReport(body)
+      .subscribe(
+        (sucsess) => {
+          
+          this.result = JSON.parse(sucsess)
+          this.vahedNahaie=this.result[0]['C28']
+          console.log('mhhhhhhhd', this.vahedNahaie);
+
+        })
+  }
+  
 
 }

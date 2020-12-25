@@ -403,26 +403,26 @@ INSERT INTO totalValue (`+
     return this.termList.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  private btnChooseTeacher() {
-    const dialogRef = this.dialog.open(TeacherComponent, {
-      width: "85%",
-      height: "85%",
-      data: {
-        //field: field,
-      }
-    });
-    dialogRef.afterClosed().subscribe(
-      (data) => {
-        this.userId = data.id;
-        this.fullName = data.fullName;
-        this.displayedColumns = null
-        this.dataSource = null;
-        this.columns = [];
-        // this.showCourseValueTable = true
-        this.getDataOfReport();
+  // private btnChooseTeacher() {
+  //   const dialogRef = this.dialog.open(TeacherComponent, {
+  //     width: "85%",
+  //     height: "85%",
+  //     data: {
+  //       //field: field,
+  //     }
+  //   });
+  //   dialogRef.afterClosed().subscribe(
+  //     (data) => {
+  //       this.userId = data.id;
+  //       this.fullName = data.fullName;
+  //       this.displayedColumns = null
+  //       this.dataSource = null;
+  //       this.columns = [];
+  //       // this.showCourseValueTable = true
+  //       this.getDataOfReport();
 
-      }
-    )
-  }
+  //     }
+  //   )
+  // }
 
 }
