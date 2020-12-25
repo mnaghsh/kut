@@ -111,7 +111,10 @@ mhd:boolean;
       tarikhTavalod                  : this.userDetails.tarikhTavalod ? this.userDetails.tarikhTavalod:"",
       vaziateShoghli                 : this.userDetails.vaziateShoghli ? this.userDetails.vaziateShoghli:"",
       vaziateTaahol                  : this.userDetails.vaziateTaahol ? this.userDetails.vaziateTaahol:"",
-      akharinMadrakTahsili           : this.userDetails.akharinMadrakTahsili ? this.userDetails.akharinMadrakTahsili:""
+      akharinMadrakTahsili           : this.userDetails.akharinMadrakTahsili ? this.userDetails.akharinMadrakTahsili:"",
+      daneshkade           : this.userDetails.daneshkade ? this.userDetails.daneshkade:"",
+      // madrakTahsili           : this.userDetails.madrakTahsili ? this.userDetails.madrakTahsili:"",
+      gorohAmozeshi           : this.userDetails.gorohAmozeshi ? this.userDetails.gorohAmozeshi:""
       
     }
     console.log('body', body)

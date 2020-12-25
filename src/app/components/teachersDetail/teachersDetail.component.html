@@ -75,8 +75,22 @@
         </p>
       </td>
     </tr>
+    <td>   
+      <!-- <input class="textBoxWide" [(ngModel)]="userDetails.daneshkade">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - مدرک تحصیلی
+        <input class="textBox" [(ngModel)]="userDetails.madrakTahsili">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+        <input class="textBoxWide" [(ngModel)]="userDetails.gorohAmozeshi"> -->
+
+        <p>4-
+          <strong>دانشکده</strong>:&nbsp;
+          <strong> <input class="textBox"  [(ngModel)]="userDetails.daneshkade"></strong>&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;گروه
+          آموزشی:  <input class="textBox"  [(ngModel)]="userDetails.gorohAmozeshi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
+      
+   </td>
     <tr>
-      <app-totalMainGridReport *ngIf="mhd" ></app-totalMainGridReport>
+      <app-totalMainGridReport></app-totalMainGridReport>
     </tr>
   </tbody>
 </table>
