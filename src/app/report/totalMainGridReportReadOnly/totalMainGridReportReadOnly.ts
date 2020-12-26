@@ -15,7 +15,7 @@ import { totalMainGridReportReadOnlyService } from 'src/app/services/TotalmainGr
 export interface Term {
   id: number;
   name: string;
-} 
+}
 
 
 @Component({
@@ -26,28 +26,28 @@ export interface Term {
 export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
   martabe = [
-    {value: 1, viewValue: 'مربی آموزشیار'},
-    {value: 2, viewValue: 'مربی'},
-    {value: 3, viewValue: 'استادیار'},
-    {value: 4, viewValue: 'دانشیار'},
-    {value: 5, viewValue: 'استاد'},
-    {value: 6, viewValue: 'حق التدریس'},
+    { value: 1, viewValue: 'مربی آموزشیار' },
+    { value: 2, viewValue: 'مربی' },
+    { value: 3, viewValue: 'استادیار' },
+    { value: 4, viewValue: 'دانشیار' },
+    { value: 5, viewValue: 'استاد' },
+    { value: 6, viewValue: 'حق التدریس' },
 
   ];
- 
+
   post = [
-    {value: 1, viewValue: 'رئیس دانشگاه'},
-    {value: 2, viewValue: 'معاون دانشگاه'},
-    {value: 3, viewValue: 'رئیس دانشکده'},
-    {value: 4, viewValue: 'معاون دانشکده'},
-    {value: 5, viewValue: 'مدیر امور پژوهشی و فناوری'},
-    {value: 6, viewValue: 'مدیر امور فرهنگی و اجتماعی'},
-    {value: 7, viewValue: 'مدیر امور آموزشی و تحصیلات تکمیلی'},
-    {value: 8, viewValue: 'سرپرست اداره فناوری اطلاعات و خدمات رایانه ای'},
-    {value: 9, viewValue: 'سرپرست گروه نظارت و ارزیابی و تضمین کیفیت'},
-    {value: 10, viewValue: 'مدیر گروه آموزشی با تحصیلات تکمیلی '},
-    {value: 11, viewValue: 'مدیر گروه بدون تحصیلات تکمیلی'},
-    {value: 12, viewValue: 'بدون پست'},
+    { value: 1, viewValue: 'رئیس دانشگاه' },
+    { value: 2, viewValue: 'معاون دانشگاه' },
+    { value: 3, viewValue: 'رئیس دانشکده' },
+    { value: 4, viewValue: 'معاون دانشکده' },
+    { value: 5, viewValue: 'مدیر امور پژوهشی و فناوری' },
+    { value: 6, viewValue: 'مدیر امور فرهنگی و اجتماعی' },
+    { value: 7, viewValue: 'مدیر امور آموزشی و تحصیلات تکمیلی' },
+    { value: 8, viewValue: 'سرپرست اداره فناوری اطلاعات و خدمات رایانه ای' },
+    { value: 9, viewValue: 'سرپرست گروه نظارت و ارزیابی و تضمین کیفیت' },
+    { value: 10, viewValue: 'مدیر گروه آموزشی با تحصیلات تکمیلی ' },
+    { value: 11, viewValue: 'مدیر گروه بدون تحصیلات تکمیلی' },
+    { value: 12, viewValue: 'بدون پست' },
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -187,20 +187,7 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
         (sucsess) => {
           ////debugger
           this.result = JSON.parse(sucsess)
-
-          this.result.forEach(eachRow => {
-
-            var num = eachRow['C26']
-            var roundedString = num.toFixed(2);
-            var rounded = Number(roundedString);
-            eachRow['C26'] = rounded
-
-            var num = eachRow['C28']
-            var roundedString = num.toFixed(2);
-            var rounded = Number(roundedString);
-            eachRow['C28'] = rounded
-
-          });
+          this.round();
 
           if (this.result.length == 0) {
             this.getColumnsOfReport();
@@ -215,11 +202,38 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
         })
   }
+  public round() {
+    this.result.forEach(eachRow => {
+
+      var num = eachRow['C24']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C24'] = rounded
+
+      var num = eachRow['C25']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C25'] = rounded
+
+      var num = eachRow['C26']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C26'] = rounded
+
+      var num = eachRow['C27']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C27'] = rounded
+
+      var num = eachRow['C28']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C28'] = rounded
+
+    });
+  }
 
   private save(message?: boolean, textMessage?: string, mode?: any) {
-
-
-
 
     if (this.newRowObj) {
       if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {

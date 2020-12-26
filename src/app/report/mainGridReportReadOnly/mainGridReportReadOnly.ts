@@ -169,27 +169,57 @@ export class MainGridReportReadOnlyComponent implements OnInit {
           this.commonService.loading = false
           console.log('rows', JSON.parse(sucsess));
           this.result = JSON.parse(sucsess)
-          this.result.forEach(eachRow => {
-
-            var num = eachRow['C16']
-            var roundedString = num.toFixed(2);
-            var rounded = Number(roundedString);
-            eachRow['C16'] = rounded
-
-            var num = eachRow['C18']
-            var roundedString = num.toFixed(2);
-            var rounded = Number(roundedString);
-            eachRow['C18'] = rounded
-
-            var num = eachRow['C19']
-            var roundedString = num.toFixed(2);
-            var rounded = Number(roundedString);
-            eachRow['C19'] = rounded
-
-          });
+         this.round();
           this.getColumnsOfReport();
 
         })
+  }
+
+  public round(){
+    this.result.forEach(eachRow => {
+
+      var num = eachRow['C13']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C13'] = rounded
+
+      var num = eachRow['C14']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C14'] = rounded
+
+      var num = eachRow['C15']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C15'] = rounded
+
+      var num = eachRow['C16']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C16'] = rounded
+
+        
+      var num = eachRow['C17']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C17'] = rounded
+
+      var num = eachRow['C18']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C18'] = rounded
+
+      var num = eachRow['C19']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C19'] = rounded
+      
+      var num = eachRow['C20']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C20'] = rounded
+
+    });
   }
 
 
@@ -335,6 +365,7 @@ export class MainGridReportReadOnlyComponent implements OnInit {
               border: 0px solid gray;
               border-left: 1px solid gray;
               border-bottom: 1px solid gray;
+              font-size: x-small;
              
             }
             .table-striped tbody tr:nth-of-type(odd) {

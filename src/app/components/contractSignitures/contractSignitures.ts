@@ -15,6 +15,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 import { CategoryComponent } from '../category/category.component';
 import { isFactory } from '@angular/core/src/render3/interfaces/injector';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { TotalMainGridReportComponent } from 'src/app/report/totalMainGridReport/totalMainGridReport';
 
 @Component({
   selector: 'app-contractSignitures',
@@ -380,5 +381,27 @@ export class ContractSignituresComponent implements OnInit {
         }
       }
     )
+  }
+  public showTotalReport(row){
+   
+      const dialogRef = this.dialog.open(TotalMainGridReportComponent, {
+        width: "85%",
+        height: "85%",
+        data: {
+          //field: field,
+        }
+      });
+      dialogRef.afterClosed().subscribe(
+        (data) => {
+          if (data) {
+  
+            this.categoryName = data.xDepartment_Farsi
+            this.departmentId = data.x_
+            //this.getSigningContract();
+            this.contractSignitures();
+          }
+        }
+      )
+    
   }
 }

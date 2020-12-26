@@ -43,7 +43,7 @@
     <ng-container matColumnDef="fullName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> نام و نام خانوادگی </th>
       <td mat-cell *matCellDef="let row">
-        <h4> {{row.fullName}}</h4>
+        <h4 (click)="showTotalReport(row)"> {{row.fullName}}</h4>
       </td>
     </ng-container>
 
