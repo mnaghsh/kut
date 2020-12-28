@@ -57,6 +57,16 @@ export class ContractComponent implements OnInit {
     // this.addCalculatedFormul();
     //  this.getColumnDescriptions();
   }
+ngOnDestroy(){
+  this.vahedNahaie = undefined;
+  this.martabeElmi = undefined;
+  this.showCourseValueTable = false
+  this.payeMade2=undefined;
+  this.rotbeMade2=undefined;
+  this.userDetails=undefined;
+  console.log('userDetails',this.userDetails)
+  
+}
 
   ngOnInit() {
     //this.getDataOfReport()
@@ -242,12 +252,12 @@ export class ContractComponent implements OnInit {
     }
     if(this.martabeElmi == "حق التدریس"){
 
-      this.payeMade2= " - ";
+      this.payeMade2= "1";
       if(this.userDetails.akharinMadrakTahsili=="دکتری"){
-        this.rotbeMade2="استاد یار پایه 1"
+        this.rotbeMade2="استاد یار "
       }
       if(this.userDetails.akharinMadrakTahsili=="کارشناسی ارشد"){
-        this.rotbeMade2="مربی پایه 1"
+        this.rotbeMade2="مربی "
       }
     }
 

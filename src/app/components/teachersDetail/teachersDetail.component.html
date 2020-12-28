@@ -23,61 +23,7 @@
   <i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
 
 
-<div style="padding: 1%;  overflow-x:auto;" *ngIf="showCourseValueTable" dir="rtl" id="print-section">
-<table width="1698" >
-  <tbody>
-    <tr>
-      <td width="1698">
-        <p>
-          <strong>1- مشخصات مدرس:&nbsp; </strong>نام خانوادگی: &nbsp;
-          <strong>{{lastName}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نام:
-          <strong>&nbsp;{{firstName}}
-          </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;شماره&zwnj;شناسنامه:
-          <strong>&nbsp;&nbsp;&nbsp; <span><input class="textBox"  [(ngModel)]="userDetails.shomareShenasname"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>شماره ملی:&nbsp;
-          <input class="textBox"   [(ngModel)]="userDetails.shomareMeli">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;</p>
-        <p>نام پدر:
-          <strong>&nbsp;&nbsp;&nbsp;<input   class="textBox"  [(ngModel)]="userDetails.namePedar"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; تاریخ تولد:  
-          <strong> <input class="textBox"  [(ngModel)]="userDetails.tarikhTavalod"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;محل تولد: &nbsp;&nbsp;<input class="textBox"  [(ngModel)]="userDetails.mahaleTavalod">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;وضعیت
-          تأهل:
-          <strong>  <input class="textBox"  [(ngModel)]="userDetails.vaziateTaahol"></strong>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;جنسیت:
-          <strong>  <input class="textBox" [(ngModel)]="userDetails.jensiat"></strong>
-        </p>
-        <p>2-
-          <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
-          <strong> <input class="textBox"  [(ngModel)]="userDetails.akharinMadrakTahsili"></strong>&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
-          تحصیلی:  <input class="textBox"  [(ngModel)]="userDetails.reshteTahsili">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
-          اخذ:  <input class="textBox"  [(ngModel)]="userDetails.saleAkhz">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</p>
-        <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp;  <input class="textBox" [(ngModel)]="userDetails.mahaleAkhzAkharinMadrak">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
-          : &nbsp;
-          <strong>
-            <input class="textBox"  [(ngModel)]="userDetails.rotbeElmi"></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
-          <strong>  <input class="textBox"  [(ngModel)]="userDetails.paye"></strong>
-        </p>
-        <p>
-          <strong>3- وضعیت شغلی:</strong> چنانچه در دانشگاه شاغل هستید چند ساعت تدریس می&zwnj;نمایید؟
-          <input class="textBox"  [(ngModel)]="userDetails.vaziateShoghli"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>&nbsp;ساعت&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;سال
-          سابقه:
-          <strong> <input class="textBox"  [(ngModel)]="userDetails.saleSabeghe">&nbsp;&nbsp;&nbsp; </strong>&nbsp;&nbsp;&nbsp;&nbsp;سال</p>
-        <p>در کدام دانشگاه&shy;ها: &nbsp; <input class="textBox" [(ngModel)]="userDetails.kodamDaneshgahha">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          شماره
-          حساب بانک تجارت:&nbsp;&nbsp;
-          <strong><input class="textBox"  [(ngModel)]="userDetails.shomareHesab"></strong>
-        </p>
-        <p>نشانی و تلفن:
-          <strong><input class="textBoxWide" [(ngModel)]="userDetails.neshaniVaTelephone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - شماره تلفن
-            همراه&nbsp; <input class="textBox" [(ngModel)]="userDetails.mobile">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </strong>
-        </p>
-      </td>
-    </tr>
-    <td>   
-      <!-- <input class="textBoxWide" [(ngModel)]="userDetails.daneshkade">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - مدرک تحصیلی
-<div style="padding: 1%;" *ngIf="showCourseValueTable" dir="rtl" id="print-section">
+<div style="padding: 1%; overflow-x:auto;" *ngIf="showCourseValueTable" dir="rtl" id="print-section">
   <table width="1698">
     <tbody>
       <tr>

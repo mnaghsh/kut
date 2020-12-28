@@ -146,92 +146,7 @@ mhd:boolean;
 
 
   }
-  // public saveData() {
-  //   //debugger
 
-  //     let body = {
-  //       id: this.idOfUserForUpdate,
-  //       username: this.registerForm.value.username,
-  //       password: this.registerForm.value.password,
-  //       firstName: this.registerForm.value.firstName,
-  //       lastName: this.registerForm.value.lastName,
-  //       type: this.typeId,
-  //       //department: this.registerForm.value.department,
-  //       department: this.departmentArray,
-  //       code: this.registerForm.value.code,
-  //     }
-
-  //     this.commonService.loading = true;
-  //     //debugger
-
-
-  //     this.registerService.checkDuplicateUser({ username: this.registerForm.value.username }).subscribe(
-  //       (data: any) => {
-  //         // if(data){
-  //         this.commonService.loading = false;
-  //         console.log(JSON.parse(data));
-  //         data = JSON.parse(data);
-
-  //         //this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
-  //         this.commonService.loading = false;
-  //         //this.idOfUserForUpdate = null;
-  //         //this.updateState = false;
-  //         if (data.length == 0 || this.updateState == true)//یعنی اگر کاربر قبلا وجود نداشت
-  //         {
-  //           this.registerService.insertUsers(body).subscribe(
-  //             (data: any) => {
-  //               // if(data){
-  //               this.commonService.loading = false;
-  //               console.log(JSON.parse(data));
-  //               data = JSON.parse(data);
-  //               this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
-  //               this.commonService.loading = false;
-  //               this.idOfUserForUpdate = null;
-  //               this.updateState = false;
-  //               this.getTeacherList()
-  //               this.getCategoryList()
-  //               this.teacherService.getListOfTeachers().subscribe(
-  //                 (success) => {
-  //                   this.commonService.teacherList = JSON.parse(success)
-
-  //                 },
-  //                 (error) => {
-  //                   this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-  //                 }
-  //               )
-
-
-  //             }
-
-  //             //  }
-  //             ,
-  //             (error) => {
-  //               this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-  //               this.commonService.loading = false;
-  //               this.idOfUserForUpdate = null;
-  //               this.updateState = false;
-  //             }
-  //           )
-  //         }
-  //         else {
-  //           this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
-  //         }
-
-  //       }
-
-  //       //  }
-  //       ,
-  //       (error) => {
-  //         this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
-  //         this.commonService.loading = false;
-  //         // this.idOfUserForUpdate = null;
-  //         // this.updateState = false;
-  //       }
-  //     )
-
-
-
-  // }
 
   public btnChooseTeacher() {
    
@@ -261,6 +176,15 @@ mhd:boolean;
           this.columns = [];
           this.showCourseValueTable = true
           this.commonService.reportUserId = this.userId;
+          switch (this.userDetails.akharinMadrakTahsili) {
+            case "کارشناسی ارشد":
+              this.userDetails.akharinMadrakTahsili="1"
+              break;
+            case "دکتری":
+              this.userDetails.akharinMadrakTahsili="2"
+              break;
+      
+          }
           //this.commonService.reportUserId;
         }
       }
