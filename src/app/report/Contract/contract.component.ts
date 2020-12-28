@@ -29,6 +29,23 @@ export class ContractComponent implements OnInit {
   showContract: boolean;
   result: any;
   vahedNahaie: any;
+  // martabe = [
+  //   { value: 1, viewValue: 'مربی آموزشیار' },
+  //   { value: 2, viewValue: 'مربی' },
+  //   { value: 3, viewValue: 'استادیار' },
+  //   { value: 4, viewValue: 'دانشیار' },
+  //   { value: 5, viewValue: 'استاد' },
+  //   { value: 6, viewValue: 'حق التدریس' },]
+  // madrak = [
+  //   { value: "1", viewValue: 'کارشناسی ارشد' },
+  //   { value: "2", viewValue: 'دکتری' }
+  // ]
+
+  martabeElmi: any;
+  
+  rotbeMade2: any;
+  payeMade2: any;
+
   constructor(private configService: ConfigService,
     public commonService: CommonService,
     private totalMainGridReportService: totalMainGridReportService,
@@ -46,7 +63,13 @@ export class ContractComponent implements OnInit {
     ////debugger
   }
   public btnChooseTeacher() {
+    this.vahedNahaie = undefined;
+    this.martabeElmi = undefined;
     this.showCourseValueTable = false
+    this.payeMade2=undefined;
+    this.rotbeMade2=undefined;
+    this.userDetails=undefined;
+    
     //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
@@ -61,42 +84,42 @@ export class ContractComponent implements OnInit {
           this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
             (success) => {
               //debugger
-             
+
               this.getcontractSignitureObj = JSON.parse(success)
               this.getcontractSignitureObj.forEach(eachContractSignitureObj => {
-                if(eachContractSignitureObj.teacherId==data.id){
-                  if(eachContractSignitureObj.signiture1!=null&&
-                    eachContractSignitureObj.signiture2!=null&&
-                    eachContractSignitureObj.signiture2!=null&&
-                    eachContractSignitureObj.signiture2!=null||this.commonService.activeUser[0].type==1
-                    ){
+                if (eachContractSignitureObj.teacherId == data.id) {
+                  if (eachContractSignitureObj.signiture1 != null &&
+                    eachContractSignitureObj.signiture2 != null &&
+                    eachContractSignitureObj.signiture2 != null &&
+                    eachContractSignitureObj.signiture2 != null || this.commonService.activeUser[0].type == 1
+                  ) {
 
-                      console.log('userDetails', data)
-                      this.userDetails = data;
-                      this.userId = data.id;
-                      this.getDataOfReport()
-                      this.fullName = data.fullName;
-                      this.firstName = data.firstName;
-                      this.lastName = data.lastName;
-                      this.displayedColumns = null
-                      this.dataSource = null;
-                      this.columns = [];
-                      this.showCourseValueTable = true
-                      this.commonService.reportUserId = this.userId;
-                      this.showContract=true;
+                    console.log('userDetails', data)
+                    this.userDetails = data;
+                    this.userId = data.id;
+                    this.getDataOfReport()
+                    this.fullName = data.fullName;
+                    this.firstName = data.firstName;
+                    this.lastName = data.lastName;
+                    this.displayedColumns = null
+                    this.dataSource = null;
+                    this.columns = [];
+                    this.showCourseValueTable = true
+                    this.commonService.reportUserId = this.userId;
+                    this.showContract = true;
 
-                    }
-                    else{
-                      this.error="همه ی امضا ها برای مشاهده این قرارداد هنوز انجام نشده است"
-                      this.showContract=false;
+                  }
+                  else {
+                    this.error = "همه ی امضا ها برای مشاهده این قرارداد هنوز انجام نشده است"
+                    this.showContract = false;
 
-                    }
+                  }
                 }
               });
             }
           )
 
-          
+
         }
       }
     )
@@ -142,6 +165,7 @@ export class ContractComponent implements OnInit {
               text-align: right;
 
             }
+          
           //........Customized style.......
           </style>
         </head>
@@ -152,26 +176,83 @@ export class ContractComponent implements OnInit {
   }
 
   save() {
-    
+
   }
 
   private getDataOfReport() {
 
     //////debugger
     let body = {
-      termId: this.commonService.termId,userId: this.userId
+      termId: this.commonService.termId, userId: this.userId
     }
 
     this.totalMainGridReportService.getTotalDataOfReport(body)
       .subscribe(
         (sucsess) => {
-          
+
           this.result = JSON.parse(sucsess)
-          this.vahedNahaie=this.result[0]['C28']
-          console.log('mhhhhhhhd', this.vahedNahaie);
+          if (this.result[0]) {
+            this.vahedNahaie = this.result[0]['C28']
+            this.martabeElmi = this.result[0]['C22']
+          }
+          this.Process()
+          console.log('this.martabeElmi', this.martabeElmi);
 
         })
   }
+
+
+
   
+  Process() {
+    switch (this.martabeElmi) {
+      case 1:
+        this.martabeElmi = "مربی آموزشیار"
+        break;
+
+      case 2:
+        this.martabeElmi = "مربی"
+        break;
+      case 3:
+        this.martabeElmi = "استادیار"
+        break;
+      case 4:
+        this.martabeElmi = "دانشیار"
+        break;
+      case 5:
+        this.martabeElmi = "استاد"
+        break;
+      case 6:
+        this.martabeElmi = "حق التدریس"
+        break;
+
+    }
+    switch (this.userDetails.akharinMadrakTahsili) {
+      case "1":
+        this.userDetails.akharinMadrakTahsili="کارشناسی ارشد"
+        break;
+      case "2":
+        this.userDetails.akharinMadrakTahsili="دکتری"
+        break;
+
+    }
+    if( this.martabeElmi != "حق التدریس"&& this.userDetails['paye']>0){
+      this.payeMade2= this.userDetails['paye']
+      this.rotbeMade2=this.martabeElmi
+    }
+    if(this.martabeElmi == "حق التدریس"){
+
+      this.payeMade2= " - ";
+      if(this.userDetails.akharinMadrakTahsili=="دکتری"){
+        this.rotbeMade2="استاد یار پایه 1"
+      }
+      if(this.userDetails.akharinMadrakTahsili=="کارشناسی ارشد"){
+        this.rotbeMade2="مربی پایه 1"
+      }
+    }
+
+
+  }
+
 
 }

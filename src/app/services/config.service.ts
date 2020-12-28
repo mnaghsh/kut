@@ -6,7 +6,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class ConfigService {
 baseUrl = 'http://cu.kut.ac.ir/server/api/'
-//  baseUrl = 'http://localhost:50030//api/'
+// baseUrl = 'http://localhost:50030//api/'
 
 
   constructor(public http: HttpClient) {

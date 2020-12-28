@@ -50,6 +50,11 @@ mhd:boolean;
     { id: 4, name: " کارشناس" },
     { id: 5, name: "مدرس" },
   ];
+
+  madrak = [
+    {value: "1", viewValue: 'کارشناسی ارشد'},
+    {value: "2", viewValue: 'دکتری'}
+  ];
   userDetails: any;
   userId: any;
   firstName: any;
@@ -229,6 +234,7 @@ mhd:boolean;
   // }
 
   public btnChooseTeacher() {
+   
     //this.newRowObj = {};
     this.mhd=false
     const dialogRef = this.dialog.open(TeacherComponent, {
@@ -244,6 +250,7 @@ mhd:boolean;
           this.mhd=true;
 
           console.log('userDetails', data)
+          this.userDetails = undefined;
           this.userDetails = data;
           this.userId = data.id;
           this.fullName = data.fullName;
