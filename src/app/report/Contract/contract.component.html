@@ -127,7 +127,10 @@
           <p>2-
             <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
             <strong> 
-              <label>{{userDetails.akharinMadrakTahsili}}</label>
+              <mat-select style="max-width: 8%;" [(ngModel)]="userDetails.akharinMadrakTahsili">
+                <mat-option *ngFor="let f of madrak" [value]="f.value">{{f.viewValue}}</mat-option>
+              </mat-select>
+              <!-- <label>{{userDetails.akharinMadrakTahsili}}</label> -->
             </strong>&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
             تحصیلی: 
@@ -146,10 +149,13 @@
               <label>{{userDetails.mahaleAkhzAkharinMadrak}}</label>
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
             : &nbsp;
-            <strong>
+            <span>
              
-                <label>{{userDetails.rotbeElmi}}</label>
-              </strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
+                <!-- <label>{{martabeElmi}}</label> -->
+                <mat-select style="max-width: 8%;" [(ngModel)]="martabeElmi">
+                  <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
+                </mat-select>
+              </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
             <strong> 
           
               <label>{{userDetails.paye}}</label>

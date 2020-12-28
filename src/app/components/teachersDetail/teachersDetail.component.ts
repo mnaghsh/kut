@@ -50,6 +50,11 @@ mhd:boolean;
     { id: 4, name: " کارشناس" },
     { id: 5, name: "مدرس" },
   ];
+
+  madrak = [
+    {value: "1", viewValue: 'کارشناسی ارشد'},
+    {value: "2", viewValue: 'دکتری'}
+  ];
   userDetails: any;
   userId: any;
   firstName: any;

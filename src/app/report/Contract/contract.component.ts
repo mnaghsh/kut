@@ -29,6 +29,20 @@ export class ContractComponent implements OnInit {
   showContract: boolean;
   result: any;
   vahedNahaie: any;
+  madrak = [
+    {value: "1", viewValue: 'کارشناسی ارشد'},
+    {value: "2", viewValue: 'دکتری'}
+  ]
+  martabe = [
+    {value: 1, viewValue: 'مربی آموزشیار'},
+    {value: 2, viewValue: 'مربی'},
+    {value: 3, viewValue: 'استادیار'},
+    {value: 4, viewValue: 'دانشیار'},
+    {value: 5, viewValue: 'استاد'},
+    {value: 6, viewValue: 'حق التدریس'},
+
+  ];
+  martabeElmi: any;
   constructor(private configService: ConfigService,
     public commonService: CommonService,
     private totalMainGridReportService: totalMainGridReportService,
@@ -46,6 +60,8 @@ export class ContractComponent implements OnInit {
     ////debugger
   }
   public btnChooseTeacher() {
+    this.vahedNahaie=undefined;
+    this.martabeElmi=undefined;
     this.showCourseValueTable = false
     //this.newRowObj = {};
     const dialogRef = this.dialog.open(TeacherComponent, {
@@ -167,7 +183,9 @@ export class ContractComponent implements OnInit {
         (sucsess) => {
           
           this.result = JSON.parse(sucsess)
+          if(this.result[0]){
           this.vahedNahaie=this.result[0]['C28']
+          this.martabeElmi=this.result[0]['C22']}
           console.log('mhhhhhhhd', this.vahedNahaie);
 
         })

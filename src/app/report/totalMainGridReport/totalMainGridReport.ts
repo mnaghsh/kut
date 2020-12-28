@@ -30,7 +30,7 @@ export class TotalMainGridReportComponent implements OnInit {
     { id: 3, name: 'Igor' }
   ];
 
-  martabe = [
+  martabe = [ 
     {value: 1, viewValue: 'مربی آموزشیار'},
     {value: 2, viewValue: 'مربی'},
     {value: 3, viewValue: 'استادیار'},
