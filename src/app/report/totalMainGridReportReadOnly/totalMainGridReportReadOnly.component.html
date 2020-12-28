@@ -2,7 +2,7 @@
 <div *ngIf="userId">
   <!-- <button mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true" -->
   <!-- *ngIf="commonService.showSaveBtn==1" mat-raised-button (click)="save(1)">ذخیره</button> -->
-  <table matSort class="table table-striped table-hover gridTotal" mat-table dir="rtl" [dataSource]="dataSource">
+  <table matSort class="table table-striped table-hover table table-responsive  gridTotal" mat-table dir="rtl" [dataSource]="dataSource">
     <!-- data Column -->
     <ng-container matColumnDef="a">
       <th class="headerGridTotal"  mat-header-cell *matHeaderCellDef mat-sort-header>  نام و نام خانوادگی </th>

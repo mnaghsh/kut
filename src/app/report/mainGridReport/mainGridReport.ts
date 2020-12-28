@@ -51,30 +51,31 @@ export class MainGridReportComponent implements OnInit {
   loginForm: FormGroup;
   nullRresult = false
   clonedUncalculatedColumns: any;
-  clonedResult: any; 
+  clonedResult: any;
   firstTime = [
-    {value: 1, viewValue: 'بلی'},
-    {value: 2, viewValue: 'خیر'}
+    { value: 1, viewValue: 'بلی' },
+    { value: 2, viewValue: 'خیر' }
   ];
   // مقطع درس
   courseSection = [
-    {value: 1, viewValue: 'کارشناسی'},
-    {value: 2, viewValue: 'ارشد'},
-    {value: 3, viewValue: 'دکتری'}
+    { value: 1, viewValue: 'کارشناسی' },
+    { value: 2, viewValue: 'ارشد' },
+    { value: 3, viewValue: 'دکتری' }
   ];
 
   courseType = [
-    {value: 1, viewValue: 'پایه و تخصصی'},
-    {value: 2, viewValue: 'آزمایشگاه'},
-    {value: 3, viewValue: 'کارگاه'},
-    {value: 4, viewValue: 'معرفی به استاد'},
-    {value: 5, viewValue: 'داوری'},
-    {value: 6, viewValue: 'پروژه'},
-    {value: 7, viewValue: 'کارآموزی'}, 
-    {value: 8, viewValue: 'سمینار'},
-    {value: 9, viewValue: 'عمومی'},
+    { value: 1, viewValue: 'پایه و تخصصی' },
+    { value: 2, viewValue: 'آزمایشگاه' },
+    { value: 3, viewValue: 'کارگاه' },
+    { value: 4, viewValue: 'معرفی به استاد' },
+    { value: 5, viewValue: 'داوری' },
+    { value: 6, viewValue: 'پروژه' },
+    { value: 7, viewValue: 'کارآموزی' },
+    { value: 8, viewValue: 'سمینار' },
+    { value: 9, viewValue: 'عمومی' },
   ];
   toppingList: string[] = ['بله',];
+  courseSelected: boolean;
   constructor(private configService: ConfigService,
     private fb: FormBuilder,
     private mainGridReport: MainGridReportService,
@@ -118,7 +119,8 @@ export class MainGridReportComponent implements OnInit {
   ngOnDestroy() {
     if (this.commonService.showSaveBtn == true) {
       this.commonService.showEventMessage(" برخی ردیف ها تغییر یافته ولی ذخیره نشدند")
-      this.commonService.showSaveBtn=false;
+      this.commonService.showSaveBtn = false;
+      this.courseSelected =false;
     }
 
 
@@ -157,11 +159,16 @@ export class MainGridReportComponent implements OnInit {
 
           this.displayedColumns = this.columns.map(c => c.columnDef);
           this.displayedColumns.push('icon')
+          console.log('this.this.result', this.result);
+          for (let i = 0; i < this.result.length; i++) {
+            if (this.result[i]['C4'] == 0) {
+              this.result[i]['C4'] = 100;
+            }
 
+          }
           this.dataSource = new MatTableDataSource(this.result);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-          console.log('this.columns', this.displayedColumns);
 
         })
   }
@@ -185,8 +192,12 @@ export class MainGridReportComponent implements OnInit {
   }
 
   private save(message: boolean, textMessage?: string, mode?: any) {
+    debugger
     this.nullRresult = false
-    if (this.newRowObj) {
+    if(this.courseSelected == true){
+
+    
+    if (this.newRowObj ) {
       if (!(this.newRowObj === undefined || this.newRowObj === null || Object.keys(this.newRowObj).length === 0)) {
         console.log(' this.mhd', this.newRowObj)
         this.newRowObj['userId'] = this.userId
@@ -231,6 +242,21 @@ export class MainGridReportComponent implements OnInit {
       this.deleteQuery = `delete from courseValue
         where userid=`+ this.userId + ` and termid=` + this.termId
       if (this.insertQuery) {
+
+        // this.dataOfUnCalculatedColumns.forEach(eacheCells=> {
+        //   if(eacheCells==undefined){
+
+        //     eacheCells="0";
+        //   }
+        // });
+
+        for (let i = 0; i < this.dataOfUnCalculatedColumns.length; i++) {
+          if (this.dataOfUnCalculatedColumns[i] == undefined) {
+
+            this.dataOfUnCalculatedColumns[i] = 0;
+          }
+
+        }
         this.insertQuery += `
 INSERT INTO courseValue (`+
           this.uncalculatedColumns
@@ -238,6 +264,13 @@ INSERT INTO courseValue (`+
           + this.dataOfUnCalculatedColumns + `)`
       }
       else {
+        for (let i = 0; i < this.dataOfUnCalculatedColumns.length; i++) {
+          if (this.dataOfUnCalculatedColumns[i] == undefined) {
+
+            this.dataOfUnCalculatedColumns[i] = 0;
+          }
+
+        }
         this.insertQuery = `
 INSERT INTO courseValue (`+
           this.uncalculatedColumns
@@ -286,7 +319,7 @@ INSERT INTO courseValue (`+
     
     'Exec(@Q)`
 
-    console.log('this.dataOfUnCalculatedColumns', this.dataOfUnCalculatedColumns)
+    console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz', this.dataOfUnCalculatedColumns)
     console.log('result', this.result)
     console.log('columns', this.columns)
     let body
@@ -308,48 +341,55 @@ INSERT INTO courseValue (`+
     this.commonService.loading = true;
     ////debugger
     console.log('body', body)
-    if (this.nullRresult == false) {
-      this.mainGridReport.saveDataOfReport(body)
-        .subscribe(
-          (sucsess) => {
-            //this.commonService.loading=0;
-            this.commonService.loading = false;
-            this.deleteQuery = "";
-            this.insertQuery = "";
-
-            if (message) {
-              ////debugger
-              this.commonService.showEventMessage(textMessage ? textMessage : "داده ها با موفقیت ذخیره شد", 2000)
-            }
-            //ebugger
-            // if(mode=="addRow"){
-            this.displayedColumns = null
-            this.dataSource = null;
-            this.columns = [];
-            this.getDataOfReport();
-            this.newRowObj = {};
-            this.commonService.showSaveBtn = false;
-
-            this.commonService.showTotalValueTable = true;
-            this.commonService.loading = false;
-            this.commonService.saveTotalMainGrid.emit(null)
-          }),
-        (error) => {
+    // if (this.nullRresult == false) {
+    this.mainGridReport.saveDataOfReport(body)
+      .subscribe(
+        (sucsess) => {
+          body={};
+          //this.commonService.loading=0;
+          this.commonService.loading = false;
           this.deleteQuery = "";
           this.insertQuery = "";
 
-          this.commonService.showEventMessage("داده ها با موفقیت ذخیره نشد-خطا!")
+          if (message) {
+            ////debugger
+            this.commonService.showEventMessage(textMessage ? textMessage : "داده ها با موفقیت ذخیره شد", 2000)
+          }
+          //ebugger
+          // if(mode=="addRow"){
+          this.displayedColumns = null
+          this.dataSource = null;
+          this.columns = [];
           this.getDataOfReport();
+          this.newRowObj = {};
+          this.commonService.showSaveBtn = false;
+          this.commonService.showTotalValueTable = true;
           this.commonService.loading = false;
-        }
+          this.commonService.saveTotalMainGrid.emit(null)
+          this.courseSelected =false;
+        }),
+      (error) => {
+        debugger;
+        this.deleteQuery = "";
+        this.insertQuery = "";
+        body={};
+        this.commonService.showEventMessage("داده ها با موفقیت ذخیره نشد-خطا!")
+        this.getDataOfReport();
+        this.commonService.loading = false;
+        this.courseSelected =false;
+      }
+      body={};
+    // }
+    // else {
+    //   this.deleteQuery = "";
+    //   this.insertQuery = "";
+    //   this.commonService.showEventMessage("حتما موارد ستاره دار را تکمیل کنید")
+    //   this.commonService.loading = false;
+    // }
     }
-    else {
-      this.deleteQuery = "";
-      this.insertQuery = "";
-      this.commonService.showEventMessage("حتما موارد ستاره دار را تکمیل کنید")
-      this.commonService.loading = false;
+    else{
+      this.commonService.showEventMessage("نام درس برای هیچکدام از ردیف ها نمیتواند خالی باشد")
     }
-
   }
   private replaceNewData() {
     this.displayedColumns = null
@@ -358,6 +398,7 @@ INSERT INTO courseValue (`+
     this.getDataOfReport();
     this.newRowObj = {};
     this.commonService.showSaveBtn = false;
+    this.courseSelected =false;
     this.commonService.rollback.next(2);
   }
 
@@ -370,10 +411,10 @@ INSERT INTO courseValue (`+
         }
       }
     });
-//debugger
+    //debugger
     JSON.parse(this.clonedResult).forEach(eachRowsOFData => {
       JSON.parse(this.clonedUncalculatedColumns).forEach(eachuncalculatedColumns => {
-        if (eachRowsOFData[eachuncalculatedColumns] = null||eachRowsOFData[eachuncalculatedColumns] == undefined) {
+        if (eachRowsOFData[eachuncalculatedColumns] = null || eachRowsOFData[eachuncalculatedColumns] == undefined) {
           this.nullRresult = true;
         }
       });
@@ -410,7 +451,7 @@ INSERT INTO courseValue (`+
   }
   deleteRow(row) {
 
-
+this.courseSelected=true;
     for (let i = 0; i < this.result.length; i++) {
       if (this.result[i].courseId == row.courseId) {
         this.result.splice(i, 1);
@@ -451,15 +492,15 @@ INSERT INTO courseValue (`+
     });
     dialogRef.afterClosed().subscribe(
       (data) => {
-        if(data){
-        this.userId = data.id;
-        this.fullName = data.fullName;
-        this.displayedColumns = null
-        this.dataSource = null;
-        this.columns = [];
-        this.showCourseValueTable = true
-        this.getDataOfReport();
-        this.commonService.reportUserId = this.userId;
+        if (data) {
+          this.userId = data.id;
+          this.fullName = data.fullName;
+          this.displayedColumns = null
+          this.dataSource = null;
+          this.columns = [];
+          this.showCourseValueTable = true
+          this.getDataOfReport();
+          this.commonService.reportUserId = this.userId;
         }
 
       }
@@ -479,7 +520,7 @@ INSERT INTO courseValue (`+
       (data) => {
 
         if (data) {
-          
+          this.courseSelected = true;
           this.selectedRow.CourseName = data.name
           this.selectedRow.courseId = data.id
           this.commonService.showSaveBtn = true

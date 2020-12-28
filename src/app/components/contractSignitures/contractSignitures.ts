@@ -384,24 +384,24 @@ export class ContractSignituresComponent implements OnInit {
   }
   public showTotalReport(row){
    
-      const dialogRef = this.dialog.open(TotalMainGridReportComponent, {
-        width: "85%",
-        height: "85%",
-        data: {
-          //field: field,
-        }
-      });
-      dialogRef.afterClosed().subscribe(
-        (data) => {
-          if (data) {
+      // const dialogRef = this.dialog.open(TotalMainGridReportComponent, {
+      //   width: "85%",
+      //   height: "85%",
+      //   data: {
+      //     //field: field,
+      //   }
+      // });
+      // dialogRef.afterClosed().subscribe(
+      //   (data) => {
+      //     if (data) {
   
-            this.categoryName = data.xDepartment_Farsi
-            this.departmentId = data.x_
-            //this.getSigningContract();
-            this.contractSignitures();
-          }
-        }
-      )
+      //       this.categoryName = data.xDepartment_Farsi
+      //       this.departmentId = data.x_
+      //       //this.getSigningContract();
+      //       this.contractSignitures();
+      //     }
+      //   }
+      // )
     
   }
 }
