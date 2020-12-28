@@ -234,6 +234,7 @@ mhd:boolean;
   // }
 
   public btnChooseTeacher() {
+   
     //this.newRowObj = {};
     this.mhd=false
     const dialogRef = this.dialog.open(TeacherComponent, {
@@ -249,6 +250,7 @@ mhd:boolean;
           this.mhd=true;
 
           console.log('userDetails', data)
+          this.userDetails = undefined;
           this.userDetails = data;
           this.userId = data.id;
           this.fullName = data.fullName;

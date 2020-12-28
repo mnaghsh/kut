@@ -127,10 +127,10 @@
           <p>2-
             <strong>آخرین مدرک تحصیلی</strong>:&nbsp;
             <strong> 
-              <mat-select style="max-width: 8%;" [(ngModel)]="userDetails.akharinMadrakTahsili">
+              <!-- <mat-select style="max-width: 8%;" [(ngModel)]="userDetails.akharinMadrakTahsili">
                 <mat-option *ngFor="let f of madrak" [value]="f.value">{{f.viewValue}}</mat-option>
-              </mat-select>
-              <!-- <label>{{userDetails.akharinMadrakTahsili}}</label> -->
+              </mat-select> -->
+              <label>{{userDetails.akharinMadrakTahsili}}</label>
             </strong>&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رشته
             تحصیلی: 
@@ -147,19 +147,21 @@
           <p>محل اخذ آخرین مدرک(کشور و دانشگاه): &nbsp; 
             
               <label>{{userDetails.mahaleAkhzAkharinMadrak}}</label>
+              <span class="mhd">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; رتبه علمی
             : &nbsp;
-            <span>
+            </span>
+            <span class="mhd">
              
-                <!-- <label>{{martabeElmi}}</label> -->
-                <mat-select style="max-width: 8%;" [(ngModel)]="martabeElmi">
+                <label>{{martabeElmi}}</label>
+                <!-- <mat-select disabled  class="mhd" style="max-width: 8%;" [(ngModel)]="martabeElmi">
                   <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
-                </mat-select>
+                </mat-select> -->
               </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; پایه:
-            <strong> 
+            <span s> 
           
               <label>{{userDetails.paye}}</label>
-            </strong>
+            </span>
           </p>
           <p>
             <strong>3- وضعیت شغلی:</strong> چنانچه در دانشگاه شاغل هستید چند ساعت تدریس می&zwnj;نمایید؟
@@ -205,11 +207,11 @@
     <strong>ماده1&ndash; </strong>این قرارداد از تاریخ&nbsp;
     <strong> 
       
-      <label>1399</label>
+      <label>1399/06/29</label>
     </strong>&nbsp;&nbsp;&nbsp;&nbsp; لغایت
     <strong> 
       <!-- <input class="textBox" value="{{userDetails.taTarikh}}"> -->
-      1399
+      1399/10/15
     </strong>&nbsp; بمدت یک نیم سال تحصیلی (17هفته)
     منعقد می&zwnj;گردد.
   </p>
@@ -218,10 +220,10 @@
     کارگزینی اعضای
     هیأت&zwnj;علمی با رتبه
     <strong> 
-      <label>{{userDetails.rotbeElmi}}</label>
+      <label>{{rotbeMade2}}</label>
     </strong>پایه
     <strong> 
-      <label>{{userDetails.paye}}</label>
+      <label>{{payeMade2}}</label>
      </strong>می&zwnj;باشد که در مقابل گواهی انجام&zwnj;کار
     از طرف واحد مربوطه، از محل اعتبارات دانشگاه قابل
     پرداخت است.
