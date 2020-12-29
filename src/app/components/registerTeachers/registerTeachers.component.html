@@ -43,11 +43,11 @@
       </mat-form-field>
       <br> -->
 
-      <mat-form-field class="full-width">
+      <!-- <mat-form-field class="full-width">
         <mat-select [(ngModel)]="typeId" [ngModelOptions]="{standalone: true}">
           <mat-option *ngFor="let t of typeList" [value]="t.id">{{t.name}}</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <br>
       <mat-form-field class="full-width">
@@ -55,8 +55,8 @@
       </mat-form-field>
       <br>
       <mat-form-field class="full-width">
-        <mat-label>گروه آموزشی</mat-label>
-        <mat-select (closed)="closeSelect(myControl.value)" [formControl]="myControl" multiple>
+        <!-- <mat-label>گروه آموزشی</mat-label> -->
+        <!-- <mat-select (closed)="closeSelect(myControl.value)" [formControl]="myControl" multiple>
           <mat-select-trigger>
             {{myControl.value ? myControl.value[0] : ''}}
             <span *ngIf="myControl.value?.length > 1" class="example-additional-selection">
@@ -64,7 +64,13 @@
             </span>
           </mat-select-trigger>
           <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.xDepartment_Farsi}}</mat-option>
+        </mat-select> --> 
+        <mat-select  [(ngModel)]="department" [ngModelOptions]="{standalone: true}" >
+          <mat-option *ngFor="let topping of toppingList" [value]="topping.x_">
+            {{topping.xDepartment_Farsi}}
+          </mat-option>
         </mat-select>
+        
       </mat-form-field>
 
       <br>

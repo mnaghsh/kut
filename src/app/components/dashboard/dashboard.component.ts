@@ -56,6 +56,7 @@ this.addItems=[
 
     this.adminPages = [
       { label: ' تنظیمات کاربرها', path: "/register", icon: "fas fa-user-plus" },
+      { label: ' تنظیمات اساتید', path: "/registerTeachers", icon: "fas fa-user-plus" },
      
       // { label: ' بروزرسانی ', path: "/update", icon: "fas fa-refresh" },
       // { label: ' عملیات ', path: "/mission-info", icon: "fas fa-opera" },

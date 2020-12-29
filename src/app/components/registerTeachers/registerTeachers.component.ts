@@ -22,21 +22,20 @@ export interface Term {
   name: string;
 }
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-registerTeachers.',
+  templateUrl: './registerTeachers.component.html',
+  styleUrls: ['./registerTeachers.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterTeachersComponent implements OnInit {
   //toppings = new FormControl();
   toppingList: string[] = this.commonService.categoryList
 
   registerForm;
   fullName = "ویرایش کاربران قبلی"
   myControl = new FormControl();
-  departmentArray: string;
   haveAccount:any;
   // code: any;
-  // department: any;
+   department: any;
   typeId: any;
   // firstName: any;
   // password: any;
@@ -49,8 +48,10 @@ export class RegisterComponent implements OnInit {
     { id: 2, name: "معاون" },
     { id: 3, name: "مدیرگروه" },
     { id: 4, name: " کارشناس" },
-    // { id: 5, name: "مدرس" },
+    { id: 5, name: "مدرس" },
   ];
+  dpart: number;
+  departmentArray: string;
 
 
   constructor(private fb: FormBuilder,
@@ -69,16 +70,18 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       //type: ['', Validators.required],
-      //department: ['', Validators.required],
+     // department: ['', Validators.required],
       code: ['', Validators.required],
-      //haveAccount: ['', Validators.required]
+    //  haveAccount: ['', Validators.required]
       
     });
   }
 
   ngOnInit() {
+console.log('toppingList',this.toppingList)
 
   }
+
 
 
   public saveData() {
@@ -91,11 +94,11 @@ export class RegisterComponent implements OnInit {
         password: this.registerForm.value.password,
         firstName: this.registerForm.value.firstName,
         lastName: this.registerForm.value.lastName,
-        type: this.typeId,
-        //department: this.registerForm.value.department,
-        department: this.departmentArray,
+        type: 5,
+        department: this.department,
+        //department: this.departmentArray,
         code: this.registerForm.value.code,
-        haveAccount: true
+        haveAccount: 0
       }
 
       this.commonService.loading = true;
@@ -130,14 +133,15 @@ export class RegisterComponent implements OnInit {
                 this.teacherService.getListOfTeachers().subscribe(
                   (success) => {
                     this.commonService.teacherList = JSON.parse(success)
+                    this.commonService.allPersonsList = JSON.parse(success)
 
                   },
                   (error) => {
                     this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
                   }
                 )
+                this.resetFrom()
 
-this.resetFrom()
               }
 
               //  }
@@ -148,13 +152,16 @@ this.resetFrom()
                 this.idOfUserForUpdate = null;
                 this.updateState = false;
                 this.resetFrom()
-
               }
             )
           }
           else {
             this.commonService.showEventMessage("نام کاربری نباید تکراری باشد")
           }
+          
+         
+        
+          
 
         }
 
@@ -170,7 +177,7 @@ this.resetFrom()
 
 
 
-    }
+   }
 
   }
 
@@ -179,7 +186,7 @@ this.resetFrom()
 
   public btnChooseUser() {
 
-    const dialogRef = this.dialog.open(UsersComponent, {
+    const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
       height: "85%",
       data: {
@@ -200,11 +207,12 @@ this.resetFrom()
             firstName: [data.firstName, Validators.required],
             lastName: [data.lastName, Validators.required],
             // type: [data.type, Validators.required],
-            department: [data.department, Validators.required],
+           // department: [data.department, Validators.required],
             code: [data.code, Validators.required],
-            //: [data.haveAccount, Validators.required]
+           // haveAccount: [data.haveAccount, Validators.required]
           });
-
+           //console.log('registerForm',this.registerForm)
+           this.department=Number(data.department)
           this.typeId = data.type;
           // let localDepartmentArray = JSON.parse(data.department);
           //this.departmentArray = '[' + String(localDepartmentArray) + ']'
@@ -227,21 +235,23 @@ this.resetFrom()
       //type: ['', Validators.required],
      // department: ['', Validators.required],
       code: ['', Validators.required],
-     // haveAccount: ['', Validators.required]
+     //haveAccount: ['', Validators.required]
       
-    });}
+    });
+  }
   changeType(inputTypeId) {
     //debugger
     this.typeId = inputTypeId
   }
-  closeSelect(selectedDepartments) {
-    let localDepartmentArray = [];
-    selectedDepartments.forEach(eachSelectedDepartments => {
-      localDepartmentArray.push(Number(eachSelectedDepartments.x_))
-    });
-    this.departmentArray = '[' + String(localDepartmentArray) + ']'
-    //debugger
-  }
+  // closeSelect(selectedDepartments) {
+  //   debugger
+  //   let localDepartmentArray = [];
+  //   selectedDepartments.forEach(eachSelectedDepartments => {
+  //     localDepartmentArray.push(Number(eachSelectedDepartments.x_))
+  //   });
+  //   this.departmentArray = '[' + String(localDepartmentArray) + ']'
+  //   //debugger
+  // }
 
   private getTeacherList() {
     this.teacherService.getListOfTeachers().subscribe(

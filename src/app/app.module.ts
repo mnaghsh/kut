@@ -26,6 +26,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { UsersComponent } from './components/users/users.component';
 import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 import { AllPersonsComponent } from './components/allPersons/allPersons.component';
+import { RegisterTeachersComponent } from './components/registerTeachers/registerTeachers.component';
 //import { TeachersDetailComponent } from './components/teachersDetail/teachersDetail.component';
 
 
@@ -42,6 +43,7 @@ const myRoots: Routes = [
       { path: 'contractSignitures', component: ContractSignituresComponent},
       { path: 'contractSignituresForCalculationUnits', component: ContractSignituresForCalculationUnitsComponent},
       { path: 'register', component: RegisterComponent},
+      { path: 'registerTeachers', component: RegisterTeachersComponent},
        { path: 'teachersDetail', component: TeachersDetailComponent}
 
 
@@ -60,6 +62,7 @@ const myRoots: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    RegisterTeachersComponent,
     TeachersDetailComponent,
     DelegationSignitureComponent,
     DelegationSignitureForCalculationUnitsComponent,
