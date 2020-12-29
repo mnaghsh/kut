@@ -194,7 +194,7 @@ export class MainGridReportComponent implements OnInit {
   private save(message: boolean, textMessage?: string, mode?: any) {
     debugger
     this.nullRresult = false
-    if(this.courseSelected == true){
+   // if(this.courseSelected == true){
 
     
     if (this.newRowObj ) {
@@ -255,6 +255,11 @@ export class MainGridReportComponent implements OnInit {
 
             this.dataOfUnCalculatedColumns[i] = 0;
           }
+          // if(this.dataOfUnCalculatedColumns[i]['CourseName']== undefined||this.dataOfUnCalculatedColumns[i]['CourseName']== null|| Object.keys(this.dataOfUnCalculatedColumns[i]['CourseName']).length === 0){
+          //   this.courseSelected=false;
+          //   this.commonService.showEventMessage("نام درس برای هیچکدام از ردیف ها نمیتواند خالی باشد")
+          //   return
+          // }
 
         }
         this.insertQuery += `
@@ -269,6 +274,11 @@ INSERT INTO courseValue (`+
 
             this.dataOfUnCalculatedColumns[i] = 0;
           }
+          // if(this.dataOfUnCalculatedColumns[i]['CourseName']== undefined||this.dataOfUnCalculatedColumns[i]['CourseName']== null|| Object.keys(this.dataOfUnCalculatedColumns[i]['CourseName']).length === 0){
+          //   this.courseSelected=false;
+          //   this.commonService.showEventMessage("نام درس برای هیچکدام از ردیف ها نمیتواند خالی باشد")
+          //   return
+          // }
 
         }
         this.insertQuery = `
@@ -386,10 +396,10 @@ INSERT INTO courseValue (`+
     //   this.commonService.showEventMessage("حتما موارد ستاره دار را تکمیل کنید")
     //   this.commonService.loading = false;
     // }
-    }
-    else{
-      this.commonService.showEventMessage("نام درس برای هیچکدام از ردیف ها نمیتواند خالی باشد")
-    }
+  //  }
+  //  else{
+  //    this.commonService.showEventMessage("نام درس برای هیچکدام از ردیف ها نمیتواند خالی باشد")
+   // }
   }
   private replaceNewData() {
     this.displayedColumns = null
@@ -501,6 +511,7 @@ this.courseSelected=true;
           this.showCourseValueTable = true
           this.getDataOfReport();
           this.commonService.reportUserId = this.userId;
+      
         }
 
       }

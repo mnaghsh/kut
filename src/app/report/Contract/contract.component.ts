@@ -49,7 +49,7 @@ export class ContractComponent implements OnInit {
   constructor(private configService: ConfigService,
     public commonService: CommonService,
     private totalMainGridReportService: totalMainGridReportService,
-    private contractSigniture: ContractSignituresService,
+    private contractSigniture: ContractSignituresService, 
     private dialog: MatDialog,
   ) {
     this.mhd = "mhd2"
@@ -91,6 +91,7 @@ ngOnDestroy(){
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
+          this.commonService.loading = true;
           this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
             (success) => {
               //debugger
@@ -117,7 +118,7 @@ ngOnDestroy(){
                     this.showCourseValueTable = true
                     this.commonService.reportUserId = this.userId;
                     this.showContract = true;
-
+                    this.commonService.loading = false;
                   }
                   else {
                     this.error = "همه ی امضا ها برای مشاهده این قرارداد هنوز انجام نشده است"
@@ -195,14 +196,20 @@ ngOnDestroy(){
     let body = {
       termId: this.commonService.termId, userId: this.userId
     }
-
+    this.commonService.loading = true;
     this.totalMainGridReportService.getTotalDataOfReport(body)
       .subscribe(
         (sucsess) => {
-
+          this.commonService.loading = false;
           this.result = JSON.parse(sucsess)
           if (this.result[0]) {
             this.vahedNahaie = this.result[0]['C28']
+            var num =this.vahedNahaie
+            var roundedString = num.toFixed(2);
+            var rounded = Number(roundedString);
+            this.vahedNahaie = rounded
+
+
             this.martabeElmi = this.result[0]['C22']
           }
           this.Process()

@@ -11,6 +11,7 @@ import { startWith, map } from 'rxjs/operators';
 import { TeacherComponent } from 'src/app/components/teacher/teacher.component';
 import { totalMainGridReportService } from 'src/app/services/TotalmainGridReport/totalMainGridReport';
 import { totalMainGridReportReadOnlyService } from 'src/app/services/TotalmainGridReportReadOnly/totalMainGridReport';
+import { TeacherService } from 'src/app/services/teacher/teacherService';
 
 export interface Term {
   id: number;
@@ -57,6 +58,7 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
   newRowObj = {}
   dataSource: MatTableDataSource<any>;
   columns = [];
+
   result = [];
   uncalculatedColumns = [];
   dataOfUnCalculatedColumns = [];
@@ -74,9 +76,11 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
   fullName = "انتخاب استاد"
   showAddRow = false;
   attachmentEndScript: string;
+  akharinMadrakTahsili: string;
 
   constructor(private configService: ConfigService,
     private totalMainGridReportService: totalMainGridReportService,
+    private teacherService: TeacherService,
     private totalMainGridReportReadOnlyService: totalMainGridReportReadOnlyService,
     private dialog: MatDialog,
     public commonService: CommonService) {
@@ -103,12 +107,23 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    // this.getTeacherList()
     //debugger
     this.termId = this.commonService.termId;
     this.userId = this.commonService.reportUserId;
     this.getDataOfReport();
+    this.userDetailInformation();
     //this.getTermList()
+  }
+  userDetailInformation() {
+
+    if(this.commonService.userDetailInfo.akharinMadrakTahsili=="1"){
+              this.akharinMadrakTahsili="کارشناسی ارشد"
+            }
+            if(this.commonService.userDetailInfo.akharinMadrakTahsili=="2"){
+             this.akharinMadrakTahsili="دکتری"
+            }
+   console.log('this.commonService.userDetailInfo;',this.commonService.userDetailInfo) 
   }
   private replaceNewData() {
     this.displayedColumns = null
@@ -417,6 +432,9 @@ INSERT INTO totalValue (`+
     return this.termList.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
+
+  
+
   // private btnChooseTeacher() {
   //   const dialogRef = this.dialog.open(TeacherComponent, {
   //     width: "85%",
@@ -439,4 +457,28 @@ INSERT INTO totalValue (`+
   //   )
   // }
 
+
+  // private getTeacherList() {
+  //   this.teacherService.getListOfTeachers().subscribe(
+  //     (success) => {
+  //       debugger;
+        
+  //       this.commonService.userDetails = JSON.parse(success)
+  //       if(this.commonService.userDetails.)
+  //       //this.commonService.allPersonsList = JSON.parse(success)
+  //       if(this.commonService.userDetails.akharinMadrakTahsili=="1"){
+  //         this.akharinMadrakTahsili="کارشناسی ارشد"
+  //       }
+  //       if(this.commonService.userDetails.akharinMadrakTahsili=="2"){
+  //        this.akharinMadrakTahsili="دکتری"
+  //       }
+  //      // this.connectToServer = true;
+  //     },
+  //     (error) => {
+  //      // this.connectToServer = false;
+  //     }
+  //   )
+
+  // }
+  
 }

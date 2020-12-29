@@ -318,6 +318,7 @@ export class MainGridReportReadOnlyComponent implements OnInit {
           this.showCourseValueTable = true
           this.getDataOfReport();
           this.commonService.reportUserId = this.userId;
+          this.commonService.userDetailInfo =data;
 
         }
       }
