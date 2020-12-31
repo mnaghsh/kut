@@ -55,7 +55,7 @@ this.addItems=[
  
 
     this.adminPages = [
-      { label: ' تنظیمات کاربرها', path: "/register", icon: "fas fa-user-plus" },
+      { label: ' تنظیمات کاربران سیستم', path: "/register", icon: "fas fa-user-plus" },
       { label: ' تنظیمات اساتید', path: "/registerTeachers", icon: "fas fa-user-plus" },
      
       // { label: ' بروزرسانی ', path: "/update", icon: "fas fa-refresh" },
@@ -73,7 +73,7 @@ this.addItems=[
      
     ];
     this.cartable = [
-      { label: 'تایید واحد های محاسبه شده', path: "/contractSignitures", icon: " fa fa-file" },
+      { label: 'کارتابل تایید واحد های محاسبه شده', path: "/contractSignitures", icon: " fa fa-file" },
       // { label: ' تایید واحد های محاسبه شده', path: "/contractSignituresForCalculationUnits", icon: " fa fa-file-o" },
      
     ];

@@ -120,8 +120,11 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
     if(this.commonService.userDetailInfo.akharinMadrakTahsili=="1"){
               this.akharinMadrakTahsili="کارشناسی ارشد"
             }
-            if(this.commonService.userDetailInfo.akharinMadrakTahsili=="2"){
+           else if(this.commonService.userDetailInfo.akharinMadrakTahsili=="2"){
              this.akharinMadrakTahsili="دکتری"
+            }
+            else{
+              this.akharinMadrakTahsili=this.commonService.userDetailInfo.akharinMadrakTahsili
             }
    console.log('this.commonService.userDetailInfo;',this.commonService.userDetailInfo) 
   }

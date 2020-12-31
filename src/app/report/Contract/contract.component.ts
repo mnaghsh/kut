@@ -121,8 +121,10 @@ ngOnDestroy(){
                     this.commonService.loading = false;
                   }
                   else {
-                    this.error = "همه ی امضا ها برای مشاهده این قرارداد هنوز انجام نشده است"
+                    this.commonService.showEventMessage("همه ی امضا ها برای مشاهده این قرارداد هنوز انجام نشده است")
+                   
                     this.showContract = false;
+                    this.commonService.loading = false;
 
                   }
                 }
