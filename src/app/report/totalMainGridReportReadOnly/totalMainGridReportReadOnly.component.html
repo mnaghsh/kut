@@ -38,7 +38,7 @@
       </div>
       <td mat-cell *matCellDef="let row; let index = index" class="cells">
 
-        <label maxlength="4" *ngIf=" column.columnDef!='C22' && column.columnDef!='C23'
+        <label maxlength="4" *ngIf=" column.columnDef!='C22' && column.columnDef!='C23' && column.columnDef!='C29'
       && column.columnDef!='C3' " [innerHTML]="row[column.columnDef]"></label>
 
 
@@ -46,6 +46,11 @@
           [(ngModel)]="row[column.columnDef]">
           <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
         </mat-select>
+
+        <mat-select disabled=true *ngIf="column.columnDef=='C29'" (ngModelChange)="commonService.showSaveBtnTotal=1"
+        [(ngModel)]="row[column.columnDef]">
+        <mat-option *ngFor="let f of state" [value]="f.value">{{f.viewValue}}</mat-option>
+      </mat-select>
 
         <mat-select disabled=true *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1"
           [(ngModel)]="row[column.columnDef]">

@@ -23,6 +23,11 @@
             <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
           </mat-select>
 
+          
+          <mat-select *ngIf="column.columnDef=='C29'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
+            <mat-option *ngFor="let f of state" [value]="f.value">{{f.viewValue}}</mat-option>
+          </mat-select>
+
           <mat-select *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="row[column.columnDef]">
             <mat-option *ngFor="let f of post" [value]="f.value">{{f.viewValue}}</mat-option>
           </mat-select>
@@ -38,6 +43,10 @@
 
               <mat-select *ngIf="column.columnDef=='C22'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="newRowObj[column.columnDef]">
                 <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
+              </mat-select>
+
+              <mat-select *ngIf="column.columnDef=='C29'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="newRowObj[column.columnDef]">
+                <mat-option *ngFor="let f of state" [value]="f.value">{{f.viewValue}}</mat-option>
               </mat-select>
     
               <mat-select *ngIf="column.columnDef=='C23'" (ngModelChange)="commonService.showSaveBtnTotal=1" [(ngModel)]="newRowObj[column.columnDef]">

@@ -39,6 +39,13 @@ export class TotalMainGridReportComponent implements OnInit {
     {value: 6, viewValue: 'حق التدریس'},
 
   ];
+
+  state = [ 
+    {value: 1, viewValue: 'عادی'},
+    {value: 2, viewValue: 'مدعو'},
+    {value: 3, viewValue: 'مامور'},
+
+  ];
  
   post = [
     {value: 1, viewValue: 'رئیس دانشگاه'},

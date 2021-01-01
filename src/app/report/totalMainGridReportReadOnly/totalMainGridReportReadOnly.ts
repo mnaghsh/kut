@@ -36,6 +36,14 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
   ];
 
+  
+  state = [ 
+    {value: 1, viewValue: 'عادی'},
+    {value: 2, viewValue: 'مدعو'},
+    {value: 3, viewValue: 'مامور'},
+
+  ];
+
   post = [
     { value: 1, viewValue: 'رئیس دانشگاه' },
     { value: 2, viewValue: 'معاون دانشگاه' },
