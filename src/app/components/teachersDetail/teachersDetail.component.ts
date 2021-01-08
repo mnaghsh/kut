@@ -28,7 +28,7 @@ export interface Term {
 export class TeachersDetailComponent implements OnInit {
   //toppings = new FormControl();
   toppingList: string[] = this.commonService.categoryList
-mhd:boolean;
+  reRenderTotalGridReadOnly:boolean;
   registerForm;
   fullName = "انتخاب استاد"
   myControl = new FormControl();
@@ -151,7 +151,7 @@ mhd:boolean;
   public btnChooseTeacher() {
    
     //this.newRowObj = {};
-    this.mhd=false
+    this.reRenderTotalGridReadOnly=false
     const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
       height: "85%",
@@ -162,7 +162,7 @@ mhd:boolean;
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
-          this.mhd=true;
+          this.reRenderTotalGridReadOnly=true;
 
           console.log('userDetails', data)
           this.userDetails = undefined;

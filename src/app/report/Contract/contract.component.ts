@@ -73,6 +73,7 @@ ngOnDestroy(){
     ////debugger
   }
   public btnChooseTeacher() {
+    
     this.vahedNahaie = undefined;
     this.martabeElmi = undefined;
     this.showCourseValueTable = false
@@ -98,7 +99,7 @@ ngOnDestroy(){
 
               this.getcontractSignitureObj = JSON.parse(success)
               this.getcontractSignitureObj.forEach(eachContractSignitureObj => {
-                if (eachContractSignitureObj.teacherId == data.id) {
+                if (eachContractSignitureObj.code == data.code) {
                   if (eachContractSignitureObj.signiture1 != null &&
                     eachContractSignitureObj.signiture2 != null &&
                     eachContractSignitureObj.signiture2 != null &&
@@ -128,6 +129,7 @@ ngOnDestroy(){
 
                   }
                 }
+              
               });
             }
           )

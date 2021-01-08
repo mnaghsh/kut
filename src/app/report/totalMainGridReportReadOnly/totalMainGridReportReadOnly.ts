@@ -36,11 +36,11 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
   ];
 
-  
-  state = [ 
-    {value: 1, viewValue: 'عادی'},
-    {value: 2, viewValue: 'مدعو'},
-    {value: 3, viewValue: 'مامور'},
+
+  state = [
+    { value: 1, viewValue: 'عادی' },
+    { value: 2, viewValue: 'مدعو' },
+    { value: 3, viewValue: 'مامور' },
 
   ];
 
@@ -56,6 +56,8 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
     { value: 9, viewValue: 'سرپرست گروه نظارت و ارزیابی و تضمین کیفیت' },
     { value: 10, viewValue: 'مدیر گروه آموزشی با تحصیلات تکمیلی ' },
     { value: 11, viewValue: 'مدیر گروه بدون تحصیلات تکمیلی' },
+    { value: 13, viewValue: 'مدیر دفتر ریاست' },
+    { value: 14, viewValue: 'مدیر ارتباط با صنعت' },
     { value: 12, viewValue: 'بدون پست' },
   ];
 
@@ -116,7 +118,8 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
 
   ngOnInit() {
     // this.getTeacherList()
-    //debugger
+    debugger
+    this.dataSource = null;
     this.termId = this.commonService.termId;
     this.userId = this.commonService.reportUserId;
     this.getDataOfReport();
@@ -125,16 +128,16 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
   }
   userDetailInformation() {
 
-    if(this.commonService.userDetailInfo.akharinMadrakTahsili=="1"){
-              this.akharinMadrakTahsili="کارشناسی ارشد"
-            }
-           else if(this.commonService.userDetailInfo.akharinMadrakTahsili=="2"){
-             this.akharinMadrakTahsili="دکتری"
-            }
-            else{
-              this.akharinMadrakTahsili=this.commonService.userDetailInfo.akharinMadrakTahsili
-            }
-   console.log('this.commonService.userDetailInfo;',this.commonService.userDetailInfo) 
+    if (this.commonService.userDetailInfo.akharinMadrakTahsili == "1") {
+      this.akharinMadrakTahsili = "کارشناسی ارشد"
+    }
+    else if (this.commonService.userDetailInfo.akharinMadrakTahsili == "2") {
+      this.akharinMadrakTahsili = "دکتری"
+    }
+    else {
+      this.akharinMadrakTahsili = this.commonService.userDetailInfo.akharinMadrakTahsili
+    }
+    console.log('this.commonService.userDetailInfo;', this.commonService.userDetailInfo)
   }
   private replaceNewData() {
     this.displayedColumns = null
@@ -444,7 +447,7 @@ INSERT INTO totalValue (`+
   }
 
 
-  
+
 
   // private btnChooseTeacher() {
   //   const dialogRef = this.dialog.open(TeacherComponent, {
@@ -473,7 +476,7 @@ INSERT INTO totalValue (`+
   //   this.teacherService.getListOfTeachers().subscribe(
   //     (success) => {
   //       debugger;
-        
+
   //       this.commonService.userDetails = JSON.parse(success)
   //       if(this.commonService.userDetails.)
   //       //this.commonService.allPersonsList = JSON.parse(success)
@@ -491,5 +494,5 @@ INSERT INTO totalValue (`+
   //   )
 
   // }
-  
+
 }

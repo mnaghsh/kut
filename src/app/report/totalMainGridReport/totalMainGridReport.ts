@@ -59,7 +59,10 @@ export class TotalMainGridReportComponent implements OnInit {
     {value: 9, viewValue: 'سرپرست گروه نظارت و ارزیابی و تضمین کیفیت'},
     {value: 10, viewValue: 'مدیر گروه آموزشی با تحصیلات تکمیلی '},
     {value: 11, viewValue: 'مدیر گروه بدون تحصیلات تکمیلی'},
+    {value: 13, viewValue: 'مدیر دفتر ریاست'},
+    {value: 14, viewValue: 'مدیر ارتباط با صنعت'},
     {value: 12, viewValue: 'بدون پست'},
+  
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

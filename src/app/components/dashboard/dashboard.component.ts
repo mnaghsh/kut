@@ -30,9 +30,11 @@ export class DashboardComponent implements OnInit {
   
 
     this.navBarItem = [
+      { label: ' تغییر اطلاعات اساتید', path: "/teachersDetail", icon: "fas fa-users" },
       { label: 'ورود اطلاعات', path: "/report/mainGridReport", icon: "fas fa-pencil" },
       { label: 'چاپ گزارش', path: "/report/mainGridReportReadOnly", icon: "fas fa-print" },
-      { label: 'چاپ قرارداد استاد', path: "/report/Contract", icon: "fas fa-newspaper-o" }
+      { label: 'چاپ قرارداد استاد', path: "/report/Contract", icon: "fas fa-newspaper-o" },
+     
       // { label: ' ایجاد آیتم غیرمحاسباتی کلی  ', path: "/report", icon: "far fa-envelope" },
 
       // { label: ' کالک ', path: "/calk", icon: "fas fa-map" },
