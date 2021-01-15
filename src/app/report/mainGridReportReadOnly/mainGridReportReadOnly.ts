@@ -90,6 +90,7 @@ export class MainGridReportReadOnlyComponent implements OnInit {
 
 
   }
+  
 
   private filterAutoCompelete() {
     ////debugger
@@ -218,6 +219,13 @@ export class MainGridReportReadOnlyComponent implements OnInit {
       var roundedString = num.toFixed(2);
       var rounded = Number(roundedString);
       eachRow['C20'] = rounded
+
+      var num = eachRow['C30']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C30'] = rounded
+
+  
 
     });
   }

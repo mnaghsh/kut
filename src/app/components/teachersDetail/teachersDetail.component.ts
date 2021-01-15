@@ -28,7 +28,7 @@ export interface Term {
 export class TeachersDetailComponent implements OnInit {
   //toppings = new FormControl();
   toppingList: string[] = this.commonService.categoryList
-  reRenderTotalGridReadOnly:boolean;
+  reRenderTotalGridReadOnly: boolean;
   registerForm;
   fullName = "انتخاب استاد"
   myControl = new FormControl();
@@ -52,8 +52,8 @@ export class TeachersDetailComponent implements OnInit {
   ];
 
   madrak = [
-    {value: "1", viewValue: 'کارشناسی ارشد'},
-    {value: "2", viewValue: 'دکتری'}
+    { value: "1", viewValue: 'کارشناسی ارشد' },
+    { value: "2", viewValue: 'دکتری' }
   ];
   userDetails: any;
   userId: any;
@@ -94,33 +94,35 @@ export class TeachersDetailComponent implements OnInit {
   public save() {
     console.log('userDetails', this.userDetails)
     let body = {
-   
-     // user ? user.name : undefined;
-      id                             : this.userId? this.userId :"",
-      jensiat                        : this.userDetails.jensiat? this.userDetails.jensiat:"",
-      kodamDaneshgahha               : this.userDetails.kodamDaneshgahha? this.userDetails.kodamDaneshgahha:"",
-      mahaleAkhzAkharinMadrak        : this.userDetails.mahaleAkhzAkharinMadrak? this.userDetails.mahaleAkhzAkharinMadrak:"",
-      mahaleTavalod                  : this.userDetails.mahaleTavalod ? this.userDetails.mahaleTavalod:"",
-      mobile                         : this.userDetails.mobile ? this.userDetails.mobile:"",
-      namePedar                      : this.userDetails.namePedar ? this.userDetails.namePedar:"",
-      neshaniVaTelephone             : this.userDetails.neshaniVaTelephone ? this.userDetails.neshaniVaTelephone:"",
-      paye                           : this.userDetails.paye ? this.userDetails.paye:"",
-      reshteTahsili                  : this.userDetails.reshteTahsili ? this.userDetails.reshteTahsili:"",
-      rotbeElmi                      : this.userDetails.rotbeElmi  ? this.userDetails.rotbeElmi:"",
-      saleAkhz                       : this.userDetails.saleAkhz ? this.userDetails.saleAkhz:"",
-      saleSabeghe                    : this.userDetails.saleSabeghe  ? this.userDetails.saleSabeghe:"",
-      shomareHesab                   : this.userDetails.shomareHesab  ? this.userDetails.shomareHesab:"",
-      shomareMeli                    : this.userDetails.shomareMeli  ? this.userDetails.shomareMeli:"",
-      shomareShenasname              : this.userDetails.shomareShenasname  ? this.userDetails.shomareShenasname:"",
-     // taTarikh                       : this.userDetails.taTarikh,
-      tarikhTavalod                  : this.userDetails.tarikhTavalod ? this.userDetails.tarikhTavalod:"",
-      vaziateShoghli                 : this.userDetails.vaziateShoghli ? this.userDetails.vaziateShoghli:"",
-      vaziateTaahol                  : this.userDetails.vaziateTaahol ? this.userDetails.vaziateTaahol:"",
-      akharinMadrakTahsili           : this.userDetails.akharinMadrakTahsili ? this.userDetails.akharinMadrakTahsili:"",
-      daneshkade           : this.userDetails.daneshkade ? this.userDetails.daneshkade:"",
+
+      // user ? user.name : undefined;
+      id: this.userId ? this.userId : "",
+      jensiat: this.userDetails.jensiat ? this.userDetails.jensiat : "",
+      kodamDaneshgahha: this.userDetails.kodamDaneshgahha ? this.userDetails.kodamDaneshgahha : "",
+      mahaleAkhzAkharinMadrak: this.userDetails.mahaleAkhzAkharinMadrak ? this.userDetails.mahaleAkhzAkharinMadrak : "",
+      mahaleTavalod: this.userDetails.mahaleTavalod ? this.userDetails.mahaleTavalod : "",
+      mobile: this.userDetails.mobile ? this.userDetails.mobile : "",
+      namePedar: this.userDetails.namePedar ? this.userDetails.namePedar : "",
+      neshaniVaTelephone: this.userDetails.neshaniVaTelephone ? this.userDetails.neshaniVaTelephone : "",
+      paye: this.userDetails.paye ? this.userDetails.paye : "",
+      reshteTahsili: this.userDetails.reshteTahsili ? this.userDetails.reshteTahsili : "",
+      rotbeElmi: this.userDetails.rotbeElmi ? this.userDetails.rotbeElmi : "",
+      saleAkhz: this.userDetails.saleAkhz ? this.userDetails.saleAkhz : "",
+      saleSabeghe: this.userDetails.saleSabeghe ? this.userDetails.saleSabeghe : "",
+      shomareHesab: this.userDetails.shomareHesab ? this.userDetails.shomareHesab : "",
+      shomareMeli: this.userDetails.shomareMeli ? this.userDetails.shomareMeli : "",
+      shomareShenasname: this.userDetails.shomareShenasname ? this.userDetails.shomareShenasname : "",
+      // taTarikh                       : this.userDetails.taTarikh,
+      tarikhTavalod: this.userDetails.tarikhTavalod ? this.userDetails.tarikhTavalod : "",
+      vaziateShoghli: this.userDetails.vaziateShoghli ? this.userDetails.vaziateShoghli : "",
+      vaziateTaahol: this.userDetails.vaziateTaahol ? this.userDetails.vaziateTaahol : "",
+      akharinMadrakTahsili: this.userDetails.akharinMadrakTahsili ? this.userDetails.akharinMadrakTahsili : "",
+      daneshkade: this.userDetails.daneshkade ? this.userDetails.daneshkade : "",
       // madrakTahsili           : this.userDetails.madrakTahsili ? this.userDetails.madrakTahsili:"",
-      gorohAmozeshi           : this.userDetails.gorohAmozeshi ? this.userDetails.gorohAmozeshi:""
-      
+      gorohAmozeshi: this.userDetails.gorohAmozeshi ? this.userDetails.gorohAmozeshi : "",
+      saateTashkilNashode: this.userDetails.saateTashkilNashode ? this.userDetails.saateTashkilNashode : 0,
+      mablaghHarSaat: this.userDetails.mablaghHarSaat ? this.userDetails.mablaghHarSaat : 0
+
     }
     console.log('body', body)
     this.commonService.loading = true;
@@ -129,8 +131,8 @@ export class TeachersDetailComponent implements OnInit {
 
         this.commonService.showEventMessage("عملیات با موفقیت انجام شد")
         this.commonService.loading = false;
-        
-       
+
+
 
       }
 
@@ -149,9 +151,9 @@ export class TeachersDetailComponent implements OnInit {
 
 
   public btnChooseTeacher() {
-   
+
     //this.newRowObj = {};
-    this.reRenderTotalGridReadOnly=false
+    this.reRenderTotalGridReadOnly = false
     const dialogRef = this.dialog.open(TeacherComponent, {
       width: "85%",
       height: "85%",
@@ -162,7 +164,7 @@ export class TeachersDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
-          this.reRenderTotalGridReadOnly=true;
+          this.reRenderTotalGridReadOnly = true;
 
           console.log('userDetails', data)
           this.userDetails = undefined;
@@ -178,12 +180,12 @@ export class TeachersDetailComponent implements OnInit {
           this.commonService.reportUserId = this.userId;
           switch (this.userDetails.akharinMadrakTahsili) {
             case "کارشناسی ارشد":
-              this.userDetails.akharinMadrakTahsili="1"
+              this.userDetails.akharinMadrakTahsili = "1"
               break;
             case "دکتری":
-              this.userDetails.akharinMadrakTahsili="2"
+              this.userDetails.akharinMadrakTahsili = "2"
               break;
-      
+
           }
           //this.commonService.reportUserId;
         }

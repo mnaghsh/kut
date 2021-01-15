@@ -38,21 +38,23 @@ const myRoots: Routes = [
     children: [
       { path: 'formula', loadChildren: './formula/formula.module#FormulaModule' },
       { path: 'report', loadChildren: './report/report.module#ReportModule' },
-      { path: 'delegationSigniture', component: DelegationSignitureComponent},
-      { path: 'delegationSignitureForCalculationUnits', component: DelegationSignitureForCalculationUnitsComponent},
-      { path: 'contractSignitures', component: ContractSignituresComponent},
-      { path: 'contractSignituresForCalculationUnits', component: ContractSignituresForCalculationUnitsComponent},
-      { path: 'register', component: RegisterComponent},
-      { path: 'registerTeachers', component: RegisterTeachersComponent},
-       { path: 'teachersDetail', component: TeachersDetailComponent}
+      { path: 'delegationSigniture', component: DelegationSignitureComponent },
+      { path: 'delegationSignitureForCalculationUnits', component: DelegationSignitureForCalculationUnitsComponent },
+      { path: 'contractSignitures', component: ContractSignituresComponent },
+      { path: 'contractSignituresForCalculationUnits', component: ContractSignituresForCalculationUnitsComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'registerTeachers', component: RegisterTeachersComponent },
+      { path: 'SendListToFinance', component: RegisterTeachersComponent },
+      { path: 'unSendListToFinance', component: RegisterTeachersComponent },
+      { path: 'teachersDetail', component: TeachersDetailComponent }
 
 
     ],
   },
   { path: 'login', component: LoginComponent },
   //{ path: 'register', component: RegisterComponent, canActivate: [LoginGuard]},
-  
-  
+
+
 
 ];
 
@@ -67,13 +69,13 @@ const myRoots: Routes = [
     DelegationSignitureComponent,
     DelegationSignitureForCalculationUnitsComponent,
     DashboardComponent,
-    CategoryComponent,TeacherComponent,UsersComponent,CoursesComponent,ConfirmComponent,
+    CategoryComponent, TeacherComponent, UsersComponent, CoursesComponent, ConfirmComponent,
     ContractSignituresComponent,
     ContractSignituresForCalculationUnitsComponent,
     TotalMainGridReportComponent
   ],
   imports: [
-  
+
     AngularFontAwesomeModule,
     MatTabsModule,
     MatListModule,
@@ -85,11 +87,11 @@ const myRoots: Routes = [
     SharedModule,
 
     RouterModule.forRoot(myRoots,
-       {useHash: true}
+      { useHash: true }
     ),
   ],
-  entryComponents: [CategoryComponent,AllPersonsComponent,UsersComponent,TeacherComponent,CoursesComponent,ConfirmComponent],
- 
+  entryComponents: [CategoryComponent, AllPersonsComponent, UsersComponent, TeacherComponent, CoursesComponent, ConfirmComponent],
+
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -14,6 +14,8 @@ import { TotalMainGridReportComponent } from './totalMainGridReport/totalMainGri
 import { CoursesComponent } from '../components/courses/courses.component';
 import { TotalMainGridReportReadOnlyComponent } from './totalMainGridReportReadOnly/totalMainGridReportReadOnly';
 import { LoadingComponent } from '../components/loading/loading.component';
+import { UnSendListToFinanceComponent } from './unSendListToFinance/unSendListToFinance';
+import { SendListToFinanceComponent } from './sendListToFinance/sendListToFinance';
 
 @NgModule({
   imports: [
@@ -24,6 +26,6 @@ import { LoadingComponent } from '../components/loading/loading.component';
   entryComponents: [],
   declarations: [IndexComponent,
     LoadingComponent, MainGridReportComponent,TotalMainGridReportReadOnlyComponent
-    , MainGridReportReadOnlyComponent, ContractComponent,]
+    , MainGridReportReadOnlyComponent, ContractComponent,SendListToFinanceComponent,UnSendListToFinanceComponent]
 })
 export class ReportModule { }

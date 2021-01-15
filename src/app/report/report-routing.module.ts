@@ -6,6 +6,8 @@ import { MainGridReportComponent } from './mainGridReport/mainGridReport';
 import { IndexComponent } from './index/index.component';
 import { MainGridReportReadOnlyComponent } from './mainGridReportReadOnly/mainGridReportReadOnly';
 import { ContractComponent } from './Contract/contract.component';
+import { SendListToFinanceComponent } from './sendListToFinance/sendListToFinance';
+import { UnSendListToFinanceComponent } from './unSendListToFinance/unSendListToFinance';
 
 
 const routes: Routes = [{
@@ -24,6 +26,16 @@ const routes: Routes = [{
     {
       path: 'Contract',
       component: ContractComponent
+    }
+    ,
+    {
+      path: 'sendListToFinance',
+      component: SendListToFinanceComponent
+    }
+    ,
+    {
+      path: 'unSendListToFinance',
+      component: UnSendListToFinanceComponent
     }
 
   ]

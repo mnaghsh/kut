@@ -124,6 +124,20 @@
 
       </td>
       <tr>
+        <p>تعداد ساعت تشکیل نشده: &nbsp; <input type="number" class="textBox"
+          [(ngModel)]="userDetails.saateTashkilNashode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- رتبه علمی
+      : &nbsp; -->
+        <!-- <strong>
+        <input class="textBox"
+          [(ngModel)]="userDetails.rotbeElmi"></strong> -->
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; مبلغ هر ساعت(ریال):
+        <strong> <input type="number" class="textBox" [(ngModel)]="userDetails.mablaghHarSaat"></strong>
+      </p>
+
+      </tr>
+      <tr>
         <app-totalMainGridReport *ngIf="reRenderTotalGridReadOnly"></app-totalMainGridReport>
       </tr>
     </tbody>
