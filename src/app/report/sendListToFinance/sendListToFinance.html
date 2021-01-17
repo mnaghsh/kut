@@ -26,15 +26,27 @@
   (click)="saveChanges()"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
 <!-- <button mat-raised-button color="primary" class=" btnROllBack" aria-hidden="true" (click)="contractSignitures()"><i
     class="fa fa-refresh fa-spin fa-1x fa-fw"></i> بازنشانی </button> -->
-    <button  mat-raised-button color="primary" class="btnPrint" (click)="print()">
+    <button  mat-raised-button color="primary"  (click)="print()">
       <i class="fa fa-print" aria-hidden="true"></i> چاپ
     </button>
+    <button mat-raised-button class="btnExcel" (click)="exportTable()">
+      <i class="fa fa-file-excel-o" aria-hidden="true"></i> &nbsp; انتقال به اکسل &nbsp;
+    </button>
+    <span style="float: left;">
+      <button (click)="filterTeachers('all')" mat-stroked-button>
+        <i class="fa fa-filter" aria-hidden="true"></i>همه
+        اساتید</button>
+      <button (click)="filterTeachers('dakheli')" mat-stroked-button color="primary">
+        <i class="fa fa-filter" aria-hidden="true"></i>اساتید داخلی</button>
+      <button (click)="filterTeachers('khareji')" mat-stroked-button color="warn">
+        <i class="fa fa-filter" aria-hidden="true"></i>اساتید خارجی</button>
+    </span>
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="جستجو در لیست اساتید">
 </mat-form-field>
 <div class="mat-elevation-z8">
   <div dir="rtl" id="print-section">
-  <table matSort class="table table-bordered table-striped table-hover" mat-table dir="rtl" [dataSource]="dataSource">
+  <table id="mainTable" matSort class="table table-bordered table-striped table-hover" mat-table dir="rtl" [dataSource]="dataSource">
 
     <ng-container matColumnDef="rowNumber">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ردیف </th>
@@ -62,9 +74,21 @@
     </ng-container>
     
     <ng-container matColumnDef="martabe">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> مرتیه </th>
+      <th style=" min-width: 52px;" mat-header-cell *matHeaderCellDef mat-sort-header> مرتبه </th>
       <td mat-cell *matCellDef="let row">
-       {{row.martabe}}
+        <mat-select disabled=true [(ngModel)]="row.martabe">
+          <mat-option *ngFor="let f of martabe" [value]="f.value">{{f.viewValue}}</mat-option>
+        </mat-select>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> وضعیت </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-select disabled=true 
+        [(ngModel)]="row.state">
+        <mat-option *ngFor="let f of state" [value]="f.value">{{f.viewValue}}</mat-option>
+      </mat-select>
       </td>
     </ng-container>
 
@@ -73,7 +97,7 @@
       <td mat-cell *matCellDef="let row">
        {{row.paye}}
       </td>
-    </ng-container>
+    </ng-container> 
 
     <ng-container matColumnDef="vahedMovazaf">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> واحد موظف </th>
@@ -159,7 +183,7 @@
 
 
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;">
     </tr>
   </table>

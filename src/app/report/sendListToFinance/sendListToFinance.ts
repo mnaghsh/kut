@@ -8,6 +8,7 @@ import { ContractSignituresService } from 'src/app/services/contractSignitures/c
 import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 import { CategoryComponent } from 'src/app/components/category/category.component';
 import { ListOfFinanceService } from 'src/app/services/ListOfFinance/ListOfFinanceService';
+import * as XLSX from "xlsx";
 
 @Component({
   selector: 'app-sendListToFinance',
@@ -15,17 +16,36 @@ import { ListOfFinanceService } from 'src/app/services/ListOfFinance/ListOfFinan
   styleUrls: ['./sendListToFinance.scss']
 })
 export class SendListToFinanceComponent implements OnInit {
+
+  martabe = [
+    { value: 1, viewValue: 'مربی آموزشیار' },
+    { value: 2, viewValue: 'مربی' },
+    { value: 3, viewValue: 'استادیار' },
+    { value: 4, viewValue: 'دانشیار' },
+    { value: 5, viewValue: 'استاد' },
+    { value: 6, viewValue: 'حق التدریس' },
+
+  ];
+  state = [
+    { value: 1, viewValue: 'عادی' },
+    { value: 2, viewValue: 'مدعو' },
+    { value: 3, viewValue: 'مامور' },
+
+  ];
+  inTeachers=[];
+  outTeachers=[];
   userId: number;
   dataSource: any;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   displayedColumns: string[] = ['rowNumber','code', 'fullName', 'akharinMadrakTahsili',
-   'martabe', 'paye', 'vahedMovazaf', 'vahedMazadBedoneZarayeb', 'vahedeTadrisShodeBaZarayeb',
+   'martabe','state', 'paye', 'vahedMovazaf', 'vahedMazadBedoneZarayeb', 'vahedeTadrisShodeBaZarayeb',
    'vahedeMazadBaZarayeb', 'tedadSaateKol', 'saateTashkilNashode', 'tedadSaatebargozarShode', 'mablaghHarSaat',
    'mablaghKol', 'shomareHesab','sendToFinance'
   
   ];
   listOfFinance: any[];
+  allTeachers: unknown[];
   constructor(
     public commonService: CommonService,
     private listOfFinanceService: ListOfFinanceService,
@@ -44,6 +64,8 @@ export class SendListToFinanceComponent implements OnInit {
       (success) => {
         this.listOfFinance= JSON.parse(success)
         this.roundNumber()
+        this.changeTextOfEvidence();
+        this.allTeachers = this.listOfFinance
         console.log('listOfFinance', JSON.parse(success));
         this.dataSource = new MatTableDataSource(this.listOfFinance);
         this.dataSource.paginator = this.paginator;
@@ -113,6 +135,20 @@ export class SendListToFinanceComponent implements OnInit {
 
   }
 
+  changeTextOfEvidence() {
+    this.listOfFinance.forEach(eachTeacher => {
+      switch (eachTeacher.akharinMadrakTahsili) {
+        case "1":
+          eachTeacher.akharinMadrakTahsili = "کارشناسی ارشد"
+          break;
+        case "2":
+          eachTeacher.akharinMadrakTahsili = "دکتری"
+          break;
+
+      }
+    });
+
+  }
 
   private sendToServer(updateQuery) {
     let body = {
@@ -189,6 +225,59 @@ export class SendListToFinanceComponent implements OnInit {
   }
   changeSignitures(row){
     row.changed=true
+  }
+
+ 
+  filterTeachers(type) {
+    this.inTeachers=[];
+    this.outTeachers=[];
+    console.log('type', type)
+    switch (type) {
+      case "all":
+        this.dataSource = new MatTableDataSource(this.allTeachers);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+        break;
+      case "dakheli":
+        this.listOfFinance.forEach(echeTeacher => {
+          if(echeTeacher.state!=2&&echeTeacher.martabe!=6){
+            this.inTeachers.push(echeTeacher)
+          }
+        });
+        this.dataSource = new MatTableDataSource(this.inTeachers);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+        break;
+
+      case "khareji":
+        this.listOfFinance.forEach(echeTeacher => {
+          if(echeTeacher.state==2||echeTeacher.martabe==6){
+            this.outTeachers.push(echeTeacher)
+          }
+        });
+        this.dataSource = new MatTableDataSource(this.outTeachers);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
+        break;
+      
+    }
+  }
+  exportTable(){
+    this.exportToExcel("mainTable");
+   
+  }
+
+  exportToExcel(tableId: string, name?: string) {
+    let myDate = new Date().toLocaleDateString('fa-IR');
+    //let timeSpan = new Date().toISOString();
+    let prefix = name || "گزارش مالی ";
+    let fileName = `${prefix}-${this.commonService.termName}-${myDate}`;
+    let targetTableElm = document.getElementById(tableId);
+    let wb = XLSX.utils.table_to_book(targetTableElm, <XLSX.Table2SheetOpts>{ sheet: prefix });
+    XLSX.writeFile(wb, `${fileName}.xlsx`);
   }
 
 }
