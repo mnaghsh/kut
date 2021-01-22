@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material';
 import { RegisterService } from 'src/app/services/register/registerService';
 import { CategoryService } from 'src/app/services/category/categoryService';
 import { TeacherDetailService } from 'src/app/services/teacherDetail/teacherDetailService';
+import { ContractSignituresService } from 'src/app/services/contractSignitures/contractSignituresService';
 
 export interface Term {
   id: number;
@@ -63,6 +64,8 @@ export class TeachersDetailComponent implements OnInit {
   dataSource: any;
   columns: any[];
   showCourseValueTable: boolean;
+  getcontractSignitureObj: any;
+  saateTashkilNashode: any;
 
 
   constructor(private fb: FormBuilder,
@@ -72,6 +75,7 @@ export class TeachersDetailComponent implements OnInit {
     public registerService: RegisterService,
     public teacherService: TeacherService,
     public categoryService: CategoryService,
+    public contractSigniture: ContractSignituresService,
     public teacherDetail: TeacherDetailService,
     private dialog: MatDialog,
     private myRoute: Router) {
@@ -97,6 +101,7 @@ export class TeachersDetailComponent implements OnInit {
 
       // user ? user.name : undefined;
       id: this.userId ? this.userId : "",
+      termId: this.commonService.termId,
       jensiat: this.userDetails.jensiat ? this.userDetails.jensiat : "",
       kodamDaneshgahha: this.userDetails.kodamDaneshgahha ? this.userDetails.kodamDaneshgahha : "",
       mahaleAkhzAkharinMadrak: this.userDetails.mahaleAkhzAkharinMadrak ? this.userDetails.mahaleAkhzAkharinMadrak : "",
@@ -120,7 +125,7 @@ export class TeachersDetailComponent implements OnInit {
       daneshkade: this.userDetails.daneshkade ? this.userDetails.daneshkade : "",
       // madrakTahsili           : this.userDetails.madrakTahsili ? this.userDetails.madrakTahsili:"",
       gorohAmozeshi: this.userDetails.gorohAmozeshi ? this.userDetails.gorohAmozeshi : "",
-      saateTashkilNashode: this.userDetails.saateTashkilNashode ? this.userDetails.saateTashkilNashode : 0,
+      saateTashkilNashode: this.saateTashkilNashode ? this.saateTashkilNashode : 0,
       mablaghHarSaat: this.userDetails.mablaghHarSaat ? this.userDetails.mablaghHarSaat : 0
 
     }
@@ -165,7 +170,7 @@ export class TeachersDetailComponent implements OnInit {
       (data) => {
         if (data) {
           this.reRenderTotalGridReadOnly = true;
-
+          this.getContractSigniture()
           console.log('userDetails', data)
           this.userDetails = undefined;
           this.userDetails = data;
@@ -192,6 +197,24 @@ export class TeachersDetailComponent implements OnInit {
       }
     )
   }
+  getContractSigniture() {
+    this.commonService.loading = true;
+    this.contractSigniture.getContractSignitures(this.commonService.termId).subscribe(
+      (success) => {
+        //debugger
+        this.getcontractSignitureObj = JSON.parse(success)
+        this.getcontractSignitureObj.forEach(eacheContractSigniture => {
+          if (eacheContractSigniture.teacherId == this.userId) {
+            this.saateTashkilNashode = eacheContractSigniture.saateTashkilNashode
+          }
+        });
+        this.commonService.loading = false;
+      },
+      (error) => {
+        this.commonService.showEventMessage("خطایی به وجود آمده یا ارتباط با سرور قطع است")
+        this.commonService.loading = false;
+      }
 
-
+    );
+  }
 }

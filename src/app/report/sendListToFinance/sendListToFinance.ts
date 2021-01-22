@@ -108,10 +108,10 @@ export class SendListToFinanceComponent implements OnInit {
       var rounded = Number(roundedString);
       eachRow['tedadSaatebargozarShode'] = rounded
 
-      var num = eachRow['mablaghKol']
-      var roundedString = num.toFixed(2);
-      var rounded = Number(roundedString);
-      eachRow['mablaghKol'] = rounded
+      // var num = eachRow['mablaghKol']
+      // var roundedString = num.toFixed(2);
+      // var rounded = Number(roundedString);
+      // eachRow['mablaghKol'] = rounded
       
     });
 
