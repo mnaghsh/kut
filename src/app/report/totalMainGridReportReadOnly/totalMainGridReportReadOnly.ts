@@ -264,6 +264,11 @@ export class TotalMainGridReportReadOnlyComponent implements OnInit {
       var rounded = Number(roundedString);
       eachRow['C20'] = rounded
 
+      var num = eachRow['C28']
+      var roundedString = num.toFixed(2);
+      var rounded = Number(roundedString);
+      eachRow['C28'] = rounded
+
     });
   }
 
