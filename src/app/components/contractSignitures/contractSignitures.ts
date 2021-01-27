@@ -269,7 +269,7 @@ export class ContractSignituresComponent implements OnInit {
                   `, signiture3=` + null +
                   `, signiture4=` + null +
                   `, signiture5=` + null +
-                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection  ? eachContractSigniture.reasonForRejection :""   +
+                  `, reasonForRejection='` + eachContractSigniture.reasonForRejection  +
                   `'  where teacherId=` + eachContractSigniture.teacherId +
                   ` and termId=` + eachContractSigniture.termId
                 this.sendToServer(updateQuery)
