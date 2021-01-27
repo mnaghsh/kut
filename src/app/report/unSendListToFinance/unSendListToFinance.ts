@@ -121,15 +121,17 @@ export class UnSendListToFinanceComponent implements OnInit {
       var rounded = Number(roundedString);
       eachRow['tedadSaatebargozarShode'] = rounded
 
+      eachRow['mablaghKol']= Number(eachRow['tedadSaatebargozarShode'])* Number(eachRow['mablaghHarSaat'])
       var num = eachRow['mablaghKol']
       var roundedString = num.toFixed(0);
       var rounded = Number(roundedString);
       eachRow['mablaghKol'] = rounded
-
+     
     });
 
   }
 
+ 
 
   public saveChanges() {
     debugger
