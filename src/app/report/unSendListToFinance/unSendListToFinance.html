@@ -11,13 +11,13 @@
 
 <br>
 
-<button type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
+<button *ngIf="this.commonService.activeUser[0].type==1" type="submit" mat-raised-button color="primary" matTooltip="ذخیره " class=" btnSave" aria-hidden="true"
   (click)="saveChanges()"><i class="fa fa-floppy-o" aria-hidden="true"></i> &nbsp; ذخیره &nbsp; </button>
 
-<button mat-raised-button color="primary" (click)="print()">
+<button *ngIf="this.commonService.activeUser[0].type==1" mat-raised-button color="primary" (click)="print()">
   <i class="fa fa-print" aria-hidden="true"></i> &nbsp; چاپ &nbsp;
 </button>
-<button mat-raised-button class="btnExcel" (click)="exportTable()">
+<button *ngIf="this.commonService.activeUser[0].type==1" mat-raised-button class="btnExcel" (click)="exportTable()">
   <i class="fa fa-file-excel-o" aria-hidden="true"></i> &nbsp; انتقال به اکسل &nbsp;
 </button>
 <span style="float: left;">

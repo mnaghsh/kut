@@ -43,18 +43,18 @@
       </mat-form-field>
       <br> -->
 
-      <mat-form-field class="full-width">
-        <mat-select [(ngModel)]="typeId" [ngModelOptions]="{standalone: true}">
+      <mat-form-field *ngIf="this.commonService.activeUser[0].type==1" class="full-width">
+        <mat-select  placeholder="سطح دسترسی" [(ngModel)]="typeId" [ngModelOptions]="{standalone: true}">
           <mat-option *ngFor="let t of typeList" [value]="t.id">{{t.name}}</mat-option>
         </mat-select>
       </mat-form-field>
 
       <br>
-      <mat-form-field class="full-width">
+      <mat-form-field *ngIf="this.commonService.activeUser[0].type==1" class="full-width">
         <input matInput type="text"  placeholder="شماره پرسنلی" formControlName="code" />
       </mat-form-field>
       <br>
-      <mat-form-field class="full-width">
+      <mat-form-field *ngIf="this.commonService.activeUser[0].type==1" class="full-width">
         <mat-label>گروه آموزشی</mat-label>
         <mat-select (closed)="closeSelect(myControl.value)" [formControl]="myControl" multiple>
           <mat-select-trigger>

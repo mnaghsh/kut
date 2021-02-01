@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
       { label: 'چاپ گزارش', path: "/report/mainGridReportReadOnly", icon: "fas fa-print" },
       { label: 'چاپ قرارداد استاد', path: "/report/Contract", icon: "fas fa-newspaper-o" },
 
+
       // { label: ' ایجاد آیتم غیرمحاسباتی کلی  ', path: "/report", icon: "far fa-envelope" },
 
       // { label: ' کالک ', path: "/calk", icon: "fas fa-map" },
@@ -64,7 +65,6 @@ export class DashboardComponent implements OnInit {
 
 
     this.adminPages = [
-      { label: ' تنظیمات کاربران سیستم', path: "/register", icon: "fas fa-user-plus" },
       { label: ' تنظیمات اساتید', path: "/registerTeachers", icon: "fas fa-user-plus" },
 
 
@@ -84,6 +84,8 @@ export class DashboardComponent implements OnInit {
     ];
     this.cartable = [
       { label: 'کارتابل تایید واحد های محاسبه شده', path: "/contractSignitures", icon: " fa fa-file" },
+      { label: ' تنظیمات کاربران سیستم', path: "/register", icon: "fas fa-user-plus" },
+
       // { label: ' تایید واحد های محاسبه شده', path: "/contractSignituresForCalculationUnits", icon: " fa fa-file-o" },
 
     ];
