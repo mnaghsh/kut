@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
     // { id: 5, name: "مدرس" },
   ];
   backUpOfRegisterForm: any;
+  department: any;
 
 
   constructor(private fb: FormBuilder,
@@ -94,7 +95,7 @@ export class RegisterComponent implements OnInit {
         lastName: this.registerForm.value.lastName,
         type: this.typeId,
         //department: this.registerForm.value.department,
-        department: this.departmentArray,
+        department: this.departmentArray?this.departmentArray:this.department,
         code: this.registerForm.value.code,
         haveAccount: true
       }
@@ -206,14 +207,13 @@ this.resetFrom()
             code: [data.code, Validators.required],
             //: [data.haveAccount, Validators.required]
           });
-          this.backUpOfRegisterForm=  JSON.parse(JSON.stringify( this.registerForm )) 
 
           this.typeId = data.type;
-          // let localDepartmentArray = JSON.parse(data.department);
-          //this.departmentArray = '[' + String(localDepartmentArray) + ']'
+         this.department=data.department;
+         
         }
         else{
-          this.commonService.showEventMessage("شما دسترسی تغییر اطلاعات برای این کاربر را ندارید")
+          this.commonService.showEventMessage("شما دسترسی تغییر اطلاعات برای این کاربر را ندارید.")
         }
       }
     }
@@ -271,7 +271,10 @@ this.resetFrom()
       (error) => {
       }
     )
+    
 
   }
 
-}
+
+
+} 
